@@ -72,8 +72,40 @@ SENTENCE_RE = re.compile(r"(?<=[.!?…])\s+")
 VOICE_MODE_SUFFIX = (
     "\n\n---\n\nYou are in a live voice conversation. Keep responses to 1-3 sentences "
     "unless depth is genuinely needed. No markdown. No asterisks. Speak as you naturally "
-    "speak; do not narrate stage directions."
+    "speak; do not narrate stage directions. "
+    "You can discuss technical things, but never include literal API keys, OAuth tokens, "
+    "bearer tokens, passwords, or `.env` values — describe their shape and location only "
+    "(\"the xAI key in your env\", \"$XAI_API_KEY\"), never the literal string. "
+    "If you find yourself about to read out a long alphanumeric secret, stop and refer to "
+    "it by name."
 )
+
+# Defense-in-depth: regex-mask anything secret-shaped before it hits stdout or TTS.
+# Catches drift in agent CLAUDE.md or model behaviour without relying on prompt alone.
+_SECRET_PATTERNS = [
+    re.compile(r"\bxai-[A-Za-z0-9_-]{20,}\b"),
+    re.compile(r"\bsk-ant-[A-Za-z0-9_-]{20,}\b"),
+    re.compile(r"\bsk_[a-f0-9]{32,}\b"),
+    re.compile(r"\bsk-[A-Za-z0-9]{20,}\b"),
+    re.compile(r"(Bearer\s+)([A-Za-z0-9_\-\.]{30,})"),
+    re.compile(r"(xi-api-key:\s*)([A-Za-z0-9_\-\.]{20,})"),
+    re.compile(r"(Authorization:\s*Bearer\s+)([A-Za-z0-9_\-\.]{20,})"),
+    re.compile(r"\bgh[pousr]_[A-Za-z0-9]{30,}\b"),  # github tokens
+    re.compile(r"\beyJ[A-Za-z0-9_\-\.]{30,}\b"),    # jwt-shaped
+]
+
+
+def redact_secrets(text):
+    """Mask secret-shaped tokens. Idempotent. Used on every outbound text fragment
+    before it reaches stdout or ElevenLabs."""
+    if not text:
+        return text
+    for pat in _SECRET_PATTERNS:
+        if pat.groups >= 2:
+            text = pat.sub(lambda m: m.group(1) + "<REDACTED>", text)
+        else:
+            text = pat.sub("<REDACTED>", text)
+    return text
 
 
 def _env(key):
@@ -254,6 +286,9 @@ def stream_and_speak(client, model, history, system, voice_id, eleven_key, tag_f
 
     print("\nAgent: ", end="", flush=True)
 
+    # Buffered print at sentence boundary instead of per-token: lets us redact
+    # secret-shaped tokens before they hit stdout (and TTS). One-sentence delay
+    # in the visible stream; imperceptible for short Stella replies.
     with client.messages.stream(
         model=model,
         max_tokens=MAX_TOKENS,
@@ -261,7 +296,6 @@ def stream_and_speak(client, model, history, system, voice_id, eleven_key, tag_f
         messages=history,
     ) as stream:
         for token in stream.text_stream:
-            print(token, end="", flush=True)
             buffer += token
             full_response += token
 
@@ -269,36 +303,58 @@ def stream_and_speak(client, model, history, system, voice_id, eleven_key, tag_f
             while len(parts) > 1:
                 sentence = parts[0].strip()
                 buffer = parts[1]
+                safe_sentence = redact_secrets(sentence)
+                print(safe_sentence + " ", end="", flush=True)
                 drain()
-                pending = kick(sentence)
+                pending = kick(safe_sentence)
                 parts = SENTENCE_RE.split(buffer, maxsplit=1)
-
-    print()
 
     tail = buffer.strip()
     if tail:
+        safe_tail = redact_secrets(tail)
+        print(safe_tail, end="", flush=True)
         drain()
-        pending = kick(tail)
+        pending = kick(safe_tail)
+    print()
     drain()
 
-    return full_response
+    return redact_secrets(full_response)
 
 
-def record_until_enter():
+def record_until_silence(min_speech_ms=400, silence_tail_ms=1500,
+                         frame_ms=30, aggressiveness=2, max_seconds=60):
+    """Record until end-of-utterance is detected by VAD.
+
+    Returns the full audio captured (including the trailing silence — Whisper
+    handles that fine and it preserves prosody). If `max_seconds` is hit before
+    silence triggers, returns whatever was captured so far.
+    """
+    import webrtcvad
+    vad = webrtcvad.Vad(aggressiveness)
+    frame_samples = int(SAMPLE_RATE * frame_ms / 1000)
+    silence_threshold_frames = silence_tail_ms // frame_ms
+    min_speech_frames = max(1, min_speech_ms // frame_ms)
+    max_frames = (max_seconds * 1000) // frame_ms
+
     chunks = []
-    stop = threading.Event()
+    speech_frames = 0
+    silence_frames = 0
+    total_frames = 0
 
-    def _record():
-        with sd.InputStream(samplerate=SAMPLE_RATE, channels=1, dtype="float32") as stream:
-            while not stop.is_set():
-                chunk, _ = stream.read(512)
-                chunks.append(chunk)
+    with sd.InputStream(samplerate=SAMPLE_RATE, channels=1, dtype="float32") as stream:
+        while total_frames < max_frames:
+            chunk, _ = stream.read(frame_samples)
+            chunks.append(chunk)
+            total_frames += 1
+            pcm16 = (np.clip(chunk.flatten(), -1, 1) * 32767).astype("<i2").tobytes()
+            if vad.is_speech(pcm16, SAMPLE_RATE):
+                speech_frames += 1
+                silence_frames = 0
+            elif speech_frames >= min_speech_frames:
+                silence_frames += 1
+                if silence_frames >= silence_threshold_frames:
+                    break
 
-    t = threading.Thread(target=_record, daemon=True)
-    t.start()
-    input()
-    stop.set()
-    t.join()
     return np.concatenate(chunks).flatten()
 
 
@@ -343,18 +399,17 @@ def main():
     print(f"  {agent.title()} — voice exchange")
     print(f"  Model: {model}")
     print(f"  Voice: {env_name}")
-    print("  ENTER to speak, ENTER to stop. Ctrl+C to exit.")
+    print("  Speak whenever; pause to send. Ctrl+C to exit.")
     print("-" * 41 + "\n")
 
     while True:
+        print("Listening...", end=" ", flush=True)
         try:
-            input("[ Press ENTER to speak ]")
-        except (EOFError, KeyboardInterrupt):
+            audio = record_until_silence()
+        except KeyboardInterrupt:
             print("\nGoodbye.")
             break
-
-        print("Recording... (ENTER to stop)")
-        audio = record_until_enter()
+        print("(captured)")
 
         if len(audio) < SAMPLE_RATE * 0.5:
             print("(too short, skipping)")
