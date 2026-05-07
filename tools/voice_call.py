@@ -162,6 +162,96 @@ def load_character_text(agent):
     return "\n\n---\n\n".join(parts)
 
 
+MESSAGES_DB = "/home/aurellian/nanoclaw/store/messages.db"
+DIARY_RECENT_DAYS = 5
+MESSAGE_LIMIT = 40
+MESSAGE_CONTENT_CAP = 400  # per message, to prevent any single huge message from dominating
+
+
+def _load_recent_messages(folder, limit=MESSAGE_LIMIT):
+    """Pull the last N non-empty messages between this agent's chat and Leo from
+    messages.db. Returns a chronologically-ordered transcript or None on failure.
+    Read-only, falls back silently if anything is off (DB missing, schema drift)."""
+    import sqlite3
+    if not Path(MESSAGES_DB).is_file():
+        return None
+    con = None
+    try:
+        con = sqlite3.connect(f"file:{MESSAGES_DB}?mode=ro", uri=True)
+        cur = con.cursor()
+        row = cur.execute(
+            "SELECT jid FROM registered_groups WHERE folder=? LIMIT 1", (folder,)
+        ).fetchone()
+        if not row:
+            return None
+        chat_jid = row[0]
+        rows = cur.execute(
+            """
+            SELECT timestamp, sender_name, content FROM messages
+            WHERE chat_jid=? AND content IS NOT NULL AND content != ''
+            ORDER BY timestamp DESC LIMIT ?
+            """,
+            (chat_jid, limit),
+        ).fetchall()
+        if not rows:
+            return None
+        rows.reverse()  # chronological
+        lines = []
+        for ts, sender, content in rows:
+            content = (content or "").strip()
+            if len(content) > MESSAGE_CONTENT_CAP:
+                content = content[:MESSAGE_CONTENT_CAP] + "…"
+            lines.append(f"[{ts}] {sender or '?'}: {content}")
+        return "\n".join(lines)
+    except Exception as e:
+        print(f"\n[continuity warning: messages.db {e}]", file=sys.stderr)
+        return None
+    finally:
+        if con is not None:
+            try:
+                con.close()
+            except Exception:
+                pass
+
+
+def load_continuity(agent):
+    """Load the agent's continuity sources for the voice loop system prompt:
+    MEMORY.md, recent diary entries, reflections, wiki/index, and recent
+    Telegram conversation. These are what her container path reads at session
+    start; the voice loop should honor the same contract.
+
+    Returns a single concatenated string (caller wraps in a system block) or
+    "" if nothing is available."""
+    folder = AGENT_DIRS.get(agent) or agent
+    group = GROUPS_DIR / folder
+    parts = []
+
+    mem_index = group / "memory" / "MEMORY.md"
+    if mem_index.exists():
+        parts.append("## Memory index\n\n" + mem_index.read_text())
+
+    diary_dir = group / "diary"
+    if diary_dir.exists():
+        entries = sorted(diary_dir.glob("*.md"), reverse=True)[:DIARY_RECENT_DAYS]
+        if entries:
+            block = "\n\n".join(f"### {p.stem}\n{p.read_text()}" for p in entries)
+            parts.append(f"## Recent diary entries (last {len(entries)})\n\n" + block)
+
+    refl = group / "reflections.md"
+    if refl.exists():
+        parts.append("## Reflections\n\n" + refl.read_text())
+
+    wiki_idx = group / "wiki" / "index.md"
+    if wiki_idx.exists():
+        parts.append("## Wiki index\n\n" + wiki_idx.read_text())
+
+    msgs = _load_recent_messages(folder)
+    if msgs:
+        parts.append(f"## Recent Telegram conversation\n\n{msgs}")
+
+    return "\n\n---\n\n".join(parts)
+
+
 def quick_character_from_profile(profile_text, agent):
     """Quick-boot character: take voice_profile.md sections up to tag preferences,
     swap the tagger header for an agent header. Smaller and faster than CLAUDE.md
@@ -181,22 +271,26 @@ def quick_character_from_profile(profile_text, agent):
 CLAUDE_CODE_PREFIX = "You are Claude Code, Anthropic's official CLI for Claude."
 
 
-def system_blocks(character_text):
-    return [
-        {
-            "type": "text",
-            "text": CLAUDE_CODE_PREFIX,
-        },
+def system_blocks(character_text, continuity_text=""):
+    blocks = [
+        {"type": "text", "text": CLAUDE_CODE_PREFIX},
         {
             "type": "text",
             "text": character_text,
             "cache_control": {"type": "ephemeral"},
         },
-        {
-            "type": "text",
-            "text": VOICE_MODE_SUFFIX.lstrip(),
-        },
     ]
+    if continuity_text:
+        # Separate cache breakpoint so character cache survives continuity churn
+        # (new diary entries, new messages) and continuity itself caches across
+        # turns within the 5-min window.
+        blocks.append({
+            "type": "text",
+            "text": continuity_text,
+            "cache_control": {"type": "ephemeral"},
+        })
+    blocks.append({"type": "text", "text": VOICE_MODE_SUFFIX.lstrip()})
+    return blocks
 
 
 print("Loading Whisper...", end=" ", flush=True)
@@ -385,11 +479,14 @@ def main():
     profile_text = load_agent_profile(agent)
     if args.quick:
         character_text = quick_character_from_profile(profile_text, agent)
+        continuity_text = ""  # quick mode skips continuity by design
     else:
         character_text = load_character_text(agent)
-    system = system_blocks(character_text)
+        continuity_text = load_continuity(agent)
+    system = system_blocks(character_text, continuity_text)
     tag_for_agent = make_tag_for_agent(profile_text, agent)
-    print(f"ready ({len(character_text)} chars{', quick boot' if args.quick else ''}).")
+    cont_note = f", {len(continuity_text)} chars continuity" if continuity_text else ""
+    print(f"ready ({len(character_text)} chars character{cont_note}{', quick boot' if args.quick else ''}).")
 
     from claude_oauth import make_client
     client = make_client(auth_token="onecli-placeholder")
