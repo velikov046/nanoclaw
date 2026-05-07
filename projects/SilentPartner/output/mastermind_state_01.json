@@ -1,0 +1,46 @@
+{
+  "topic": "World Championship Snooker",
+  "domain": "World Championship Snooker",
+  "scene": "A snooker match at what is likely the Crucible Theatre, Sheffield -- home of the World Championship. The match appears to be in a deciding frame, meaning both players are level and this final frame determines the winner. A player is at the table with what the commentator describes as a makeable chance.",
+  "entities": [],
+  "glossary": [
+    {
+      "term": "deciding frame",
+      "definition": "The final frame of a match when both players are level; whoever wins it wins the match.",
+      "first_seen": "[15s]",
+      "source_quote": "just one chance in the deciding frame and this is a potential chance",
+      "confidence": "high"
+    }
+  ],
+  "narratives": [
+    {
+      "title": "Deciding frame chance at the table",
+      "summary": "A player has a chance on the table in the deciding frame. The commentator suggests it is a makeable opportunity and the player must convert.",
+      "status": "active",
+      "confidence": "medium"
+    }
+  ],
+  "key_moments": [
+    {
+      "position": "[15s]",
+      "what": "Deciding frame, player at table with a chance",
+      "why_it_matters": "In snooker a deciding frame is sudden death -- whoever wins this frame wins the entire match."
+    },
+    {
+      "position": "[37s]",
+      "what": "Commentator says the shot is among the easiest available and must be potted",
+      "why_it_matters": "Emphasis on 'must pot' signals a straightforward ball the player cannot afford to miss under this pressure."
+    }
+  ],
+  "do_not_say": [
+    {
+      "item": "aerodromes",
+      "reason": "Whisper artifact -- not a snooker term; underlying word unclear, possibly 'players' or a player name"
+    },
+    {
+      "item": "shops / food / paths",
+      "reason": "Repeated Whisper artifacts across [30s]\u2013[37s]; underlying snooker terms (likely 'shots', 'pot') are unclear"
+    }
+  ],
+  "analysis_count": 1
+}

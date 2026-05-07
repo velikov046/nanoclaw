@@ -1,0 +1,208 @@
+# SILENT PARTNER ANALYSIS — EARLY GAME SNAPSHOT
+
+---
+
+## SPEAKER MAPPING
+
+Based on name mentions and addressing patterns in transcript:
+
+| SPEAKER | PLAYER NAME | Confidence |
+|---------|-------------|-----------|
+| SPEAKER_00 | **Game Host/Narrator** | High |
+| SPEAKER_01 | **Arasha** | High |
+| SPEAKER_02 | **Courtney** | High |
+| SPEAKER_03 | **Spencer** | High |
+| SPEAKER_04 | **Damien** | High |
+| SPEAKER_05 | **Chance** | High |
+| SPEAKER_06 | **Angela** | High (confirmed "My name is Angela" at [244s]) |
+
+**Unmapped/Uncertain:** One or more players remain unidentified in speaker rotation. Likely candidates for remaining slots: Shane, Noah, Lindsay. *Need clarification on full player count and remaining speaker assignments.*
+
+---
+
+## EARLY SUSPICION PROFILES
+
+### 🔴 **COURTNEY** — *Leaning Fascist*
+
+**Suspicion Level:** Leaning Fascist
+
+**Early Signals:**
+- **Unanimous vote acceptance** [211s]: Voted Ja on Spencer immediately without hesitation — no resistance despite new game, typical liberal caution absent
+- **Immediate second nomination** [313-315s]: Eager to re-nominate Damien as Chancellor in round 2, pushing agenda quickly
+- **Defensive voting call-out** [344s]: "Interesting, a nine from Courtney" — others noting she voted Ja again with no friction
+- **Rapid trust deflection** [552-557s]: Claims she's "been gullible before, so trying to be saucy of everybody" — classic preemptive excuse for erratic voting
+- **Discord connection leverage** [546-551s]: Explicitly name-drops personal connection with Arasha ("sewing discord") to justify voting pattern — possible team signal
+
+**Watch For:**
+- Does she block investigations or deflect when challenged?
+- Will she nominate other suspected fascists for chancellor?
+- Does her voting become inconsistent if pressured?
+
+**Confidence:** **Leaning** (not strong yet — needs more voting rounds)
+
+---
+
+### 🟡 **CHANCE** — *Uncertain, Trending Suspicious*
+
+**Suspicion Level:** Uncertain (Leaning toward concern)
+
+**Early Signals:**
+- **Sound-checking during night phase** [161s]: "I definitely heard Chance moving around a little bit" — caught making noise during fascist reveal phase (could be nervous play or actual coordination signal)
+- **Defensive positioning** [627s]: Asks "Why'd you say it like that, Chance?" — suggests he's already drawing scrutiny for tone/inflection
+- **Investigates Courtney, then shields her** [774-814s]: Looks at Courtney's card, claims she's Liberal, then **immediately questions his own finding** — "I thought for sure Courtney was a fascist... but because you said she's a liberal, like I don't know whether to believe you"
+  - This is **either genuine confusion OR strategic distancing** from a fascist partner
+- **Doesn't push back on teaming accusation** [825-830s]: When Damien suggests "Courtney and Chance are teaming up," Chance responds lightly ("We could be teaming up, but as liberals") — deflection, not denial
+
+**Watch For:**
+- Does he continue to block investigations into Courtney?
+- Will he vote consistently with her in future rounds?
+- Does his investigation reports match revealed cards?
+
+**Confidence:** **Uncertain** (moving toward Leaning Fascist if pattern repeats)
+
+---
+
+### 🟡 **DAMIEN** — *Uncertain, Likely Liberal but Erratic*
+
+**Suspicion Level:** Uncertain (Leaning Liberal, but high-chaos play)
+
+**Early Signals:**
+- **Policy truthfulness pattern** [446-456s]: Claims Spencer gave him a choice (two policies), and others corroborate — this alignment is **strong liberal signal**
+- **Performative confidence** [317-331s]: "I will signal my virtues... I was the only person who said, liberal, yay!" — **publicly cheering policies is exactly what fascists WOULDN'T do**, but also could be reverse-psychology
+- **Big-brain self-aware deflection** [354-372s]: "I try to like big brain this game so much... that always bites me in the butt... maybe that's the biggest brain move of all" — admits his pattern of over-analysis; trying to reset narrative
+- **Energy drink admission** [835-866s]: Explicitly notes he had an energy drink before shoot — **explains erratic energy, but also suspicious timing of admission** (after being called out)
+- **Accuses Chance/Courtney as "team"** [825-827s]: Reads them as coordinated — **good liberal instinct or fascist misdirection?**
+
+**Watch For:**
+- Does his voting align with his stated suspicions?
+- Will he follow through on investigating Chance/Courtney?
+- Does his erratic energy level correlate with fascist plays?
+
+**Confidence:** **Uncertain** (leans Liberal by policy honesty, but play is chaotic enough to mask other role)
+
+---
+
+### 🟢 **SPENCER** — *Leaning Liberal*
+
+**Suspicion Level:** Leaning Liberal
+
+**Early Signals:**
+- **Policy truth corroboration** [273-275s] & [446-456s]: Multiple players confirm Spencer gave honest choice between two policies — **this is hard to fake, requires policy deck honesty**
+- **No pushback on fascist accusation** [302s]: Called "definitely a piece of shit" for enacting Liberal policy; laughs it off — low defensiveness
+- **Consistent voting** [208-212s]: Voted Ja unanimously on first chancellor vote; no suspicious blocks
+- **No alliance signals** so far — votes independently
+
+**Watch For:**
+- Will his truthfulness hold if he receives fascist-heavy draws?
+- Does he nominate fascists in future rounds?
+
+**Confidence:** **Leaning Liberal** (but too early for strong read)
+
+---
+
+### 🟡 **ARASHA** — *Uncertain, High Theatricality*
+
+**Suspicion Level:** Uncertain (tilted by performance)
+
+**Early Signals:**
+- **Self-awareness about lying** [55-76s]: "This game terrifies me... I get really nervous when it comes to games where I have to lie" + "I'm so scared of being a fascist!" — **could be genuine anxiety OR preemptive trust-building**
+- **Discord connection with Courtney** [546-551s]: Courtney explicitly leverages personal relationship; Arasha doesn't object — **possible pre-game coordination signal**
+- **"Let's Do This" stunt reference** [514-527s]: Others note Arasha has history of playing dishonest characters convincingly ("where I literally played an honest young girl" — implying deception is her strength)
+- **President nomination of Angela** [489-512s]: Nominates Angela for Chancellor; Angela quickly accepts — **no friction, cooperative dynamic**
+- **Defensive over Mussolini joke** [491-505s]: "She's Italian, she's allowed to say that" — **deflects away from game focus; tone-checking**
+
+**Watch For:**
+- Does she vote with Courtney consistently?
+- Will her theatricality mask fascist coordination?
+- Does she nominate suspected fascists or allies?
+
+**Confidence:** **Uncertain** (high performance value makes role uncertain)
+
+---
+
+### 🟢 **ANGELA** — *Leaning Liberal*
+
+**Suspicion Level:** Leaning Liberal
+
+**Early Signals:**
+- **Straightforward policy reports** [581-591s]: When drawing three fascist policies, admits it directly ("they were both fascists... Yes, three fascists") — **no deflection, high truth signal**
+- **No defensive voting** — votes consistently Ja on nominees
+- **Cooperative with Arasha** — accepts nomination without friction [311-313s]
+- **Low theatricality** — plays straight, reports facts
+
+**Watch For:**
+- Does she maintain honesty if she's next in fascist position?
+- Will she push back against false accusations?
+
+**Confidence:** **Leaning Liberal** (early, but consistent truth-telling pattern)
+
+---
+
+## PREDICTED ROLE RANKING
+*(Most to Least Likely Fascist)*
+
+1. **COURTNEY** — Eager nominations, unanimous vote acceptance, deflective voting pattern, explicit personal leverage
+2. **CHANCE** — Caught moving during night phase, erratic investigation logic, shields Courtney defensively
+3. **ARASHA** — High performance value, pre-game Discord connection with Courtney, defensive tone-checking
+4. **DAMIEN** — Erratic energy (energy drink), big-brain deflection, but policy honesty suggests Liberal
+5. **SPENCER** — Policy deck honesty corroborated, independent voting, no alliances visible
+6. **ANGELA** — Straightforward policy reports, no deflection, cooperative tone
+
+---
+
+## EARLY ALLIANCE CLUSTERS
+
+### 🔗 **Cluster 1: COURTNEY ↔ CHANCE** (Suspected Coordination)
+- Courtney re-nominates Chance; Chance investigates Courtney but shields findings
+- Both voted Ja with minimal hesitation early
+- Damien explicitly calls out teaming [825s]
+- **Assessment:** Likely fascist pair (if so, one is probably Hitler)
+
+### 🔗 **Cluster 2: COURTNEY ↔ ARASHA** (Social Leverage)
+- Courtney explicitly names shared Discord/sewing connection [546-549s]
+- Arasha doesn't object or distance
+- Both defensive on personal terms
+- **Assessment:** Could be fascist coordination masked as friendship, or genuine alliance without game role alignment
+
+### 🔗 **Cluster 3: ANGELA ↔ ARASHA** (Weak, Cooperative)
+- Arasha nominates Angela; Angela accepts without friction
+- No special voting pattern yet
+- **Assessment:** Too early; appears cooperative but no coordination signals
+
+---
+
+## KEY MOMENTS & SIGNIFICANT TELLS
+
+### 🚩 **[211-212s] Unanimous Vote on Spencer**
+**Why it matters:** Zero resistance on first chancellor vote is unusual for liberal caution. Suggests either: (a) experienced players coordinating, or (b) fascists already moving agenda forward.
+
+### 🚩 **[344-352s] Courtney's "Nine" Vote Call-Out**
+**Why it matters:** Other players flag Courtney voting Ja again without hesitation. This is tracked *explicitly*, suggesting others are already suspicious of her pattern.
+
+### 🚩 **[446-456s] Spencer Policy Corroboration**
+**Why it matters:** Multiple players independently confirm Spencer gave honest choice. This is the **strongest truth tell so far** — hard to fake across multiple testimonies.
+
+### 🚩 **[581-591s] Angela Admits Three Fascists**
+**Why it matters:** Direct admission with no hedging. Contrasts sharply with deflective language elsewhere. **Liberal tell.**
+
+### 🚩 **[774-814s] Chance's Courtney Investigation + Immediate Self-Doubt**
+**Why it matters:** Claims Courtney is Liberal, then immediately undermines his own finding ("I thought for sure Courtney was a fascist"). This is **either genuine confusion OR strategic distancing from partner**. Watch for pattern.
+
+### 🚩 **[825-830s] Damien Accuses Courtney/Chance Teaming**
+**Why it matters:** Direct call-out of suspected pair. Chance's response is deflective ("We could be teaming up, but as liberals"). **No strong denial = possible admission.**
+
+### 🚩 **[546-551s] Courtney Leverages Discord Connection**
+**Why it matters:** Explicitly uses personal relationship to justify voting pattern. This is **preemptive trust-building or fascist coordination signal** disguised as friendship.
+
+---
+
+## STRATEGIC IMPLICATIONS FOR LIBERALS
+
+**If you are Liberal:**
+- **Block Courtney from power** — her voting pattern and eagerness are suspicious
+- **Challenge Chance's investigation logic** — his self-doubt on Courtney finding was evasive
+- **Protect Angela** — she's been the most consistently truthful; keep her in power if possible
+- **Investigate Arasha** — her high theatricality and Discord connection with Courtney need clarification
+- **Watch Damien closely** — energy drink admission explains erratic play, but his big-brain deflection could mask fascist role
+
+**If you are

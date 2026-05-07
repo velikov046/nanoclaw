@@ -1,0 +1,23 @@
+[launcher 20:42:48] watching /home/aurellian/nanoclaw/data/ipc/velikov/silentpartner
+[launcher 20:43:21] spawning: /home/aurellian/nanoclaw/projects/SilentPartner/venv/bin/python main.py --phone --game debate --players spectator --chunk 15
+[launcher 20:43:26] tunnel ready: https://racks-globe-reputation-grown.trycloudflare.com
+[launcher 20:43:52] stopping session
+[launcher 20:49:21] shutdown signal received
+[launcher 20:49:21] watching ['/home/aurellian/nanoclaw/data/ipc/velikov/silentpartner', '/home/aurellian/nanoclaw/data/ipc/velikov-visions/silentpartner']
+[launcher 21:17:04] spawning: /home/aurellian/nanoclaw/projects/SilentPartner/venv/bin/python main.py --phone --game debate --players spectator --chunk 15
+[launcher 21:17:09] tunnel ready: https://historic-problems-pin-economy.trycloudflare.com
+[launcher 21:38:18] idle timeout after 900s
+[launcher 21:38:18] stopping session
+[launcher 21:45:02] shutdown signal received
+[launcher 21:45:02] watching ['/home/aurellian/nanoclaw/data/ipc/velikov/silentpartner', '/home/aurellian/nanoclaw/data/ipc/velikov-visions/silentpartner']
+[launcher 21:48:23] spawning: /home/aurellian/nanoclaw/projects/SilentPartner/venv/bin/python main.py --phone --game debate --players spectator --chunk 15
+[launcher 21:48:28] tunnel ready: https://causes-postcards-concentration-admitted.trycloudflare.com (auth-token attached)
+[launcher 21:58:29] ERROR [analyze] analysis did not complete within 3 min
+[launcher 21:58:37] ERROR [pointer] snapshot file did not appear
+[launcher 21:58:37] stopping session
+[launcher 22:12:24] shutdown signal received
+[launcher 22:12:24] watching ['/home/aurellian/nanoclaw/data/ipc/velikov/silentpartner', '/home/aurellian/nanoclaw/data/ipc/velikov-visions/silentpartner']
+[launcher 19:40:46] watching ['/home/aurellian/nanoclaw/data/ipc/velikov/silentpartner', '/home/aurellian/nanoclaw/data/ipc/velikov-visions/silentpartner']
+[launcher 09:49:22] watching ['/home/aurellian/nanoclaw/data/ipc/velikov/silentpartner', '/home/aurellian/nanoclaw/data/ipc/velikov-visions/silentpartner']
+[launcher 20:55:43] shutdown signal received
+[launcher 09:45:54] watching ['/home/aurellian/nanoclaw/data/ipc/velikov/silentpartner', '/home/aurellian/nanoclaw/data/ipc/velikov-visions/silentpartner']

@@ -1,0 +1,22 @@
+{
+  "source_lang": "fr",
+  "target_lang": "en",
+  "topic_inferred": "Easy French live stream closing, host thanking viewers and noting she's not fully awake",
+  "glossary": {
+    "easy-french.org": "easy-french.org",
+    "membership": "membership",
+    "C'est parti": "Here we go",
+    "imprimez-vous": "sign up",
+    "Printez-vous": "sign up",
+    "r\u00e9veill\u00e9e": "awake",
+    "r\u00e9cup\u00e9r\u00e9e": "recovered",
+    "Bordeaux": "Bordeaux",
+    "Merci d'avoir regard\u00e9": "Thank you for watching",
+    "j'esp\u00e8re que vous avez appr\u00e9ci\u00e9": "I hope you enjoyed"
+  },
+  "speaker_map": {
+    "S1": "host / presenter"
+  },
+  "predictions": [],
+  "analysis_count": 2
+}

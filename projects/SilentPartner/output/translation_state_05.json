@@ -1,0 +1,43 @@
+{
+  "source_lang": "fr",
+  "target_lang": "en",
+  "topic_inferred": "customer (female) calls a pizza restaurant to place an order: large mushroom pizza, cheese sandwich, cola, and lemon drink; staff collects phone number, name, and address",
+  "glossary": {
+    "Charlotte": "Charlotte",
+    "Am\u00e9lie": "Am\u00e9lie",
+    "Samy": "Samy",
+    "le m\u00e9tro": "the metro",
+    "le m\u00e9nage": "housework",
+    "morceaux": "music tracks",
+    "SousTitreur.com": "SKIP",
+    "Bruce": "Bruce",
+    "patron": "boss",
+    "Etats-Unis": "the States",
+    "confiture de fraises": "strawberry jam",
+    "confiture de pommes": "apple jam",
+    "miel": "honey",
+    "petit d\u00e9jeuner": "breakfast",
+    "douche": "shower",
+    "r\u00e9union": "meeting",
+    "client": "client",
+    "un pot de miel": "a jar of honey",
+    "avec un peu de lait et du sucre": "with a little milk and sugar",
+    "Tripovista": "Tripovista",
+    "pizza aux champignons": "mushroom pizza",
+    "sandwich au fromage": "cheese sandwich",
+    "coca": "cola",
+    "citron": "lemon drink",
+    "grande pizza": "large pizza",
+    "num\u00e9ro de t\u00e9l\u00e9phone": "phone number",
+    "nom et adresse": "name and address"
+  },
+  "speaker_map": {
+    "S1": "Charlotte",
+    "S2": "Am\u00e9lie",
+    "S3": "narrator / commentator (off-scene)",
+    "S4": "pizza restaurant staff",
+    "S5": "customer (female) placing order"
+  },
+  "predictions": [],
+  "analysis_count": 5
+}

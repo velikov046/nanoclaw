@@ -1,0 +1,38 @@
+{
+  "source_lang": "fr",
+  "target_lang": "en",
+  "topic_inferred": "French language tutorial covering greetings, breakfast vocabulary, and closing thanks \u2014 extended closing sequence",
+  "glossary": {
+    "\u00e7a va": "I'm fine / doing well",
+    "\u00e7a va super bien": "I'm doing really great",
+    "merci beaucoup": "thank you very much",
+    "je te remercie": "I thank you (informal)",
+    "je vous remercie": "I thank you (formal / plural)",
+    "comme \u00e7a": "like this / like that",
+    "cours de fran\u00e7ais": "French classes",
+    "J'ai oubli\u00e9 mes cheveux": "I forgot my hair",
+    "petit d\u00e9jeuner": "breakfast",
+    "du pain": "bread",
+    "du beurre": "butter",
+    "de la confiture": "jam / preserves",
+    "confiture de fraises": "strawberry jam",
+    "confiture de pommes": "apple jam / apple preserves",
+    "les c\u00e9r\u00e9ales": "cereal",
+    "du jus de fruits": "fruit juice",
+    "la p\u00e2te": "dough / paste (context: bread dough here)",
+    "Merci d'avoir regard\u00e9 cette vid\u00e9o": "Thank you for watching this video",
+    "Merci d'avoir regard\u00e9": "Thank you for watching",
+    "J'esp\u00e8re que vous avez appr\u00e9ci\u00e9 la vid\u00e9o": "I hope you enjoyed the video",
+    "J'esp\u00e8re que vous avez appr\u00e9ci\u00e9 cette vid\u00e9o": "I hope you enjoyed this video",
+    "Je vous remercie pour votre soutien": "Thank you for your support",
+    "bonjour madame": "good morning, ma'am",
+    "Peut-\u00eatre qu'on devrait la nettoyer": "Maybe we should clean it",
+    "Je ne comprends pas": "I don't understand"
+  },
+  "speaker_map": {
+    "S1": "French teacher / video host",
+    "S2": "Student / roleplay participant (breakfast scene)"
+  },
+  "predictions": [],
+  "analysis_count": 3
+}

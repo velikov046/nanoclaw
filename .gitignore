@@ -36,3 +36,51 @@ groups/global/*
 .nanoclaw/
 
 agents-sdk-docs
+
+# Python
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/.pytest_cache/
+
+# Python virtualenvs
+**/venv/
+**/.venv/
+**/.playwright-venv/
+
+# Compiled libs (mostly inside venvs)
+**/*.so
+**/*.so.*
+
+# Big binaries / distributions
+*.AppImage
+**/*:Zone.Identifier
+tools/upscayl-linux/
+
+# SilentPartner: gameplay audio recordings
+projects/SilentPartner/*.mp3
+projects/SilentPartner/*.wav
+
+# OAuth tokens / client secrets in untracked dirs
+**/yt_token*.json
+**/client_secret*.json
+**/yt_client_secret*.json
+**/*_token.json
+**/oauth_token*.json
+
+# Voice profiles tracked alongside canonical voice tools
+!groups/stella/
+!groups/lydia-clone/
+!groups/velikov/
+!groups/melody/
+!groups/aurelio/
+groups/stella/*
+groups/lydia-clone/*
+groups/velikov/*
+groups/melody/*
+groups/aurelio/*
+!groups/stella/voice_profile.md
+!groups/lydia-clone/voice_profile.md
+!groups/velikov/voice_profile.md
+!groups/melody/voice_profile.md
+!groups/aurelio/voice_profile.md

@@ -1,0 +1,21 @@
+{
+  "source_lang": "fa",
+  "target_lang": "en",
+  "topic_inferred": "group introductions and informal instructions, likely at a gathering or activity",
+  "glossary": {
+    "\u06a9\u0627\u0645\u0631\u0627\u0646": "Kamran",
+    "\u0628\u0647\u0627\u0631": "Bahar",
+    "\u0633\u06cc\u0645\u0648\u0646": "Seymour / Simon",
+    "\u062e\u062f\u0627": "God",
+    "\u062f\u0631 \u067e\u0646\u0627\u0647 \u062e\u062f\u0627": "in God's protection",
+    "Seymour John": "Seymour John (goes by Seymour)"
+  },
+  "speaker_map": {
+    "S1": "first speaker (male, opens with salaam)",
+    "S2": "Bahar (introduces herself)",
+    "S3": "Seymour John / Simon",
+    "S4": "unidentified, gives instructions"
+  },
+  "predictions": [],
+  "analysis_count": 1
+}

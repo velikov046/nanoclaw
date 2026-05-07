@@ -1,0 +1,96 @@
+## GRIMOIRE LOG
+
+**Note:** Transcript is speech-to-text with pirate-themed role aliases. Names mapped on best evidence. "?" = inferred, gaps flagged.
+
+| # | Player | Claimed | True Role | Status | Modifiers | Ability Spent |
+|---|--------|---------|-----------|--------|-----------|---------------|
+| — | **Jojo** | Unknown | Unknown | Alive | **Poisoned N1** (Poisoner chose Jojo per ST whisper ~[198s]) | — |
+| — | **Alejo** | Librarian or Investigator ("Bosun / Bloodhound") | One of the two | Alive | Clean | N/A — passive info received |
+| — | **Lyra** | Monk | Monk ✓ | Alive | Clean | N1: protected Ree |
+| — | **Bruce** | Virgin | Virgin ✓ | **Dead** (executed D1 → Gunslinger traveler → killed N1) | — | Never fired |
+| — | **Inspiration** | Empath | **Drunk** | Alive | Drunk (is the Drunk) | N0: 0 (false) · N1: 0 (false) |
+| — | **Ree** | Unknown | Unknown (Fortune Teller?) | Alive | Protected N1 by Lyra | N1: chose Inspiration |
+| — | **Iris** | Unknown | **Imp** (strong inference) | Alive | — | N1: killed Bruce |
+| — | **Rachel** | Unknown | Unknown | Alive | — | — |
+| — | **Empath 2** | Empath | Empath (likely true) | Alive | Clean | N0: 1 · N1: 1 |
+| — | **Butler** (player unknown) | Butler | Butler | Unknown | — | Chose **Jojo** as master N0 |
+| — | **Poisoner** (player unknown) | — | Poisoner | Unknown | — | N1: poisoned Jojo |
+
+**Seating order unknown** — critical gap for interpreting Empath 2's "1."
+
+---
+
+## INFO TOKEN LEDGER
+
+| # | Character → Player | Info Given | True/False | Notes |
+|---|--------------------|------------|------------|-------|
+| 1 | Empath (Drunk) → Inspiration | **0** | False (drunk) | [46–60s] — consistent with Drunk role; ST correctly gave false info |
+| 2 | Empath → Empath 2 | **1** | Likely true | [71–78s] — one of Empath 2's living neighbors is evil |
+| 3 | Librarian or Investigator → Alejo | Poisoner **or** Butler in one of two named players | True or fuzzy | [117–127s, 294–313s] — Alejo doesn't know which of the two roles they hold; both players named unknown from transcript |
+| 4 | Empath (Drunk) → Inspiration | **0** | False (drunk) | [902–924s] — repeated same drop; consistent ✓ |
+| 5 | Empath → Empath 2 | **1** | Likely true | [902–935s] — same reading; either neighbors unchanged or one evil neighbor persists |
+| 6 | Ree's ability → Ree | Unknown | Unknown | [857–885s] — Ree chose Inspiration; result not confirmed in transcript |
+
+**Risk flag:** Token #3 — if Alejo's two named players are later confirmed good/evil, this info must hold. If one was the Recluse or Spy, it could have legally misregistered. No Recluse/Spy confirmed yet, but worth pre-deciding now.
+
+---
+
+## RULE EDGE CASES
+
+**1. Virgin + Drunk Nominator** `[573–660s]`
+Inspiration (Drunk/Outsider) nominated Bruce (Virgin). The Virgin reads: *"The first time you are nominated, if the nominator is a Townsfolk, they are executed immediately."* The Drunk is an **Outsider**, not a Townsfolk — Virgin ability did **not** trigger. Bruce went to a normal vote and was executed by majority. **Resolved correctly.**
+
+**2. Librarian "at least one" ruling** `[480–511s]`
+Question raised: can the Librarian show two players who both satisfy the shown type? ST ruled **yes** — the ability says "one of," which is satisfied even if both qualify. This matches the spirit of the rules. **Pre-decided correctly.**
+
+**3. Imp killing an already-dead player (Bruce as returning traveler)** `[780–957s]`
+Bruce was executed D1 and being assigned Gunslinger traveler status. The ST treated Bruce as "technically alive" for the night [780s] while the Gunslinger entry hadn't been formally announced. Iris (Imp) chose Bruce. ST resolved this as: Gunslinger appeared then immediately died. This is **within ST discretion** — traveler entry is ST-controlled, and the Imp kill on a player who "entered" that night is a valid call. However, the Gunslinger **never got to use their ability**, so confirm no lingering Gunslinger effects remain.
+
+**4. "First four players to die are immediately killed by Iris"** `[957s]`
+Likely transcription distortion or off-the-cuff joke. If this refers to a real game mechanic, it has no Trouble Brewing equivalent and needs ST clarification before Day 2. **Unresolved — flag for ST to explain or dismiss.**
+
+**5. Poisoner chose Jojo** `[180–207s]`
+Confirmed by ST whisper. Jojo is poisoned N1. Any ability that targeted Jojo N1 (e.g., Monk protection of Jojo, Fortune Teller including Jojo) would silently fail. **Ree chose Inspiration, not Jojo** — no immediate conflict, but track for N2.
+
+---
+
+## PACING & BALANCE
+
+**Information temperature:** The good team is **warm but fragmented.** Alejo has actionable Investigator/Librarian info (Poisoner or Butler narrowed to two players) but can't confirm their own role. Empath 2 has a consistent "1" but no seating context shared publicly yet. The Drunk (Inspiration) believes they have valid info — a live misinformation vector.
+
+**Evil exposure:**
+- **Iris** as Imp has made no public move yet. Chose Bruce (already dead) so no dramatic N1 kill announcement will make Iris visible.
+- **Poisoner** is completely hidden — Jojo doesn't know they're poisoned.
+- Butler's identity gives the ST a passive check: if voting patterns break the Butler constraint, someone's lying about being the Butler's master.
+
+**Convergence risk:** Low right now. No one publicly has a tight accusation on Iris. Alejo's claim points at Poisoner or Butler, not the Demon.
+
+---
+
+## NOMINATION & VOTE LOG
+
+| Day | Nominator | Target | Result | Analysis |
+|-----|-----------|--------|--------|----------|
+| D1 | **Jojo** | Alejo | Did not execute | Jojo citing "bad information" on Alejo — either genuine suspicion of Investigator/Librarian read, or evil misdirection. Vote threshold not met (~5 needed). |
+| D1 | **Inspiration** (Drunk) | Bruce | **Executed** | Inspiration nominating the Virgin as a Drunk (Outsider) — Virgin power did not fire. Bruce executed with ~8 votes. ST note: a drunk good player burning the day's execution on an innocent is a meaningful tempo loss for good. |
+| D1 | Unknown | Lyra | Did not execute | Someone nominated Lyra, needed ~10 votes [647s], not achieved. Lyra safe for now. |
+
+**Reading from nominations:** Jojo going after Alejo (the Investigator/Librarian) is either: (a) evil trying to silence a source of Minion information, or (b) Jojo having received bad info about Alejo. Given Jojo is poisoned, if Jojo had an ability, it may have misfired. Watch Jojo.
+
+---
+
+## ST RECOMMENDATIONS
+
+**Tonight's pre-decided rulings needed:**
+- Confirm whether Ree is the Fortune Teller and what result they received (Inspiration was not the Imp, so if Ree is FT and included Iris as the second pick, they'd have gotten a "yes"). This result needs to be locked in before Day 2.
+- Decide what happens if the Gunslinger entry is questioned. Pre-script a clean announcement: "Bruce returned as the Gunslinger traveler in the night but was killed before dawn."
+
+**N2 calls:**
+- Iris (Imp) needs a new target — Ree is the most dangerous (Monk-protected last night, likely has role info). Recommend Iris kill Ree if Lyra doesn't protect them again.
+- Lyra (Monk): will she re-protect Ree? If the good team coordinates, yes. If the Poisoner poisons Lyra, Ree goes unprotected. Consider poisoning Lyra N2 instead of Jojo to open Ree to Imp.
+- Empath 2's "1" reading: since Bruce died and Inspiration is still alive and drunk, the "1" from Empath 2 should be **rechecked** — if Bruce was one of Empath 2's neighbors and is now dead, the empath count may change. Calculate whether the "1" holds going into N2 with Bruce dead.
+
+**Single highest-leverage drop for Day 2:**
+Empath 2's seating context. Good team has a consistent 1 from a credible Empath but doesn't know which neighbor it implicates. If Empath 2 reveals their neighbors in Day 2 discussion, that narrows Iris significantly. **Evil team should try to get Empath 2 executed before they share this.** Watch if anyone pushes hard on Empath 2 early — that's a tell.
+
+**Balance note:** Good team lost two executions worth of tempo: one burned on Bruce (innocent Virgin), and Bruce's Gunslinger was denied by N1 kill. Evil is ahead. Day 2 should allow good at least one clean execution to rebalance.

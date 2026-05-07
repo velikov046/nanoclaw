@@ -1,0 +1,107 @@
+## PREDICTED ROLE RANKING — Most to Least Likely Fascist
+
+1. **Charlotte** — "I chose early cover" is the single most telling phrase in the transcript; self-aware fascist positioning on turn one
+2. **Rachel** — Openly acknowledging last-round fascism is a textbook meta-redirect; comfort with sustained deception is a demonstrated trait
+3. **Dom** — Strong read as Hitler based on role distribution; accepted the role graciously and leaned into it
+4. **Emmanuel** — Voted nein on the first government; cantankerous/contrary persona can mask fascist strategy
+5. **Holly** — Most transparent behavior; shared hand contents openly; "Hitler killer" role coming in creates incentive to play liberal visibly
+6. **[Unnamed next president]** — Insufficient data to place with confidence
+
+---
+
+## SPEAKER MAPPING
+
+**Critical caveat:** This transcript does not include SPEAKER_XX diarization labels — it is timestamped dialogue only. Mapping is based entirely on name mentions and contextual attribution.
+
+| Inferred Name | Basis for Attribution |
+|---|---|
+| **Holly** | Addressed directly ("Holly, you almost talked yourself out of it"), confirmed as Round 3 opening president, described her hand aloud |
+| **Charlotte** | Nominated as chancellor, explained her policy choice ("I chose early cover") |
+| **Rachel** | Named in post-game discussion, admitted to prior fascist deception explicitly |
+| **Dom** | Named as chancellor nominee ("Chansey"), received "Hitler for you" card with "danke schön", made Hitler/democracy jokes |
+| **Emmanuel** | Named during the nein-voter teasing sequence; described as cantankerous |
+| **[Unnamed next president]** | Speaks at ~3646s, nominates Dom; identity not confirmed from available text |
+
+**Unmapped:** The unnamed next president could be Emmanuel, Rachel, or a sixth unnamed player — seating order is unknown.
+
+---
+
+## EARLY SUSPICION PROFILES
+
+### Holly
+**Suspicion: Uncertain — leaning Liberal**
+- Opened as president, shared her hand composition publicly: "I got two fascists in a liberal. I discarded a fascist, gave Charlotte a fascist."
+- Transparency about a bad draw is a liberal signal — fascists typically avoid disclosing hand contents to preserve deniability
+- Was "Hitler killer" last round, suggesting consistent liberal-leaning behavior across sessions
+- **Watch for:** Does she push hard on investigating Charlotte's "early cover" comment? A liberal Holly would; a liberal-acting fascist might quietly let it drop
+
+### Charlotte
+**Suspicion: Leaning Fascist**
+- "I chose early cover" at 3632s is the most analytically interesting phrase in the transcript. This is exactly what a fascist does in round one — play the liberal card when you have the option, bank the trust, spend it later. The phrasing is self-aware and strategic, not the language of a liberal celebrating a lucky hand.
+- However: she did discard the fascist when she had the choice (received 1F + 1L from Holly), which is the costly move for a fascist who wants to enact policy
+- Counter-argument: a round-1 fascist policy with the first chancellor would be immediately suspicious, so burning it for cover has real value
+- **Watch for:** Does she claim "I had no choice" in a later round when she discards a liberal? The "early cover" framing now makes any future liberal-policy-claim suspect
+
+### Rachel
+**Suspicion: Leaning Fascist**
+- Openly declared last-round fascism: "I fully lied the entire time. It was not the cards, it was very much me." This is performed transparency — pre-empting accusations before this round begins
+- "I was, I was, I'm reformed" is a classic fascist setup: establish "I know how to lie" then claim you're not doing it now
+- The group responded by letting it land as funny, which diffuses suspicion heading into Round 3 — exactly the outcome a savvy fascist would want
+- **Watch for:** Does she align with Charlotte on votes? A Charlotte-Rachel fascist pair would show coordination without needing explicit signals
+
+### Dom
+**Suspicion: Likely Hitler**
+- Received the Hitler role with "danke schön" (3458s), then doubled down on Hitler references throughout ("Chancellor Hitler", "Hitler power sauce", "I just think this whole democracy thing's a terrible idea")
+- The sardonic democracy comment at 3688s is a minor tell — it lands as a joke, but it's the kind of comment Hitler makes when playing the long con
+- "Self-hating Chancellor" and voting nein on himself (if that's what happened) could be a play to seem unpredictable or non-threatening
+- **Watch for:** If Dom becomes chancellor again and a fascist policy lands, note whether the policy claim from the president is plausible — fascists will funnel policies to Hitler's table
+
+### Emmanuel
+**Suspicion: Uncertain**
+- Voted nein on the Holly/Charlotte government — the "grumpy" teasing suggests this was the lone nein vote
+- Could be: a liberal with a read on Charlotte, a contrarian personality, or a fascist voting against a likely-liberal government to establish a chaos persona
+- The "cantankerous" framing by others suggests this is a known personality trait, which muddies the read — hard to know if the nein was strategic or just character
+- **Watch for:** Does Emmanuel vote nein again? Consistent nein voting is a fascist tactic to stall liberal progress. A single nein from a known contrarian is less diagnostic.
+
+### [Unnamed next president]
+**Suspicion: Uncertain — insufficient data**
+- Nominated Dom as chancellor. Given Dom is likely Hitler, this is worth noting — but with zero fascist policies on the board, electing Hitler carries no win-condition risk at this stage. Could be innocent.
+- The "Queen sweep" comment suggests hope for liberals, but any player would say this publicly
+- **Watch for:** Their voting pattern and whether they give Dom another chancellor nomination later in the game when it would matter
+
+---
+
+## EARLY ALLIANCE CLUSTERS
+
+**Potential fascist pairing: Dom + Charlotte (or Dom + Rachel)**
+- Charlotte's "early cover" strategy and Dom's Hitler role create a natural fascist pairing if they're working together
+- Rachel's post-game confession meta-move and Dom's sardonic style are both comfort-with-deception signals that could cluster them as fascist team
+
+**Holly as liberal anchor:**
+- Holly's hand transparency and Hitler-killer history make her the most readable liberal — expect other liberals to gravitate toward her as an investigation chain anchor
+
+---
+
+## KEY MOMENTS SO FAR
+
+**[3632s] — "I chose early cover"**
+The most significant phrase in the transcript. Charlotte is naming her own strategy in real time. Whether this is honest liberal self-description or fascist confession-as-misdirection, it flags Charlotte as the player most likely operating strategically rather than reactively.
+
+**[3456–3460s] — "And Hitler for you, Dom. Oh, danke schön."**
+Dom's gracious acceptance of the Hitler role, followed by sustained Hitler humor, is consistent with someone genuinely comfortable with the role. The jokes aren't nervous deflection — they're ownership.
+
+**[3562–3572s] — Rachel's fascist admission**
+"I fully lied the entire time." Delivered as humor, but functions as a pre-emptive credibility move. She's betting that confessing to past deception makes her seem honest now.
+
+**[3688s] — "I just think this whole democracy thing's a terrible idea."**
+Dom's comment after the vote passes. Sardonic, but fascist players often let small tells slip through jokey framing.
+
+---
+
+## SUMMARY
+
+The dominant hypothesis going into Round 3 is that Dom is Hitler and Charlotte is the regular fascist. Charlotte's "early cover" comment is not the language of accidental liberal virtue — it is strategic self-narration, the kind of thing a player says when they've already decided to spend their first government building credibility. The fact that she *did* play the liberal policy (when she had 1F + 1L) fits perfectly with a round-one fascist plan: accept the short-term cost, bank the trust, and spend it later when the policy board is at 4 or 5 fascist tiles. The alternative — that she's a transparent liberal who just happens to phrase her good faith as "early cover" — is possible but requires Charlotte to be unusually self-aware without being self-serving.
+
+Rachel is the second most suspicious player, but for a different reason. Her public fascist confession is too clean. It functions as pre-emptive social inoculation — she's established "I deceive people, and I admitted it, so I must be done deceiving people." That's exactly the kind of second-order bluff a returning fascist player makes when they know their reputation precedes them. A truly reformed player doesn't need to make the speech; they just play liberal and let the results speak. Rachel made the speech.
+
+The biggest uncertainty is whether Charlotte and Rachel are confederates (one of them paired with Hitler-Dom) or whether one of them is genuinely liberal and being implicated by behavioral style alone. Emmanuel's lone nein vote is currently unreadable — it could be the best early tell in the game or simply personality. The most diagnostic event in the next round will be how Charlotte and Rachel vote on Dom's current government: a fascist partner will vote Ja to protect Hitler's table access; a liberal will be willing to vote Nein if Dom starts accruing suspicious policy outcomes. Watch that vote carefully.

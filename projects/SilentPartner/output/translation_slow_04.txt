@@ -1,0 +1,72 @@
+## SESSION CONTEXT
+
+French-to-English live translation session. An Easy French episode featuring host Nély (French teacher, age 28, from Bordeaux) covering spoken-French phonetic features -- dropped schwas, word truncation -- followed by a bilingual phrase-practice segment with price negotiation dialogues.
+
+---
+
+## GLOSSARY
+
+| Source term | Target rendering |
+|---|---|
+| Amélie | Amélie |
+| anglophones | English speakers |
+| Bruce | Bruce |
+| Charlotte | Charlotte |
+| ciné | cinema (short for cinéma) |
+| collégiens | middle school students |
+| confiture de fraises | strawberry jam |
+| confiture de pommes | apple jam |
+| Daluno | Daluno |
+| douche | shower |
+| Easy French | Easy French |
+| Etats-Unis | the States |
+| futur proche | near future |
+| futur simple | simple future |
+| la boulangerie | the bakery |
+| le ménage | housework |
+| le métro | the metro |
+| le ne | the 'ne' particle (dropped in spoken negation) |
+| liaisons | liaisons |
+| Lucas | Lucas |
+| lycéens | high school students |
+| master | master's degree |
+| miel | honey |
+| morceaux | music tracks |
+| Nély | Nély |
+| Normandie | Normandy |
+| patron | boss |
+| petit déjeuner | breakfast |
+| présent de l'indicatif | present indicative |
+| réunion | meeting |
+| resto | restaurant (short for restaurant) |
+| Samy | Samy |
+
+---
+
+## SPEAKERS
+
+| ID | Rough label |
+|---|---|
+| S1 | Charlotte |
+| S2 | Amélie |
+| S3 | Narrator / commentator (off-scene) |
+| S4 | Pizza restaurant staff |
+| S5 | Customer (female) placing order |
+| S6 | Lucas (delivery person, Daluno) |
+| S7 | Woman receiving delivery / gift-shopping advice-seeker |
+| S8 | Gift shop assistant or friend giving advice |
+| S9 | Person asking what to eat |
+| S10 | Person responding, hungry since morning |
+| S11 | Super Easy French host / narrator (bilingual lesson segment) |
+| S12 | Easy French episode host (female, age 30, from the west, moved to Paris for master's in 2018) |
+| S13 | Nély -- guest, age 28, French teacher for 5 years, from Bordeaux |
+| S14 | Bilingual practice segment speaker A (buyer) |
+| S15 | Bilingual practice segment speaker B (seller) |
+
+---
+
+## NOTES
+
+- "le ne" is rendered descriptively as "the 'ne' particle" rather than translated; it is a grammatical label with no English equivalent and was kept in quotes throughout.
+- "ciné" and "resto" were glossed with their full forms in parentheses on first use, then left as-is to match the register of the lesson (the truncation is the point being taught).
+- "patron" was rendered as "boss" rather than "owner"; context suggested an employment relationship, but either reading is plausible.

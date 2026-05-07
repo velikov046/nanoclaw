@@ -1,0 +1,51 @@
+## SESSION CONTEXT
+
+French-to-English simultaneous translation session. Topic: casual conversation between two female hosts covering spring weather, a walk in the Bois de Vincennes, summer holiday plans, the Paris Olympics disrupting hospital on-call schedules, and a YouTube channel outro.
+
+## GLOSSARY
+
+| Source term | Target rendering |
+|---|---|
+| à la semaine prochaine | see you next week |
+| bord de la mer | seaside |
+| canicule | heatwave |
+| chaîne | channel |
+| copain | boyfriend |
+| de garde | on call |
+| easydeyfrench.org | easydeyfrench.org |
+| épisode | episode |
+| en retard | behind |
+| faire la grasse matinée | sleep in |
+| grasse matinée | sleep in |
+| il fera encore chaud | it'll still be warm |
+| il y aura moins de monde | there'll be fewer people |
+| j'ai trop hâte | I can't wait |
+| jeux olympiques | the Olympic Games |
+| jour de repos | day off |
+| l'hôpital | the hospital |
+| la lessive | laundry |
+| le ménage | housework |
+| le Sud | the South |
+| ma foule | my crowd |
+| Merci d'avoir regardé | thanks for watching |
+| mettre un petit like | leave a like |
+| on verra bien | we'll see |
+| partir en vacances | go on holiday |
+| profiter du temps | enjoy the weather |
+| s'abonner | subscribe |
+| se balader | go for a walk |
+| septembre | September |
+| Tu m'étonnes | tell me about it |
+
+## SPEAKERS
+
+| ID | Rough label |
+|---|---|
+| S1 | host 1, female |
+| S2 | host 2, female, medical professional with on-call constraints |
+
+## NOTES
+
+- "Tu m'étonnes" is rendered as "tell me about it" rather than its literal "you surprise me," which would be misleading; the idiomatic use here is emphatic agreement.
+- "Ma foule" ("my crowd") is a casual, affectionate address to the audience; register kept informal to match.
+- "Faire la grasse matinée" has no single English equivalent; "sleep in" captures the meaning concisely without padding.

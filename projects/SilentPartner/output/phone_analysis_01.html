@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SilentPartner — Analysis</title>
+<style>
+  :root {
+    --bg:        #0e0a0a;
+    --surface:   #1a1010;
+    --border:    #3a1a1a;
+    --text:      #d8cccc;
+    --muted:     #8a7070;
+    --accent:    #cc2222;
+    --red:       #cc2222;
+    --orange:    #cc6622;
+    --yellow:    #cc9922;
+    --green:     #228844;
+    --blue:      #2266aa;
+    --header-bg: #1a0808;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: .5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    color: #c08080;
+    margin: 2rem 0 .75rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    border-left: 3px solid var(--accent);
+    padding-left: .6rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+    color: var(--text);
+    margin: 1.25rem 0 .5rem;
+    font-style: italic;
+  }
+
+  p { margin-bottom: .75rem; }
+
+  ul, ol {
+    margin: .5rem 0 .75rem 1.5rem;
+  }
+
+  li { margin-bottom: .25rem; }
+
+  strong { color: #e8d0d0; }
+
+  em { color: var(--muted); font-style: italic; }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.5rem 0;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    font-size: .9rem;
+  }
+
+  thead tr {
+    background: var(--header-bg);
+    border-bottom: 2px solid var(--accent);
+  }
+
+  th {
+    padding: .5rem .75rem;
+    text-align: left;
+    color: var(--muted);
+    font-weight: normal;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    font-size: .8rem;
+  }
+
+  td {
+    padding: .5rem .75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tbody tr:hover { background: rgba(255,255,255,.02); }
+
+  /* Suspicion colour bands on ranking table rows */
+  tr.rank-1, tr.rank-2 { border-left: 3px solid var(--red); }
+  tr.rank-3, tr.rank-4 { border-left: 3px solid var(--orange); }
+  tr.rank-5            { border-left: 3px solid var(--yellow); }
+  tr.rank-6, tr.rank-7 { border-left: 3px solid var(--green); }
+
+  tr.rank-1 td:first-child, tr.rank-2 td:first-child { color: var(--red); font-weight: bold; }
+  tr.rank-3 td:first-child, tr.rank-4 td:first-child { color: var(--orange); }
+  tr.rank-5 td:first-child                            { color: var(--yellow); }
+  tr.rank-6 td:first-child, tr.rank-7 td:first-child { color: var(--green); }
+
+  /* Inline suspicion badges */
+  .sus-confirmed   { color: var(--red);    font-weight: bold; }
+  .sus-likely      { color: var(--red); }
+  .sus-strong      { color: var(--red); }
+  .sus-leaning-f   { color: var(--orange); }
+  .sus-high        { color: var(--orange); }
+  .sus-uncertain   { color: var(--yellow); }
+  .sus-medium      { color: var(--yellow); }
+  .sus-leaning-l   { color: var(--blue); }
+  .sus-low         { color: var(--green); }
+  .sus-liberal     { color: var(--blue); }
+
+  blockquote {
+    border-left: 2px solid var(--border);
+    padding-left: .75rem;
+    color: var(--muted);
+    margin: .75rem 0;
+    font-style: italic;
+  }
+
+  code {
+    background: var(--surface);
+    padding: .1em .4em;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: .9em;
+    color: #c08080;
+  }
+
+  .meta {
+    color: var(--muted);
+    font-size: .8rem;
+    margin-bottom: 2rem;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<p class="meta">Live capture — 20m 0s | Analysis #1</p><h2>GRIMOIRE LOG</h2>
+<p><strong>Note:</strong> Transcript is speech-to-text with pirate-themed role aliases. Names mapped on best evidence. "?" = inferred, gaps flagged.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Player</th>
+<th>Claimed</th>
+<th>True Role</th>
+<th>Status</th>
+<th>Modifiers</th>
+<th>Ability Spent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>—</td>
+<td><strong>Jojo</strong></td>
+<td>Unknown</td>
+<td>Unknown</td>
+<td>Alive</td>
+<td><strong>Poisoned N1</strong> (Poisoner chose Jojo per ST whisper ~[198s])</td>
+<td>—</td>
+</tr>
+<tr>
+<td>—</td>
+<td><strong>Alejo</strong></td>
+<td>Librarian or Investigator ("Bosun / Bloodhound")</td>
+<td>One of the two</td>
+<td>Alive</td>
+<td>Clean</td>
+<td>N/A — passive info received</td>
+</tr>
+<tr>
+<td>—</td>
+<td><strong>Lyra</strong></td>
+<td>Monk</td>
+<td>Monk ✓</td>
+<td>Alive</td>
+<td>Clean</td>
+<td>N1: protected Ree</td>
+</tr>
+<tr>
+<td>—</td>
+<td><strong>Bruce</strong></td>
+<td>Virgin</td>
+<td>Virgin ✓</td>
+<td><strong>Dead</strong> (executed D1 → Gunslinger traveler → killed N1)</td>
+<td>—</td>
+<td>Never fired</td>
+</tr>
+<tr>
+<td>—</td>
+<td><strong>Inspiration</strong></td>
+<td>Empath</td>
+<td><strong>Drunk</strong></td>
+<td>Alive</td>
+<td>Drunk (is the Drunk)</td>
+<td>N0: 0 (false) · N1: 0 (false)</td>
+</tr>
+<tr>
+<td>—</td>
+<td><strong>Ree</strong></td>
+<td>Unknown</td>
+<td>Unknown (Fortune Teller?)</td>
+<td>Alive</td>
+<td>Protected N1 by Lyra</td>
+<td>N1: chose Inspiration</td>
+</tr>
+<tr>
+<td>—</td>
+<td><strong>Iris</strong></td>
+<td>Unknown</td>
+<td><strong>Imp</strong> (strong inference)</td>
+<td>Alive</td>
+<td>—</td>
+<td>N1: killed Bruce</td>
+</tr>
+<tr>
+<td>—</td>
+<td><strong>Rachel</strong></td>
+<td>Unknown</td>
+<td>Unknown</td>
+<td>Alive</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>—</td>
+<td><strong>Empath 2</strong></td>
+<td>Empath</td>
+<td>Empath (likely true)</td>
+<td>Alive</td>
+<td>Clean</td>
+<td>N0: 1 · N1: 1</td>
+</tr>
+<tr>
+<td>—</td>
+<td><strong>Butler</strong> (player unknown)</td>
+<td>Butler</td>
+<td>Butler</td>
+<td>Unknown</td>
+<td>—</td>
+<td>Chose <strong>Jojo</strong> as master N0</td>
+</tr>
+<tr>
+<td>—</td>
+<td><strong>Poisoner</strong> (player unknown)</td>
+<td>—</td>
+<td>Poisoner</td>
+<td>Unknown</td>
+<td>—</td>
+<td>N1: poisoned Jojo</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Seating order unknown</strong> — critical gap for interpreting Empath 2's "1."</p>
+<hr />
+<h2>INFO TOKEN LEDGER</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Character → Player</th>
+<th>Info Given</th>
+<th>True/False</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Empath (Drunk) → Inspiration</td>
+<td><strong>0</strong></td>
+<td>False (drunk)</td>
+<td>[46–60s] — consistent with Drunk role; ST correctly gave false info</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Empath → Empath 2</td>
+<td><strong>1</strong></td>
+<td>Likely true</td>
+<td>[71–78s] — one of Empath 2's living neighbors is evil</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Librarian or Investigator → Alejo</td>
+<td>Poisoner <strong>or</strong> Butler in one of two named players</td>
+<td>True or fuzzy</td>
+<td>[117–127s, 294–313s] — Alejo doesn't know which of the two roles they hold; both players named unknown from transcript</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Empath (Drunk) → Inspiration</td>
+<td><strong>0</strong></td>
+<td>False (drunk)</td>
+<td>[902–924s] — repeated same drop; consistent ✓</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Empath → Empath 2</td>
+<td><strong>1</strong></td>
+<td>Likely true</td>
+<td>[902–935s] — same reading; either neighbors unchanged or one evil neighbor persists</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Ree's ability → Ree</td>
+<td>Unknown</td>
+<td>Unknown</td>
+<td>[857–885s] — Ree chose Inspiration; result not confirmed in transcript</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Risk flag:</strong> Token #3 — if Alejo's two named players are later confirmed good/evil, this info must hold. If one was the Recluse or Spy, it could have legally misregistered. No Recluse/Spy confirmed yet, but worth pre-deciding now.</p>
+<hr />
+<h2>RULE EDGE CASES</h2>
+<p><strong>1. Virgin + Drunk Nominator</strong> <code>[573–660s]</code><br />
+Inspiration (Drunk/Outsider) nominated Bruce (Virgin). The Virgin reads: <em>"The first time you are nominated, if the nominator is a Townsfolk, they are executed immediately."</em> The Drunk is an <strong>Outsider</strong>, not a Townsfolk — Virgin ability did <strong>not</strong> trigger. Bruce went to a normal vote and was executed by majority. <strong>Resolved correctly.</strong></p>
+<p><strong>2. Librarian "at least one" ruling</strong> <code>[480–511s]</code><br />
+Question raised: can the Librarian show two players who both satisfy the shown type? ST ruled <strong>yes</strong> — the ability says "one of," which is satisfied even if both qualify. This matches the spirit of the rules. <strong>Pre-decided correctly.</strong></p>
+<p><strong>3. Imp killing an already-dead player (Bruce as returning traveler)</strong> <code>[780–957s]</code><br />
+Bruce was executed D1 and being assigned Gunslinger traveler status. The ST treated Bruce as "technically alive" for the night [780s] while the Gunslinger entry hadn't been formally announced. Iris (Imp) chose Bruce. ST resolved this as: Gunslinger appeared then immediately died. This is <strong>within ST discretion</strong> — traveler entry is ST-controlled, and the Imp kill on a player who "entered" that night is a valid call. However, the Gunslinger <strong>never got to use their ability</strong>, so confirm no lingering Gunslinger effects remain.</p>
+<p><strong>4. "First four players to die are immediately killed by Iris"</strong> <code>[957s]</code><br />
+Likely transcription distortion or off-the-cuff joke. If this refers to a real game mechanic, it has no Trouble Brewing equivalent and needs ST clarification before Day 2. <strong>Unresolved — flag for ST to explain or dismiss.</strong></p>
+<p><strong>5. Poisoner chose Jojo</strong> <code>[180–207s]</code><br />
+Confirmed by ST whisper. Jojo is poisoned N1. Any ability that targeted Jojo N1 (e.g., Monk protection of Jojo, Fortune Teller including Jojo) would silently fail. <strong>Ree chose Inspiration, not Jojo</strong> — no immediate conflict, but track for N2.</p>
+<hr />
+<h2>PACING &amp; BALANCE</h2>
+<p><strong>Information temperature:</strong> The good team is <strong>warm but fragmented.</strong> Alejo has actionable Investigator/Librarian info (Poisoner or Butler narrowed to two players) but can't confirm their own role. Empath 2 has a consistent "1" but no seating context shared publicly yet. The Drunk (Inspiration) believes they have valid info — a live misinformation vector.</p>
+<p><strong>Evil exposure:</strong><br />
+- <strong>Iris</strong> as Imp has made no public move yet. Chose Bruce (already dead) so no dramatic N1 kill announcement will make Iris visible.<br />
+- <strong>Poisoner</strong> is completely hidden — Jojo doesn't know they're poisoned.<br />
+- Butler's identity gives the ST a passive check: if voting patterns break the Butler constraint, someone's lying about being the Butler's master.</p>
+<p><strong>Convergence risk:</strong> Low right now. No one publicly has a tight accusation on Iris. Alejo's claim points at Poisoner or Butler, not the Demon.</p>
+<hr />
+<h2>NOMINATION &amp; VOTE LOG</h2>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Nominator</th>
+<th>Target</th>
+<th>Result</th>
+<th>Analysis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D1</td>
+<td><strong>Jojo</strong></td>
+<td>Alejo</td>
+<td>Did not execute</td>
+<td>Jojo citing "bad information" on Alejo — either genuine suspicion of Investigator/Librarian read, or evil misdirection. Vote threshold not met (~5 needed).</td>
+</tr>
+<tr>
+<td>D1</td>
+<td><strong>Inspiration</strong> (Drunk)</td>
+<td>Bruce</td>
+<td><strong>Executed</strong></td>
+<td>Inspiration nominating the Virgin as a Drunk (Outsider) — Virgin power did not fire. Bruce executed with ~8 votes. ST note: a drunk good player burning the day's execution on an innocent is a meaningful tempo loss for good.</td>
+</tr>
+<tr>
+<td>D1</td>
+<td>Unknown</td>
+<td>Lyra</td>
+<td>Did not execute</td>
+<td>Someone nominated Lyra, needed ~10 votes [647s], not achieved. Lyra safe for now.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reading from nominations:</strong> Jojo going after Alejo (the Investigator/Librarian) is either: (a) evil trying to silence a source of Minion information, or (b) Jojo having received bad info about Alejo. Given Jojo is poisoned, if Jojo had an ability, it may have misfired. Watch Jojo.</p>
+<hr />
+<h2>ST RECOMMENDATIONS</h2>
+<p><strong>Tonight's pre-decided rulings needed:</strong><br />
+- Confirm whether Ree is the Fortune Teller and what result they received (Inspiration was not the Imp, so if Ree is FT and included Iris as the second pick, they'd have gotten a "yes"). This result needs to be locked in before Day 2.<br />
+- Decide what happens if the Gunslinger entry is questioned. Pre-script a clean announcement: "Bruce returned as the Gunslinger traveler in the night but was killed before dawn."</p>
+<p><strong>N2 calls:</strong><br />
+- Iris (Imp) needs a new target — Ree is the most dangerous (Monk-protected last night, likely has role info). Recommend Iris kill Ree if Lyra doesn't protect them again.<br />
+- Lyra (Monk): will she re-protect Ree? If the good team coordinates, yes. If the Poisoner poisons Lyra, Ree goes unprotected. Consider poisoning Lyra N2 instead of Jojo to open Ree to Imp.<br />
+- Empath 2's "1" reading: since Bruce died and Inspiration is still alive and drunk, the "1" from Empath 2 should be <strong>rechecked</strong> — if Bruce was one of Empath 2's neighbors and is now dead, the empath count may change. Calculate whether the "1" holds going into N2 with Bruce dead.</p>
+<p><strong>Single highest-leverage drop for Day 2:</strong><br />
+Empath 2's seating context. Good team has a consistent 1 from a credible Empath but doesn't know which neighbor it implicates. If Empath 2 reveals their neighbors in Day 2 discussion, that narrows Iris significantly. <strong>Evil team should try to get Empath 2 executed before they share this.</strong> Watch if anyone pushes hard on Empath 2 early — that's a tell.</p>
+<p><strong>Balance note:</strong> Good team lost two executions worth of tempo: one burned on Bruce (innocent Virgin), and Bruce's Gunslinger was denied by N1 kill. Evil is ahead. Day 2 should allow good at least one clean execution to rebalance.</p>
+</div>
+<script>
+// Colour ranking table rows by position
+document.querySelectorAll('table').forEach(tbl => {
+  const rows = tbl.querySelectorAll('tbody tr');
+  // Check if first column looks like rank numbers
+  rows.forEach((row, i) => {
+    const first = row.cells[0]?.textContent?.trim() || '';
+    const num = parseInt(first);
+    if (!isNaN(num) && num >= 1 && num <= 7) {
+      row.classList.add('rank-' + num);
+    } else if (rows.length <= 7 && i < 7) {
+      // Unnamed ranking table — colour by position
+      const tblHeader = tbl.previousElementSibling;
+      if (tblHeader && /rank|suspect|fascist/i.test(tblHeader.textContent || '')) {
+        row.classList.add('rank-' + (i + 1));
+      }
+    }
+  });
+});
+
+// Highlight suspicion level text
+const patterns = [
+  [/\bConfirmed\b/g,            'sus-confirmed'],
+  [/\bStrong\s+Fascist\s+read\b/gi, 'sus-strong'],
+  [/\bLikely\s+Fascist\b/gi,   'sus-likely'],
+  [/\bLeaning\s+Fascist\b/gi,  'sus-leaning-f'],
+  [/\bHigh\b/g,                'sus-high'],
+  [/\bUncertain\b/g,           'sus-uncertain'],
+  [/\bMedium\b/g,              'sus-medium'],
+  [/\bLeaning\s+Liberal\b/gi,  'sus-leaning-l'],
+  [/\bLow\b/g,                 'sus-low'],
+];
+
+function walkTextNodes(el) {
+  if (el.nodeType === Node.TEXT_NODE) return [el];
+  const nodes = [];
+  el.childNodes.forEach(c => nodes.push(...walkTextNodes(c)));
+  return nodes;
+}
+
+// Only apply inside td and li elements to avoid mangling headings
+document.querySelectorAll('td, li, p').forEach(el => {
+  patterns.forEach(([re, cls]) => {
+    walkTextNodes(el).forEach(node => {
+      if (!re.test(node.textContent)) return;
+      re.lastIndex = 0;
+      const frag = document.createDocumentFragment();
+      let last = 0, m;
+      while ((m = re.exec(node.textContent)) !== null) {
+        frag.appendChild(document.createTextNode(node.textContent.slice(last, m.index)));
+        const span = document.createElement('span');
+        span.className = cls;
+        span.textContent = m[0];
+        frag.appendChild(span);
+        last = m.index + m[0].length;
+      }
+      frag.appendChild(document.createTextNode(node.textContent.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  });
+});
+</script>
+</body>
+</html>

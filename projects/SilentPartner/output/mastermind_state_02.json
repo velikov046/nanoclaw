@@ -1,0 +1,86 @@
+{
+  "topic": "World Championship Snooker",
+  "domain": "World Championship Snooker",
+  "scene": "A snooker match at the Crucible Theatre, Sheffield. One player led 8-3 and was expected by commentators to close out the match in two sessions; the trailing player instead fought back dramatically to level it and force a deciding frame. The comeback player has been playing, in the commentator's words, unreadable snooker this afternoon. The deciding frame is still in progress, with a chance on the table.",
+  "entities": [],
+  "glossary": [
+    {
+      "term": "deciding frame",
+      "definition": "The final frame of a match when both players are level; whoever wins it wins the match.",
+      "first_seen": "[15s]",
+      "source_quote": "just one chance in the deciding frame and this is a potential chance",
+      "confidence": "high"
+    },
+    {
+      "term": "sessions",
+      "definition": "In major snooker matches, play is split into sessions of roughly 8 frames each, with breaks between them. At 8-3 the leader was expected to finish the job within the next session or two.",
+      "first_seen": "[115s]",
+      "source_quote": "winning it in two sessions",
+      "confidence": "high"
+    }
+  ],
+  "narratives": [
+    {
+      "title": "Deciding frame chance at the table",
+      "summary": "A player has a chance on the table in the deciding frame. The commentator described it as a makeable opportunity the player must convert.",
+      "status": "active",
+      "confidence": "medium"
+    },
+    {
+      "title": "Remarkable comeback from 8-3 down",
+      "summary": "One player trailed 8-3 and the match looked all but over; the trailing player has since played what the commentator calls unreadable snooker to claw all the way back to a deciding frame. The turnaround surprised even the commentators.",
+      "status": "active",
+      "confidence": "high"
+    }
+  ],
+  "key_moments": [
+    {
+      "position": "[15s]",
+      "what": "Deciding frame, player at table with a chance",
+      "why_it_matters": "In snooker a deciding frame is sudden death -- whoever wins this frame wins the entire match."
+    },
+    {
+      "position": "[37s]",
+      "what": "Commentator says the shot is among the easiest available and must be potted",
+      "why_it_matters": "Emphasis on 'must pot' signals a straightforward ball the player cannot afford to miss under this pressure."
+    },
+    {
+      "position": "[75s]",
+      "what": "Commentator notes many expected one player to simply walk away with the match",
+      "why_it_matters": "Underscores how dominant the leader appeared before the comeback began."
+    },
+    {
+      "position": "[105s]",
+      "what": "Score of 8-3 mentioned; commentator thought the leader could win it in two sessions",
+      "why_it_matters": "Puts the comeback in perspective: 8-3 in a long-format match is a commanding lead, making the comeback to a deciding frame all the more striking."
+    },
+    {
+      "position": "[120s]",
+      "what": "Trailing player described as having scraped back and played unreadable snooker this afternoon",
+      "why_it_matters": "'Unreadable' in snooker means the player's shot selection and safety play are hard to anticipate, making them very difficult to counter."
+    }
+  ],
+  "do_not_say": [
+    {
+      "item": "aerodromes",
+      "reason": "Whisper artifact -- not a snooker term; underlying word unclear, possibly 'players' or a player name"
+    },
+    {
+      "item": "shops / food / paths",
+      "reason": "Repeated Whisper artifacts across [30s]-[37s]; underlying snooker terms (likely 'shots', 'pot') are unclear"
+    },
+    {
+      "item": "8-3",
+      "reason": "Stat -- past scoreline mentioned in commentary; verify before repeating as the exact score when the lead was described"
+    },
+    {
+      "item": "under-readable",
+      "reason": "Whisper artifact for what is almost certainly 'unreadable' -- do not repeat the mangled form"
+    },
+    {
+      "item": "partner",
+      "reason": "Whisper artifact at [117s] -- likely 'opponent' or a player name; underlying word unclear"
+    }
+  ],
+  "analysis_count": 2
+}

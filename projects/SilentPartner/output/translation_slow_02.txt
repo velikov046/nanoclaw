@@ -1,0 +1,34 @@
+## SESSION CONTEXT
+Persian (Farsi) to English. A group gathering or activity session with introductions, informal instructions, a religious farewell, and a late arrival calling for Mrs. Sami.
+
+## GLOSSARY
+
+| Source term | Target rendering |
+|---|---|
+| بهار | Bahar |
+| حسا | Hasan (possible name) |
+| خدا | God |
+| خیلی شما باشید | be well, all of you |
+| در پناه خدا | in God's protection |
+| delegation سمی خانوم | Mrs. Sami |
+| سیمون | Seymour / Simon |
+| طالعون | Taloon (possible name) |
+| کامران | Kamran |
+| مهران | Mehran |
+| Seymour John | Seymour John (goes by Seymour) |
+
+## SPEAKERS
+
+| ID | Rough label |
+|---|---|
+| S1 | First speaker, male, opens with salaam |
+| S2 | Bahar, introduces herself |
+| S3 | Seymour John / Simon |
+| S4 | Unidentified, gives instructions |
+| S5 | Mehran, new arrival, calls for Mrs. Sami |
+
+## NOTES
+
+- "در پناه خدا" is a religious farewell idiom; rendered as "in God's protection" rather than the more generic "goodbye" to preserve register.
+- "خیلی شما باشید" is a colloquial Farsi closing; closest natural English equivalent is "be well, all of you" -- no single word captures it.
+- "حسا" and "طالعون" are phonetically transcribed and may be names with alternate spellings; flagged as uncertain in the glossary.

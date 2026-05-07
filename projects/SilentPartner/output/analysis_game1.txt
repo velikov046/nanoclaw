@@ -1,0 +1,131 @@
+## SUSPICION RANKING
+
+| Rank | Player | One-Line Reasoning |
+|------|--------|--------------------|
+| 1 | **Rachel** | **CONFIRMED HITLER** — admitted at game end [1783s] |
+| 2 | **John** | Enacted fascist when explicitly given a liberal option; "right one" slip; multiple independent accusations |
+| 3 | **Charlotte** | Passed 2 fascists directly to Rachel (Hitler) as president; mutual Charlotte/John accusation may be fascist misdirection |
+| 4 | **Sullivan** | Kept peek results secret; clean policy track but lowest scrutiny at table |
+| 5 | **Dom** | Consistent liberal output; made the game-winning correct read on Hitler |
+| 6 | **Holly** | Clean policy record; "Adolf Holley" teasing was roleplay, not genuine suspicion |
+
+---
+
+## SPEAKER MAPPING
+
+The transcript does not preserve SPEAKER_XX diarization IDs — it was transcribed as undifferentiated timestamped dialogue. Attribution below is derived entirely from direct name-mentions and addressing patterns within the text.
+
+**Resolved mappings:**
+
+- **Sullivan** — The host/presenter, but also a player. Introduces the group as "Holly, John, Rachel, Charlotte and Dom" [58-63s], making Sullivan the sixth player. Referred to as "Sully" and "Sullivan" by others [978s, 1538s]. Likely the voice claiming "I had a fascist and two liberals, so I got rid of the fascist" [1055s]. Made the game's executive peek and withheld results [1350s].
+- **Holly** — First chancellor; clearly named throughout; addressed as "Adolf Holley" mockingly; passed liberal-heavy cards in her presidential round [794-803s].
+- **John** — Named directly [727s, 1675s, 1264s]; the chancellor accused around the "right one" moment; mutual accusation with Charlotte throughout.
+- **Rachel** — Named directly throughout; CONFIRMED Hitler [1783s]; president in the round that passed the third fascist.
+- **Charlotte** — Named directly throughout; president who drew 3 fascists and forwarded 2 to Rachel [944-960s].
+- **Dom** — Named directly throughout; second president; made the game-winning nomination of Rachel as chancellor.
+
+**Unresolved:** The first president (dice roll winner at [363s]) is not named in that moment, but context suggests it was Sullivan based on the subsequent presidency rotation and [532s] where Dom is named as the *next* president after.
+
+---
+
+## SUSPICION PROFILES
+
+### Rachel — *Confirmed Hitler/Fascist*
+
+**Suspicion level:** Confirmed
+
+**Key evidence:**
+- Explicitly admitted "Yeah" when asked "Rachel, are you Hitler?" [1783s].
+- As president in the third-fascist round, drew 3 fascists and passed John 1 liberal + 1 fascist [1270s, 1294s] — technically "giving a liberal option" while ensuring the round had fascist potential.
+- Voted **Nein on her own election as chancellor** [1769s] — a transparent last-ditch attempt to dodge detection once she saw the Ja majority forming.
+
+**Behavioural notes:**
+Rachel executed textbook Hitler strategy: maximum liberal posturing throughout. "I don't lie" [1274s]. Consistent liberal policy output in rounds 2 and 3. Expressed suspicion of John, deflecting attention [1280s]. The performance was convincing enough that Dom — arguably the sharpest liberal at the table — trusted her to the point of nominating her as the game-ending chancellor. Her Nein vote on her own election is the only slip that got away.
+
+---
+
+### John — *High suspicion — probable non-Hitler Fascist*
+
+**Suspicion level:** High
+
+**Key evidence:**
+- Said "I'm going to try to discard the right one" [1248s] when he was chancellor holding exactly 2 cards. A liberal with a clear fascist/liberal pair would say "I'll play the liberal" — not frame it as finding "the right one" as if there's ambiguity about which serves your team.
+- Enacted the fascist policy despite Rachel (president) confirming she gave him 1 liberal + 1 fascist [1270s]. He *had the liberal card in his hand* and played the fascist.
+- Claimed 3 fascist draws as chancellor in an earlier round [947s] — unusual and immediately flagged by others as statistically hard to swallow [958-960s].
+
+**Behavioural notes:**
+John's verbal output is aggressively liberal — he protests, accuses, and volunteers information. But his *policy output* tells a different story. Two of the three fascist policies that passed went through John (once as chancellor, once as president passing fascist-heavy cards). He accused Charlotte of being a "fascist buddy" [730s] early and repeatedly, which fits the pattern of a fascist redirecting suspicion. Charlotte threatened to use an executive kill on John if she ever got the power [1675s], suggesting she'd been tracking him for several rounds — not a reactive accusation, but a sustained read.
+
+---
+
+### Charlotte — *Medium-High suspicion*
+
+**Suspicion level:** Medium-High
+
+**Key evidence:**
+- Drew 3 fascists as president and forwarded 2 fascists to Rachel (Hitler) as chancellor [944-960s]. Rachel enacted the fascist. Whether deliberate or deck-driven, this is the cleanest fascist-to-Hitler pipeline in the game.
+- The mutual Charlotte-John accusation runs the whole second half. One of them is a fascist throwing the other under the bus; the other is a liberal reacting in kind.
+
+**Behavioural notes:**
+Charlotte made strong liberal-signalling efforts: "I don't want to pick Hitler as chancellor right now" [1385s], "I don't know who Hitler is" [1423s], threatening to kill John [1675s]. The problem is: if Charlotte *is* the non-Hitler fascist, she knows *exactly* who Hitler is — making "I don't know who Hitler is" a deliberate lie. However, her sustained suspicion of John (including the kill-threat, which is a costly signal) and her visible concern about Dom potentially being Hitler [1494s] reads more like genuine liberal confusion than scripted deflection. Charlotte's 3-fascist draw is damning but explainable given the deck composition (11 fascist tiles vs. 6 liberal).
+
+---
+
+### Sullivan — *Low-Medium suspicion*
+
+**Suspicion level:** Low-Medium
+
+**Key evidence:**
+- Passed liberal policies in every round he was government [1039-1060s]. Described by others as "framed well" as liberal [1044s] after producing a clean liberal outcome.
+- Received the executive peek power after the third fascist policy [1334s] and chose to keep all results secret: "I'm going to keep this to myself" [1350s].
+
+**Behavioural notes:**
+Sullivan's policy record is clean, but he faced the least scrutiny of anyone at the table. Information suppression is always worth flagging — the peek is *valuable liberal intelligence*, and a genuine liberal might share it to coordinate. Sullivan's silence was a legitimate strategic choice (preventing fascists from knowing the deck composition), but it also prevents others from cross-checking his claims. If he were fascist, he could have shared false peek information to redirect liberal strategy; he chose silence instead, which reads more liberal than not.
+
+---
+
+### Dom — *Low suspicion*
+
+**Suspicion level:** Low
+
+**Key evidence:**
+- Produced liberal policies as chancellor in two separate governments [1039s, 1060s].
+- Made the game's highest-conviction decision: nominating Rachel as chancellor despite pushback, triggering the win condition [1762-1769s].
+
+**Behavioural notes:**
+Dom's statement "I actually know you to be good" [988-989s] — directed at Sullivan — reflects confident liberal network-building. His confidence about Rachel was briefly challenged ("I'm slightly worried that Dom could be Hitler" [1494s] — from Charlotte), but Dom's policy track and the correctness of his final read make a liberal read very strong. The Hitler accusation came after Dom started showing conviction about Rachel, which fits a fascist trying to destabilise his line of reasoning.
+
+---
+
+### Holly — *Low suspicion*
+
+**Suspicion level:** Low
+
+**Key evidence:**
+- As president, drew 1 fascist + 2 liberals and passed both liberals, explicitly refusing to "test" [799-803s]: "I got a fascist and two liberals but I just was like, let's just get more liberals out."
+- Was the first chancellor and enacted a fascist with no liberal alternative in hand [443-446s]: "I was handed two fascists."
+
+**Behavioural notes:**
+Holly's policy decisions are entirely consistent with a liberal who had bad luck with draws. The "Adolf Holley" running joke is gameplay theater, not genuine strategic suspicion. She advocated clearly for liberal policy outcomes throughout and showed no inconsistencies between her stated positions and her actual card plays.
+
+---
+
+## ALLIANCE CLUSTERS
+
+**Rachel + John (suspected Fascist team):**
+The Rachel/John axis produced two of the three fascist policies. Rachel (as president) passed John 1 liberal + 1 fascist, and John chose the fascist [1268-1294s]. If John is the non-Hitler fascist, this exchange was coordinated: Rachel engineered the pass to give John the choice, and John executed it. Rachel's vocal defence of John in earlier rounds — and her willingness to direct suspicion elsewhere — supports a coordinated partnership.
+
+**Dom + Sullivan (clean liberal pair):**
+Both produced liberal policies in every round they participated in together. Dom's explicit trust signal toward Sullivan [988-989s] and their mutual clean record suggest genuine liberal alignment, with Dom eventually making the correct read on Hitler.
+
+---
+
+## SUMMARY
+
+The game ends with an unambiguous liberal win — Dom's conviction that Rachel was Hitler was correct, and he executed it cleanly. But the more analytically interesting question is the identity of Rachel's fascist partner, since the final reveal only confirmed Hitler, leaving the table never formally naming the second traitor.
+
+The dominant hypothesis is that **John is the non-Hitler fascist**, and the case is strong. The "right one" slip [1248s] is the most telling moment in the entire game: when you have two cards in hand and your job as a liberal is simply to play the non-fascist, there is no such thing as "the right one" — you just play the liberal. The framing only makes sense if you know which card serves your team. John then enacted the fascist despite holding a liberal card, a choice Rachel confirmed was available to him [1270s]. This alone would be damning circumstantial evidence; combined with the slip, it reads like a player who momentarily forgot to hide their reasoning. His aggressive verbal liberalism throughout — protests, accusations, volunteered information — fits the pattern of a fascist who compensates for bad policy choices with performative innocence.
+
+Charlotte remains the most credible alternative suspect. Her presidential round sent 2 fascists directly to Rachel at the game's most critical juncture [944-960s], a pipeline that would have been trivially easy for the fascist to engineer. The Charlotte-John mutual accusation that dominated the game's second half is a classic ambiguity — one of them is a fascist deflecting onto an innocent liberal. The argument for Charlotte-as-fascist hinges on whether her "I don't know who Hitler is" statements [1423s] were deliberate lies. The argument against it is the kill-threat directed at John [1675s], which is a costly and sustained signal that doesn't fit a fascist protecting their teammate under cover.
+
+The single piece of information that would most change this read is John's card in the "right one" moment. Rachel confirmed she gave him 1 liberal + 1 fascist. The question of whether John enacted the fascist through deliberate choice or through some rationalised liberal reasoning (e.g., "I'll give the fascist to Charlotte to test her") is the crux. But Rachel's Nein vote on her own election [1769s] suggests Rachel knew the jig was up — which means John's cover was already blown by that point, and the fascist team's coordination ultimately unravelled because Dom's read was sharper than their performance.

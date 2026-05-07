@@ -1,0 +1,128 @@
+## GRIMOIRE LOG
+
+**Alive Day 3 (9 players):** Jojo · Bruce (Bureaucrat traveler) · Lyra · Alejo · Ree · Iris · Rachel · Ben · Malachi
+**Dead:** Inspiration (executed D2) · Bruce-Virgin (executed D1, returned as traveler chain)
+
+| Player | Claimed | True (confidence) | Status | Drunk/Poison | Ability notes |
+|--------|---------|-------------------|--------|--------------|---------------|
+| Jojo | — | ? | Alive | Poisoned N0, N2 | Butler's master; all Butler votes must follow Jojo |
+| Inspiration | Empath | **Drunk** ✓ | **Dead D2** | Drunk (always); Poisoned N1 | Given false 0 by ST; ability never functioned correctly |
+| Bruce | Virgin → Gunslinger → Scapegoat → **Bureaucrat** | Virgin (D1); Bureaucrat traveler | Alive (traveler) | None | See edge-case note |
+| Lyra | Monk (uncertain; "doggy or Cheshire") | **Monk** (strong) | Alive | None | N0: protected Ree; N1: protected Jojo; N2 claim: protected Jojo → explains Night 2 zero-death |
+| Alejo | Librarian OR Investigator | ? | Alive | None | One of two players is Poisoner or Butler per their info token |
+| Ree | "Doesn't wake up" | **Poisoner** (strong) | Alive | None | N0: chose Jojo; N1: chose Inspiration; N2: chose Jojo again |
+| Iris | "Version demon" / Imp | **Imp** (strong) | Alive | None | N1: killed Bruce-Gunslinger; N2: targeted Jojo, blocked by Monk |
+| Rachel | Unknown | ? | Alive | ? | [611s] asked if she woke; no clear claim |
+| Ben | Unknown | ? | Alive | ? | No waking observed, no clear claim |
+| Malachi | Unknown | ? | Alive | ? | Briefly absent D3; minimal transcript |
+
+---
+
+## INFO TOKEN LEDGER
+
+**Night 0 (pre-Day 1 setup)**
+
+| # | Token | Recipient | Value | True/False | Note |
+|---|-------|-----------|-------|-----------|------|
+| T1 | Butler → master | [Unknown player] | Jojo is your master | True | [0s] fixed Butler vote dependency going forward |
+| T2 | Empath (Inspiration, **drunk**) | Inspiration | **0** | **FALSE** | [46s] ST explicitly: "give her a zero" |
+| T3 | Empath (real) | [Unknown] | **1** | Likely true (unless poisoned N0) | [71s] |
+| T4 | Poisoner → target | Ree | Jojo | True | [198s] "poison token on Jojo"; Jojo's ability corrupted N0 |
+
+**Night 1 (post-Day-1, first killing night)**
+
+| # | Token | Recipient | Value | True/False | Note |
+|---|-------|-----------|-------|-----------|------|
+| T5 | Imp → kill | Iris | Bruce (Gunslinger) | True | [770s] Bruce-traveler dies in night [939s] |
+| T6 | Monk → protect | Lyra | Ree | True | [856s] Ree protected; irrelevant (Imp targeted Bruce) |
+| T7 | Poisoner → target | Ree | Inspiration | True | [884s] Inspiration poisoned; minimal effect since she is already drunk |
+| T8 | Empath A | [Unknown] | **0** | Possibly true | [920s]; consistent with no evil neighbors, or still poisoned |
+| T9 | Empath B | [Unknown] | **1** | Likely true | [931s] one evil neighbor |
+
+**Night 2 (post-Day-2)**
+
+| # | Token | Recipient | Value | True/False | Note |
+|---|-------|-----------|-------|-----------|------|
+| T10 | Imp → kill | Iris | Jojo | True attempt | [1540-1543s] blocked by Monk |
+| T11 | Monk → protect | Lyra | Jojo | True | [1509-1521s] explains zero deaths [1586s] |
+| T12 | Poisoner → target | Ree | Jojo | True | [1462s] Jojo poisoned N2 |
+| T13 | Empath A | [Unknown] | **1** | Likely true | [1560s] went 0→1; Ree switched off this empath after N0, so truth revealed |
+| T14 | Empath B | [Unknown] | **0** | Likely true | [1577s] consistent |
+
+**⚠ Contradiction risk on T2/T8:** Inspiration's public 0 (N0) has been in debate for two full days. T8 (Empath A reading 0 on N1) may be the SAME player whose reading flipped to 1 on N2 — meaning their N0 zero was false (Ree poisoned them N0, switched to Inspiration N1, freeing them). Any deductions built on that N0 zero should be treated as suspect.
+
+---
+
+## RULE EDGE CASES
+
+**[Critical — already resolved badly] Virgin trigger at [520s–712s]**
+
+When Inspiration (Drunk) nominated Bruce (Virgin), the Virgin ability requires: *if the nominator is a Townsfolk character, they are immediately executed.* The Drunk IS a Townsfolk mechanically — they register as such and receive wrong info, but their type does not change. **Inspiration should have been immediately executed when she nominated Bruce.** Instead the day proceeded to vote and Bruce was executed normally. ST acknowledged error at [712s]: *"I shouldn't have killed you."*
+
+**Resolution:** ST converted Bruce to Gunslinger traveler as compensation. This is an acceptable recovery. However: Inspiration escaped a death she was owed, which gave evil an extra day-1 survives and shifted the Drunk's exposure timeline by a full day.
+
+**[Resolved] Librarian "at least one vs. exactly one" [471s–511s]**
+
+Player asked if Librarian info requires exactly one of two shown players to be the outsider, or if both could be. ST ruled correctly: both players being the same outsider type still satisfies Librarian info. This is the RAW ruling.
+
+**[Active] Butler vote-tracking [0s, 180s]**
+
+Someone is the Butler, master = Jojo. This player **cannot raise their hand until Jojo already has**. Watch the upcoming Ree vs. Alejo vote — if Jojo votes for one and the Butler votes for the other, that is a rules violation. Also note: if Jojo is poisoned (she was N2), does it affect the voting constraint? No — the Butler's restriction is about *observing Jojo's hand*, not Jojo's ability. Poisoning Jojo has no effect on Butler mechanics.
+
+**[Active] Lyra's "Monk or Imp" uncertainty [1486s, 1509s]**
+
+Two players separately claimed uncertainty between Monk and Imp. This most naturally points to a Drunk who received "Monk" or "Imp" info. Since Inspiration (confirmed Drunk) is now dead, this uncertainty is residual. **The zero-death Night 2 resolves it: if Lyra were the Imp and not the Monk, Jojo would have died.** Lyra is the Monk. The second uncertain player [1486s] is not yet identified — worth watching.
+
+**[Upcoming] Imp star-pass mechanic**
+
+If Iris (Imp) dies by execution, she may choose to kill a living Minion during the night to pass the Imp token. If Ree (only identified minion) is already dead, there is no one to pass to. If a second minion exists (Scarlet Woman, Baron, Spy), the demon could survive via star-pass. Worth tracking.
+
+---
+
+## PACING & BALANCE
+
+**Information temperature — warm, converging correctly on Ree, but demon (Iris) is safe.**
+
+Bruce's empath-neighbor deduction is the strongest piece of logic this game has produced. Good is one correct execution away from a winnable position. The problem: Iris is unchallenged. Nobody in the transcript is pushing on Iris as demon — she made an open "version demon" claim [1537s] that the table appears to have laughed off rather than acted on.
+
+**Evil exposure:**
+
+- **Iris (Imp) — LOW.** Her public demon claim reads as a gag in the pirate context. She has killed successfully (Bruce-Gunslinger), survived two Days, and is not on any nomination block.
+- **Ree (Poisoner) — HIGH.** On the block right now via Bruce's deduction. If votes hold (need 6 to beat Alejo's tally), Ree dies today.
+
+**If Ree dies Day 3:** Evil loses its Poisoner. Iris is alone with only demon kill each night. Lyra (Monk) can protect Iris's likely target indefinitely. Good should win Day 4 or 5 barring a dramatic table misread.
+
+**If Alejo dies Day 3:** Ree and Iris survive together. Ree can poison empath reads; Iris can kill; good loses a likely Townsfolk and wastes the day. Critical to avoid.
+
+---
+
+## NOMINATION & VOTE LOG
+
+| Day | Nominator | Target | Result | Analysis |
+|-----|-----------|--------|--------|----------|
+| D1 | Jojo | Alejo | Block (< threshold) | Butler forcing vote on Jojo's target; thin evidence |
+| D1 | Inspiration (**drunk**) | Bruce (**Virgin**) | **Executed** — mishandled | Virgin trigger owed death to Inspiration; Bruce died instead; converted to traveler |
+| D1 | ? | Lyra | Block | Insufficient votes |
+| D2 | Bruce (Scapegoat) | Inspiration (effectively) | Block / prelude | Bruce pushing execution dynamics |
+| D2 | ? | Inspiration | **Executed** 9-0 | Clean unanimous; drunk confirmed publicly post-death |
+| D3 | Lyra | Alejo | Ongoing — need 5 | Lyra's motive unclear for a Monk; possibly reads Alejo as Minion from Lib/Inv info |
+| D3 | Bruce (Bureaucrat) | Ree | Ongoing — need 6 to beat | Best deduction of the game: shared-neighbor logic on two empaths; one reads 1 |
+
+---
+
+## ST RECOMMENDATIONS
+
+**Pre-decided rulings needed tonight:**
+
+1. **Star-pass eligibility:** If Ree dies today, confirm privately now whether a second Minion exists. If yes (Baron or Spy), Iris can kill them tonight to pass the demon token. If no second Minion, Iris cannot star-pass.
+2. **Monk target Night 3:** Lyra will pick again. Iris has now targeted Jojo twice. Lyra will likely protect Jojo again. If you want drama, have Iris switch targets (e.g., hit Bruce or an empath). If you want clean resolution, let the Jojo-protect cycle continue.
+3. **Undertaker drop:** If an Undertaker is in play and hasn't received their Inspiration token, give them "Drunk" tonight. This validates Bruce's entire analysis and accelerates the endgame.
+4. **Bureaucrat reminder:** Bruce should nominate a living player to double-weight their vote, not a dead one. He wasted the ability on Inspiration [1419s–1426s].
+
+**Day 3 pace call:**
+
+Push to close on Ree. If the table is drifting toward Alejo, a well-timed empath confirmation (ST quietly nods that the 1 reading is still valid) keeps heat on Ree without breaking the fiction. The empath reading a 1 is the load-bearing number — protect its credibility.
+
+**Single highest-leverage drop tonight:** If an Empath wakes Night 3, give them **1** if it's still true. A consistent third reading of 1 pointing toward Ree's neighborhood is the clearest path to good winning Day 4 even if Day 3 misfires.
+
+**Alejo warning:** Alejo's Librarian/Investigator info is valid and potentially useful, but they have been nominated twice and are being used as a distraction. If Alejo is Townsfolk, their death is a gift to evil. Worth engineering some protection — have a character corroborate their read in private if the vote starts to swing their way.

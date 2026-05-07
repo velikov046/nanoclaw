@@ -1,0 +1,130 @@
+## PREDICTED ROLE RANKING
+*(Most → Least Likely Fascist — early game, treat as predictions)*
+
+| # | Player | Confidence | One-line Reasoning |
+|---|--------|------------|-------------------|
+| 1 | **John** | Strong read | Enacted fascist as chancellor after allegedly receiving a liberal; claimed 3-fascist draw as president when deck made that statistically unlikely |
+| 2 | **Charlotte** | Leaning | Consistent "question mark" from multiple players, zero positive liberal plays, behavior matches Hitler playing conservative |
+| 3 | **Rachel** | Uncertain | Alternative fascist candidate if she lied about giving John a liberal; keeping peek entirely secret is a mild flag |
+| 4 | **Sullivan** | Uncertain | First-president all-fascist draw is plausible but unfalsifiable; otherwise clean record |
+| 5 | **Dom** | Leaning Liberal | Gave Rachel a real test in round 2, no fascist-adjacent play, genuine liberal strategic engagement |
+| 6 | **Holly** | Likely Liberal | Transparent liberal plays in rounds 1 and 3, active investigator, cross-corroborated by Sullivan |
+
+---
+
+## SPEAKER MAPPING
+
+**Critical limitation:** The transcript provided is a raw timestamped feed with no SPEAKER labels (SPEAKER_00, etc.) — it appears diarization was not applied to this file. Speaker attribution below is derived entirely from in-dialogue name references and response patterns.
+
+| Player | Attribution Method |
+|--------|--------------------|
+| **Holly** | Reacts to "Adolf Holley" at [749s]; confirms "I got two liberals" as round-3 president [794s] |
+| **John** | Called out by name at [727s]; says "I think it's bullshit, guys" [1282s] after fascist accusations |
+| **Rachel** | Others ask "Rachel, what did you give him?" [1268s]; responds "I did give him a liberal" [1270s] |
+| **Charlotte** | Says "Give me a chance" [836s] when nominated; "I also don't want to pick Hitler as chancellor" [1385s] |
+| **Dom** | Says "Finally" [534s] becoming president; "Who out of us three..." [541s] as second president |
+| **Sullivan** | "Thank you, thank you" [760s] after being chosen as chancellor; confirms receiving policies |
+
+**Unresolved:** The host/narrator voice and in-game voices blur in several places. Without proper diarization, the round-4 chancellor identity is inferred rather than confirmed.
+
+---
+
+## EARLY SUSPICION PROFILES
+
+### Holly
+**Suspicion: Likely Liberal**
+
+- **Round 1 (chancellor):** Received 2 fascists from the president — no choice, enacted fascist. She immediately disclosed this and showed frustration ["I was handed two fascists" — 443s].
+- **Round 3 (president):** Drew 1F + 2L, discarded the fascist, passed 2 liberals to Sullivan. Sullivan independently enacted a liberal and confirmed receiving 2 liberal tiles. This is strong corroborating evidence of transparency.
+- **Investigation behavior:** Explicitly names Charlotte as the "biggest question mark" [739s], passed on Charlotte in favor of testing Sullivan — suggesting real analytical intent rather than performance.
+- **Watch for:** Whether she protects or avoids John as Charlotte's chancellorship unfolds.
+
+---
+
+### John
+**Suspicion: Strong Fascist Read**
+
+- **Round 4 (president):** Claimed to draw 3 consecutive fascists. By this point the deck had approximately 5 fascists and 3 liberals remaining among 8 cards — probability of all-fascist draw is roughly 18%. His chancellor confirmed receiving 2 fascists ["I got given two" — 950s], consistent with John's account, but John's claim of an all-fascist draw is exactly what a fascist president would say to have cover for passing 2 fascists to a trusted partner.
+- **Round 5 (chancellor):** Rachel (president) states she passed John a liberal ["I did give him a liberal" — 1270s]. John enacted a fascist. His discard was also a fascist [1294s]. John claims ["I didn't have a choice" — 1288s], but the chancellor's own moment of hesitation at [1248s] — "I'm going to try to discard the right one" — implies he had *a choice to make*. You don't try to "discard the right one" when both cards are identical.
+- **Pattern:** Two consecutive rounds (4 and 5) producing fascist policies, with John at the center of both. His explanations rely entirely on his own uncorroborated word.
+- **Watch for:** Whether Charlotte nominates John as chancellor (fascist protection pattern); how John votes on Charlotte's government vs. other governments.
+
+---
+
+### Rachel
+**Suspicion: Uncertain**
+
+- **Round 2 (chancellor):** Received liberal + fascist from Dom, enacted the liberal. This is the clearest liberal play in the game and establishes an early trustworthy baseline.
+- **Round 5 (president, probable):** If seating order reconstruction is correct, Rachel drew the round-5 policies, passed John a liberal, and watched him enact fascist. She accused him directly and accurately.
+- **Policy Peek:** Rachel appears to have used the Policy Peek (triggered by 3rd fascist policy [1312s]) and chose to keep the information entirely to herself [1350s: "Yeah, I'm going to keep this to myself."]. A liberal president who sees 3 fascist tiles coming would typically warn the group, at least obliquely. Full suppression is ambiguous — could be liberal information hoarding or fascist cover.
+- **Watch for:** Whether she eventually shares the peek information and what she says; whether she steers Charlotte toward or away from John.
+
+---
+
+### Charlotte
+**Suspicion: Leaning Fascist**
+
+- **No government involvement yet** — Charlotte hasn't been president or chancellor in any round the group can evaluate. This creates an information vacuum that can be exploited.
+- **Multiple players flag her** as "the biggest question mark" [739s] without being able to articulate specific evidence. Holly considered picking Charlotte in round 3 before choosing Sullivan instead. This ambient suspicion from players with no concrete trigger is notable.
+- **Current presidency behavior:** Charlotte expresses explicit concern about electing Hitler as chancellor now that 3F are on the board [1385s: "I also don't want to pick Hitler as chancellor right now"]. This is a classic liberal-sounding statement — but it's also exactly what Hitler would say performatively. She says "I know I'm a liberal" [1418s] while deliberating chancellor choice.
+- **Watch for:** Her chancellor nomination is the critical diagnostic moment. If she nominates John, Dom, or Holly — read accordingly. Also watch whether she avoids nominating herself into a position where she'd be tested.
+
+---
+
+### Dom
+**Suspicion: Leaning Liberal**
+
+- **Round 2 (president):** Drew 2F + 1L, deliberately passed 1F + 1L to Rachel as an explicit test ["which I thought would be a good test" — 688s]. Disclosed his hand fully after the round. This is transparent, liberal-optimal behavior.
+- **Political commentary:** Consistently frames statements in liberal terms and argues against appeasement logic. Could be performance, but the consistency is noted.
+- **No fascist-adjacent moments** across the transcript.
+- **Watch for:** How he votes on Charlotte's government; whether he starts softening on John.
+
+---
+
+### Sullivan
+**Suspicion: Uncertain**
+
+- **Round 1 (president, probable):** If seating reconstruction holds, Sullivan was the first president and drew all 3 fascists — no choice. The deck at that point was 11F/6L (65% fascist), making a full-fascist draw plausible (~24% probability). Unfalsifiable.
+- **Round 3 (chancellor):** Received 2 liberals from Holly, enacted liberal, confirmed receiving the 2 liberal tiles. Clean, corroborated play.
+- **Otherwise passive:** Sullivan hasn't been flagged by other players and hasn't flagged others.
+- **Watch for:** Whether he steers Charlotte's chancellor nomination quietly (fascist partner behavior); how he votes.
+
+---
+
+## EARLY ALLIANCE CLUSTERS
+
+**Suspected Fascist Pair: John + Charlotte**
+The strongest structural hypothesis. John has the most direct fascist evidence; Charlotte's profile matches Hitler playing low-profile — letting the Fascist run the board while staying off the radar. Charlotte's current presidency with 3F on the board is exactly where Hitler needs to be careful: she can't be chancellor, so she's safe, and as president she controls the next government.
+
+**Liberal Bloc (provisional):** Holly + Dom + Rachel — all three have demonstrated clean or corroborating liberal plays. Rachel's round-2 chancellor decision and Dom's round-2 president decision are the most trustworthy single-round observations in the game.
+
+**Loose question:** Sullivan sits in a neutral zone. He has no definitive liberal or fascist moment beyond round 3.
+
+---
+
+## KEY MOMENTS
+
+**1. [1248–1295] — The chancellor hesitation (most diagnostic moment)**
+Someone (likely John as chancellor) pauses and says "I'm going to try to discard the right one" — then enacts a fascist policy. The hesitation language implies a choice between two different cards. Rachel states she gave John a liberal. John's discard was "another fascist." His post-hoc claim of "I didn't have a choice" contradicts the behavior and the president's account.
+
+**2. [947–960] — John's "three fascists" claim as president**
+John tells his round-4 chancellor he drew 3 fascists. The chancellor validates receiving 2 fascist tiles with no choice. But a player flags [957s]: "It makes me a little more suspicious of you getting three because numbers-wise, that's trickier." With ~5 fascists and 3 liberals in the remaining 8-card deck, this is possible but sits at ~18% probability. Combined with round 5, two consecutive all-fascist claims from John strains credibility.
+
+**3. [1350] — Policy Peek suppressed**
+The peek president (Rachel, probable) immediately and decisively says "Yeah, I'm going to keep this to myself." No hint about composition, no partial signal to allies. Full suppression from a player who has reason to warn the group — at minimum that John-as-chancellor should be avoided — is noteworthy.
+
+**4. [730–759] — Holly chooses Sullivan over Charlotte**
+Holly explicitly names Charlotte as "the biggest question mark" but selects Sullivan as chancellor to gather information on him instead. This reveals Holly's genuine analytical priorities and suggests she was more uncertain about Sullivan at that moment than the language might imply — though her positive read on Sullivan post-round-3 is now corroborated.
+
+**5. [1363–1420] — Charlotte's presidential deliberation**
+Charlotte as president explicitly discusses the Hitler election risk, claims to "know she's liberal," and identifies her choices as limited to Holly or another named player. Her stated reasoning is internally consistent with either liberal or Hitler-playing-liberal behavior. This moment matters because her chancellor choice will be the first evaluable action in her presidency.
+
+---
+
+## SUMMARY
+
+The dominant hypothesis is that **John is the Fascist** and **Charlotte is Hitler**. John's fingerprints are on two consecutive fascist-policy rounds in ways that can't be explained by deck luck alone — the chancellor-hesitation moment at [1248s], combined with Rachel's direct testimony that she passed him a liberal, points to John deliberately discarding the liberal tile and enacting fascist. His round-4 claim of three straight fascist draws as president is plausible in isolation but, stacked against round 5, follows a pattern: every round John participates in produces a fascist policy, and every time, the explanation requires trusting only his word.
+
+Charlotte fits the Hitler profile precisely because she has *nothing to evaluate her against* yet. She has floated through five rounds without touching a government, while ambient suspicion follows her without any specific incident to anchor it. That profile — known to multiple players as suspicious, no concrete evidence, still alive — is exactly where Hitler wants to be with 3F on the board. Her current presidency is her highest-risk moment: she cannot be elected chancellor (she's president), but she controls who gets tested next.
+
+The biggest uncertainty is **Rachel's peek information**. Rachel saw the next three policy tiles and said nothing. If the upcoming draw is 3 fascists, knowing that in advance allows a fascist Rachel to engineer a bad government by nominating someone who will take the blame for the forced policy. If she's liberal, that information is the most powerful tool liberals have right now — knowing whether the next government can produce a liberal policy regardless of player claims. Watch whether Rachel shares the peek in Charlotte's deliberation: if she steers Charlotte toward or away from a specific candidate citing the peek, that directional steer will be as revealing as anything else in the next round.

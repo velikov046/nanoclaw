@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SilentPartner — Analysis</title>
+<style>
+  :root {
+    --bg:        #0e0a0a;
+    --surface:   #1a1010;
+    --border:    #3a1a1a;
+    --text:      #d8cccc;
+    --muted:     #8a7070;
+    --accent:    #cc2222;
+    --red:       #cc2222;
+    --orange:    #cc6622;
+    --yellow:    #cc9922;
+    --green:     #228844;
+    --blue:      #2266aa;
+    --header-bg: #1a0808;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: .5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    color: #c08080;
+    margin: 2rem 0 .75rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    border-left: 3px solid var(--accent);
+    padding-left: .6rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+    color: var(--text);
+    margin: 1.25rem 0 .5rem;
+    font-style: italic;
+  }
+
+  p { margin-bottom: .75rem; }
+
+  ul, ol {
+    margin: .5rem 0 .75rem 1.5rem;
+  }
+
+  li { margin-bottom: .25rem; }
+
+  strong { color: #e8d0d0; }
+
+  em { color: var(--muted); font-style: italic; }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.5rem 0;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    font-size: .9rem;
+  }
+
+  thead tr {
+    background: var(--header-bg);
+    border-bottom: 2px solid var(--accent);
+  }
+
+  th {
+    padding: .5rem .75rem;
+    text-align: left;
+    color: var(--muted);
+    font-weight: normal;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    font-size: .8rem;
+  }
+
+  td {
+    padding: .5rem .75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tbody tr:hover { background: rgba(255,255,255,.02); }
+
+  /* Suspicion colour bands on ranking table rows */
+  tr.rank-1, tr.rank-2 { border-left: 3px solid var(--red); }
+  tr.rank-3, tr.rank-4 { border-left: 3px solid var(--orange); }
+  tr.rank-5            { border-left: 3px solid var(--yellow); }
+  tr.rank-6, tr.rank-7 { border-left: 3px solid var(--green); }
+
+  tr.rank-1 td:first-child, tr.rank-2 td:first-child { color: var(--red); font-weight: bold; }
+  tr.rank-3 td:first-child, tr.rank-4 td:first-child { color: var(--orange); }
+  tr.rank-5 td:first-child                            { color: var(--yellow); }
+  tr.rank-6 td:first-child, tr.rank-7 td:first-child { color: var(--green); }
+
+  /* Inline suspicion badges */
+  .sus-confirmed   { color: var(--red);    font-weight: bold; }
+  .sus-likely      { color: var(--red); }
+  .sus-strong      { color: var(--red); }
+  .sus-leaning-f   { color: var(--orange); }
+  .sus-high        { color: var(--orange); }
+  .sus-uncertain   { color: var(--yellow); }
+  .sus-medium      { color: var(--yellow); }
+  .sus-leaning-l   { color: var(--blue); }
+  .sus-low         { color: var(--green); }
+  .sus-liberal     { color: var(--blue); }
+
+  blockquote {
+    border-left: 2px solid var(--border);
+    padding-left: .75rem;
+    color: var(--muted);
+    margin: .75rem 0;
+    font-style: italic;
+  }
+
+  code {
+    background: var(--surface);
+    padding: .1em .4em;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: .9em;
+    color: #c08080;
+  }
+
+  .meta {
+    color: var(--muted);
+    font-size: .8rem;
+    margin-bottom: 2rem;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<p class="meta">Game 3 — 33%</p><h2>PREDICTED ROLE RANKING — Most to Least Likely Fascist</h2>
+<ol>
+<li><strong>Charlotte</strong> — "I chose early cover" is the single most telling phrase in the transcript; self-aware fascist positioning on turn one</li>
+<li><strong>Rachel</strong> — Openly acknowledging last-round fascism is a textbook meta-redirect; comfort with sustained deception is a demonstrated trait</li>
+<li><strong>Dom</strong> — Strong read as Hitler based on role distribution; accepted the role graciously and leaned into it</li>
+<li><strong>Emmanuel</strong> — Voted nein on the first government; cantankerous/contrary persona can mask fascist strategy</li>
+<li><strong>Holly</strong> — Most transparent behavior; shared hand contents openly; "Hitler killer" role coming in creates incentive to play liberal visibly</li>
+<li><strong>[Unnamed next president]</strong> — Insufficient data to place with confidence</li>
+</ol>
+<hr />
+<h2>SPEAKER MAPPING</h2>
+<p><strong>Critical caveat:</strong> This transcript does not include SPEAKER_XX diarization labels — it is timestamped dialogue only. Mapping is based entirely on name mentions and contextual attribution.</p>
+<table>
+<thead>
+<tr>
+<th>Inferred Name</th>
+<th>Basis for Attribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Holly</strong></td>
+<td>Addressed directly ("Holly, you almost talked yourself out of it"), confirmed as Round 3 opening president, described her hand aloud</td>
+</tr>
+<tr>
+<td><strong>Charlotte</strong></td>
+<td>Nominated as chancellor, explained her policy choice ("I chose early cover")</td>
+</tr>
+<tr>
+<td><strong>Rachel</strong></td>
+<td>Named in post-game discussion, admitted to prior fascist deception explicitly</td>
+</tr>
+<tr>
+<td><strong>Dom</strong></td>
+<td>Named as chancellor nominee ("Chansey"), received "Hitler for you" card with "danke schön", made Hitler/democracy jokes</td>
+</tr>
+<tr>
+<td><strong>Emmanuel</strong></td>
+<td>Named during the nein-voter teasing sequence; described as cantankerous</td>
+</tr>
+<tr>
+<td><strong>[Unnamed next president]</strong></td>
+<td>Speaks at ~3646s, nominates Dom; identity not confirmed from available text</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Unmapped:</strong> The unnamed next president could be Emmanuel, Rachel, or a sixth unnamed player — seating order is unknown.</p>
+<hr />
+<h2>EARLY SUSPICION PROFILES</h2>
+<h3>Holly</h3>
+<p><strong>Suspicion: Uncertain — leaning Liberal</strong><br />
+- Opened as president, shared her hand composition publicly: "I got two fascists in a liberal. I discarded a fascist, gave Charlotte a fascist."<br />
+- Transparency about a bad draw is a liberal signal — fascists typically avoid disclosing hand contents to preserve deniability<br />
+- Was "Hitler killer" last round, suggesting consistent liberal-leaning behavior across sessions<br />
+- <strong>Watch for:</strong> Does she push hard on investigating Charlotte's "early cover" comment? A liberal Holly would; a liberal-acting fascist might quietly let it drop</p>
+<h3>Charlotte</h3>
+<p><strong>Suspicion: Leaning Fascist</strong><br />
+- "I chose early cover" at 3632s is the most analytically interesting phrase in the transcript. This is exactly what a fascist does in round one — play the liberal card when you have the option, bank the trust, spend it later. The phrasing is self-aware and strategic, not the language of a liberal celebrating a lucky hand.<br />
+- However: she did discard the fascist when she had the choice (received 1F + 1L from Holly), which is the costly move for a fascist who wants to enact policy<br />
+- Counter-argument: a round-1 fascist policy with the first chancellor would be immediately suspicious, so burning it for cover has real value<br />
+- <strong>Watch for:</strong> Does she claim "I had no choice" in a later round when she discards a liberal? The "early cover" framing now makes any future liberal-policy-claim suspect</p>
+<h3>Rachel</h3>
+<p><strong>Suspicion: Leaning Fascist</strong><br />
+- Openly declared last-round fascism: "I fully lied the entire time. It was not the cards, it was very much me." This is performed transparency — pre-empting accusations before this round begins<br />
+- "I was, I was, I'm reformed" is a classic fascist setup: establish "I know how to lie" then claim you're not doing it now<br />
+- The group responded by letting it land as funny, which diffuses suspicion heading into Round 3 — exactly the outcome a savvy fascist would want<br />
+- <strong>Watch for:</strong> Does she align with Charlotte on votes? A Charlotte-Rachel fascist pair would show coordination without needing explicit signals</p>
+<h3>Dom</h3>
+<p><strong>Suspicion: Likely Hitler</strong><br />
+- Received the Hitler role with "danke schön" (3458s), then doubled down on Hitler references throughout ("Chancellor Hitler", "Hitler power sauce", "I just think this whole democracy thing's a terrible idea")<br />
+- The sardonic democracy comment at 3688s is a minor tell — it lands as a joke, but it's the kind of comment Hitler makes when playing the long con<br />
+- "Self-hating Chancellor" and voting nein on himself (if that's what happened) could be a play to seem unpredictable or non-threatening<br />
+- <strong>Watch for:</strong> If Dom becomes chancellor again and a fascist policy lands, note whether the policy claim from the president is plausible — fascists will funnel policies to Hitler's table</p>
+<h3>Emmanuel</h3>
+<p><strong>Suspicion: Uncertain</strong><br />
+- Voted nein on the Holly/Charlotte government — the "grumpy" teasing suggests this was the lone nein vote<br />
+- Could be: a liberal with a read on Charlotte, a contrarian personality, or a fascist voting against a likely-liberal government to establish a chaos persona<br />
+- The "cantankerous" framing by others suggests this is a known personality trait, which muddies the read — hard to know if the nein was strategic or just character<br />
+- <strong>Watch for:</strong> Does Emmanuel vote nein again? Consistent nein voting is a fascist tactic to stall liberal progress. A single nein from a known contrarian is less diagnostic.</p>
+<h3>[Unnamed next president]</h3>
+<p><strong>Suspicion: Uncertain — insufficient data</strong><br />
+- Nominated Dom as chancellor. Given Dom is likely Hitler, this is worth noting — but with zero fascist policies on the board, electing Hitler carries no win-condition risk at this stage. Could be innocent.<br />
+- The "Queen sweep" comment suggests hope for liberals, but any player would say this publicly<br />
+- <strong>Watch for:</strong> Their voting pattern and whether they give Dom another chancellor nomination later in the game when it would matter</p>
+<hr />
+<h2>EARLY ALLIANCE CLUSTERS</h2>
+<p><strong>Potential fascist pairing: Dom + Charlotte (or Dom + Rachel)</strong><br />
+- Charlotte's "early cover" strategy and Dom's Hitler role create a natural fascist pairing if they're working together<br />
+- Rachel's post-game confession meta-move and Dom's sardonic style are both comfort-with-deception signals that could cluster them as fascist team</p>
+<p><strong>Holly as liberal anchor:</strong><br />
+- Holly's hand transparency and Hitler-killer history make her the most readable liberal — expect other liberals to gravitate toward her as an investigation chain anchor</p>
+<hr />
+<h2>KEY MOMENTS SO FAR</h2>
+<p><strong>[3632s] — "I chose early cover"</strong><br />
+The most significant phrase in the transcript. Charlotte is naming her own strategy in real time. Whether this is honest liberal self-description or fascist confession-as-misdirection, it flags Charlotte as the player most likely operating strategically rather than reactively.</p>
+<p><strong>[3456–3460s] — "And Hitler for you, Dom. Oh, danke schön."</strong><br />
+Dom's gracious acceptance of the Hitler role, followed by sustained Hitler humor, is consistent with someone genuinely comfortable with the role. The jokes aren't nervous deflection — they're ownership.</p>
+<p><strong>[3562–3572s] — Rachel's fascist admission</strong><br />
+"I fully lied the entire time." Delivered as humor, but functions as a pre-emptive credibility move. She's betting that confessing to past deception makes her seem honest now.</p>
+<p><strong>[3688s] — "I just think this whole democracy thing's a terrible idea."</strong><br />
+Dom's comment after the vote passes. Sardonic, but fascist players often let small tells slip through jokey framing.</p>
+<hr />
+<h2>SUMMARY</h2>
+<p>The dominant hypothesis going into Round 3 is that Dom is Hitler and Charlotte is the regular fascist. Charlotte's "early cover" comment is not the language of accidental liberal virtue — it is strategic self-narration, the kind of thing a player says when they've already decided to spend their first government building credibility. The fact that she <em>did</em> play the liberal policy (when she had 1F + 1L) fits perfectly with a round-one fascist plan: accept the short-term cost, bank the trust, and spend it later when the policy board is at 4 or 5 fascist tiles. The alternative — that she's a transparent liberal who just happens to phrase her good faith as "early cover" — is possible but requires Charlotte to be unusually self-aware without being self-serving.</p>
+<p>Rachel is the second most suspicious player, but for a different reason. Her public fascist confession is too clean. It functions as pre-emptive social inoculation — she's established "I deceive people, and I admitted it, so I must be done deceiving people." That's exactly the kind of second-order bluff a returning fascist player makes when they know their reputation precedes them. A truly reformed player doesn't need to make the speech; they just play liberal and let the results speak. Rachel made the speech.</p>
+<p>The biggest uncertainty is whether Charlotte and Rachel are confederates (one of them paired with Hitler-Dom) or whether one of them is genuinely liberal and being implicated by behavioral style alone. Emmanuel's lone nein vote is currently unreadable — it could be the best early tell in the game or simply personality. The most diagnostic event in the next round will be how Charlotte and Rachel vote on Dom's current government: a fascist partner will vote Ja to protect Hitler's table access; a liberal will be willing to vote Nein if Dom starts accruing suspicious policy outcomes. Watch that vote carefully.</p>
+</div>
+<script>
+// Colour ranking table rows by position
+document.querySelectorAll('table').forEach(tbl => {
+  const rows = tbl.querySelectorAll('tbody tr');
+  // Check if first column looks like rank numbers
+  rows.forEach((row, i) => {
+    const first = row.cells[0]?.textContent?.trim() || '';
+    const num = parseInt(first);
+    if (!isNaN(num) && num >= 1 && num <= 7) {
+      row.classList.add('rank-' + num);
+    } else if (rows.length <= 7 && i < 7) {
+      // Unnamed ranking table — colour by position
+      const tblHeader = tbl.previousElementSibling;
+      if (tblHeader && /rank|suspect|fascist/i.test(tblHeader.textContent || '')) {
+        row.classList.add('rank-' + (i + 1));
+      }
+    }
+  });
+});
+
+// Highlight suspicion level text
+const patterns = [
+  [/\bConfirmed\b/g,            'sus-confirmed'],
+  [/\bStrong\s+Fascist\s+read\b/gi, 'sus-strong'],
+  [/\bLikely\s+Fascist\b/gi,   'sus-likely'],
+  [/\bLeaning\s+Fascist\b/gi,  'sus-leaning-f'],
+  [/\bHigh\b/g,                'sus-high'],
+  [/\bUncertain\b/g,           'sus-uncertain'],
+  [/\bMedium\b/g,              'sus-medium'],
+  [/\bLeaning\s+Liberal\b/gi,  'sus-leaning-l'],
+  [/\bLow\b/g,                 'sus-low'],
+];
+
+function walkTextNodes(el) {
+  if (el.nodeType === Node.TEXT_NODE) return [el];
+  const nodes = [];
+  el.childNodes.forEach(c => nodes.push(...walkTextNodes(c)));
+  return nodes;
+}
+
+// Only apply inside td and li elements to avoid mangling headings
+document.querySelectorAll('td, li, p').forEach(el => {
+  patterns.forEach(([re, cls]) => {
+    walkTextNodes(el).forEach(node => {
+      if (!re.test(node.textContent)) return;
+      re.lastIndex = 0;
+      const frag = document.createDocumentFragment();
+      let last = 0, m;
+      while ((m = re.exec(node.textContent)) !== null) {
+        frag.appendChild(document.createTextNode(node.textContent.slice(last, m.index)));
+        const span = document.createElement('span');
+        span.className = cls;
+        span.textContent = m[0];
+        frag.appendChild(span);
+        last = m.index + m[0].length;
+      }
+      frag.appendChild(document.createTextNode(node.textContent.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  });
+});
+</script>
+</body>
+</html>

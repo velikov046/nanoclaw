@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SilentPartner — Analysis</title>
+<style>
+  :root {
+    --bg:        #0e0a0a;
+    --surface:   #1a1010;
+    --border:    #3a1a1a;
+    --text:      #d8cccc;
+    --muted:     #8a7070;
+    --accent:    #cc2222;
+    --red:       #cc2222;
+    --orange:    #cc6622;
+    --yellow:    #cc9922;
+    --green:     #228844;
+    --blue:      #2266aa;
+    --header-bg: #1a0808;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: .5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    color: #c08080;
+    margin: 2rem 0 .75rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    border-left: 3px solid var(--accent);
+    padding-left: .6rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+    color: var(--text);
+    margin: 1.25rem 0 .5rem;
+    font-style: italic;
+  }
+
+  p { margin-bottom: .75rem; }
+
+  ul, ol {
+    margin: .5rem 0 .75rem 1.5rem;
+  }
+
+  li { margin-bottom: .25rem; }
+
+  strong { color: #e8d0d0; }
+
+  em { color: var(--muted); font-style: italic; }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.5rem 0;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    font-size: .9rem;
+  }
+
+  thead tr {
+    background: var(--header-bg);
+    border-bottom: 2px solid var(--accent);
+  }
+
+  th {
+    padding: .5rem .75rem;
+    text-align: left;
+    color: var(--muted);
+    font-weight: normal;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    font-size: .8rem;
+  }
+
+  td {
+    padding: .5rem .75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tbody tr:hover { background: rgba(255,255,255,.02); }
+
+  /* Suspicion colour bands on ranking table rows */
+  tr.rank-1, tr.rank-2 { border-left: 3px solid var(--red); }
+  tr.rank-3, tr.rank-4 { border-left: 3px solid var(--orange); }
+  tr.rank-5            { border-left: 3px solid var(--yellow); }
+  tr.rank-6, tr.rank-7 { border-left: 3px solid var(--green); }
+
+  tr.rank-1 td:first-child, tr.rank-2 td:first-child { color: var(--red); font-weight: bold; }
+  tr.rank-3 td:first-child, tr.rank-4 td:first-child { color: var(--orange); }
+  tr.rank-5 td:first-child                            { color: var(--yellow); }
+  tr.rank-6 td:first-child, tr.rank-7 td:first-child { color: var(--green); }
+
+  /* Inline suspicion badges */
+  .sus-confirmed   { color: var(--red);    font-weight: bold; }
+  .sus-likely      { color: var(--red); }
+  .sus-strong      { color: var(--red); }
+  .sus-leaning-f   { color: var(--orange); }
+  .sus-high        { color: var(--orange); }
+  .sus-uncertain   { color: var(--yellow); }
+  .sus-medium      { color: var(--yellow); }
+  .sus-leaning-l   { color: var(--blue); }
+  .sus-low         { color: var(--green); }
+  .sus-liberal     { color: var(--blue); }
+
+  blockquote {
+    border-left: 2px solid var(--border);
+    padding-left: .75rem;
+    color: var(--muted);
+    margin: .75rem 0;
+    font-style: italic;
+  }
+
+  code {
+    background: var(--surface);
+    padding: .1em .4em;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: .9em;
+    color: #c08080;
+  }
+
+  .meta {
+    color: var(--muted);
+    font-size: .8rem;
+    margin-bottom: 2rem;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<h2>SUSPICION RANKING</h2>
+<p><em>(Most to least likely Fascist, synthesised across all three games)</em></p>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Player</th>
+<th>One-line reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Rachel</strong></td>
+<td>Confirmed Hitler in Games 1 and 2 — the most dangerous player at the table</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Charlotte</strong></td>
+<td>Confirmed Fascist in Games 1 and 2; claimed "three fascists" repeatedly to explain fascist enactments</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Dom</strong></td>
+<td>Confirmed Hitler in Game 3; spent Games 1–2 building liberal credibility as cover</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>John</strong></td>
+<td>Perpetually suspected, never exonerated; likeliest Game 3 fascist partner</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Holly</strong></td>
+<td>Confirmed liberal; drove both Hitler assassinations; transparent throughout</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Sullivan</strong></td>
+<td>Confirmed liberal host; consistent and readable policy trail</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>SPEAKER MAPPING</h2>
+<p><strong>Critical note:</strong> The system prompt lists a roster of Courtney, Spencer, Damien, Arasha, Angela, Chance, Sharon — but the transcript contains none of those names. The actual players in the transcript are <strong>Sullivan, Holly, John, Rachel, Charlotte, and Dom</strong> (six players). The pre-filled roster does not match this game. Analysis proceeds using the transcript names.</p>
+<p>The transcript does not use SPEAKER_XX diarisation labels — speakers are identified by name-addressing in dialogue. No ambiguous labels to resolve.</p>
+<p><strong>Confirmed name-to-role mapping from the transcript itself:</strong><br />
+- <strong>Sullivan</strong> — host, first president by dice roll<br />
+- <strong>Holly</strong> — first chancellor; called "Adolf Holley" as running joke<br />
+- <strong>Dom</strong> — second president; "discarding minister" bit<br />
+- <strong>Rachel</strong> — nominated by Dom in Round 2 of Game 1<br />
+- <strong>Charlotte</strong> — 4th president in Game 1<br />
+- <strong>John</strong> — chancellor under Charlotte; perpetually under suspicion</p>
+<hr />
+<h2>SUSPICION PROFILES</h2>
+<h3>Rachel</h3>
+<p><strong>Suspicion level: CONFIRMED (Hitler, Games 1 &amp; 2)</strong></p>
+<p><strong>Key evidence:</strong><br />
+- Game 1: Passed liberal as chancellor under Dom [676s] — establishing a liberal track record. When elected as Hitler chancellor at game end [1763s], said "Yeah" to "Are you Hitler?" [1783s] with immediate confirmation.<br />
+- Game 2: Same team (Rachel + Charlotte) rolled again. Passed fascist policy as chancellor, then when assassinated [3370–3376s]: "I am." without hesitation.<br />
+- Post-game [1815s]: "I was just going to look as guilty as possible and hope that I make things feel good." — reveals the deliberate misdirection strategy.<br />
+- Post-game [3564s]: "I just want to say I fully lied the entire time. It was not the cards, it was very much me."</p>
+<p><strong>Behavioural notes:</strong> Rachel played exceptionally well. Her Game 1 liberal chancellor move was either genuine (she drew liberal) or a deliberate trust-build that paid off enormously. She never overplayed the "I'm obviously liberal" card, let others argue, and stayed quiet when accusations flew. The "double Hitler" result is rare — she got the same role twice and won the game twice despite being assassinated both times, because liberals only barely caught her.</p>
+<hr />
+<h3>Charlotte</h3>
+<p><strong>Suspicion level: CONFIRMED (Fascist, Games 1 &amp; 2)</strong></p>
+<p><strong>Key evidence:</strong><br />
+- Game 1, Round 4: Claimed she drew "three fascists" [947s] and passed two to John. John confirmed receiving two fascists. This is her go-to excuse.<br />
+- Game 1: Others noted [1282s]: "I think it's bullshit, guys." Dom was suspicious of her early.<br />
+- Game 2, Round 2: Again passed fascist policies; at [2086s] "I was given two fascists. Is that true? Yeah, I was. I picked up three fascists." — same script.<br />
+- Confirmed fascist [3396s]: "Can I check, were you fascist? I was."</p>
+<p><strong>Behavioural notes:</strong> Charlotte's tell is the "three fascists" claim — she used it in both games to explain passing fascist policies. She relied on the cover that the deck is mostly fascist anyway, which is defensible but becomes a pattern. She also benefited from being paired with Rachel (Hitler), who was providing liberal credibility that took heat off Charlotte. Her most significant deflection: pivoting attention to Holly early in Game 1 [730s] "You can pick your fascist buddy, Charlotte" — she was deflecting before being accused.</p>
+<hr />
+<h3>Dom</h3>
+<p><strong>Suspicion level: CONFIRMED (Hitler, Game 3)</strong></p>
+<p><strong>Key evidence:</strong><br />
+- Games 1 &amp; 2: Played liberal honestly — genuinely liberal in those rounds, which built enormous credibility.<br />
+- Game 1: Correctly identified Charlotte as suspicious [1166s]: "I wouldn't pick John because I think John's suspicious... Just from the things he was saying before the shoot started."<br />
+- Game 3: Confirmed Hitler by role card [3456s] and by non-celebration at [4144s]: "These two are not celebrating with us."<br />
+- Game 3: When given two fascists as chancellor [3722s], enacted the fascist policy. His "subtle twitches" were noted [4062s].<br />
+- Post-game [4186s]: Explained as fascist that the liberal draws kept going through liberal governments and he "just had to hope that you had three fascists there."</p>
+<p><strong>Behavioural notes:</strong> Dom's two games of genuine liberal play made him one of the most trusted players at the table — this is exactly what makes him dangerous as Hitler in Game 3. He benefited from the meta: liberals who suspected him were overruled by others who cited his clean Game 1–2 track record. His "I'm slightly too good to be true" comment [1498s] was either self-aware liberal nervousness or subtle misdirection even before he was Hitler.</p>
+<hr />
+<h3>John</h3>
+<p><strong>Suspicion level: HIGH (unconfirmed; likely Game 3 fascist partner)</strong></p>
+<p><strong>Key evidence:</strong><br />
+- Consistently suspected throughout all three games: [1162s] "I think John's suspicious"; [1264s] "I think John might be a fascist"; [3858s] Rachel (as liberal!) says "I'm getting bad vibes from John."<br />
+- Game 1: Charlotte passed him two fascists, he enacted fascist [944s]. He claimed he had no choice, which is fair — but the suspicion stuck.<br />
+- Game 1: His comment [1248s] "I'm going to try to discard the right one" — players immediately questioned "What does that mean? How can it be the right one?" as a slip.<br />
+- Game 3: At [4144s] "These two are not celebrating with us" — Dom is one. John's consistent suspicion level and never-confirmed status makes him the likeliest partner.<br />
+- Post-game analysis [4204–4228s]: Someone explains the fascist strategy of passing liberals under cover "because you'd have called me out on it" — this voice contextually fits John's position in Game 3.</p>
+<p><strong>Behavioural notes:</strong> John plays loudly — he argues, he deflects onto others, he performs innocence theatrically. This could be a fascist playing noisy cover, or a liberal who genuinely reads as suspicious. The tell is that even Rachel (as liberal in Game 3) was getting bad vibes from him, suggesting his general demeanour is suspicious regardless of role. He never received the kind of "confirmed good" moment that Holly, Dom, and Sullivan accumulated.</p>
+<hr />
+<h3>Holly</h3>
+<p><strong>Suspicion level: LOW (confirmed liberal)</strong></p>
+<p><strong>Key evidence:</strong><br />
+- Game 1: Gave Sullivan two liberals as chancellor [794s] — no test, just passed them both.<br />
+- Game 1: Correctly advocated for assassinating Rachel over Sullivan [3336s]: "I think just shoot Sully... no, I kill Rachel."<br />
+- Game 2: Led the strategic discussion about presidential vs. chancellor trust levels [2260s–2310s] — sophisticated liberal reasoning.<br />
+- Game 3: Made the assassination call that won Game 2 correctly despite significant pressure to shoot Sullivan instead.<br />
+- Called "Adolf Holley" as a running joke — which she correctly identified was politically useful noise she should ignore [853s].</p>
+<p><strong>Behavioural notes:</strong> Holly is the strongest liberal player. She synthesises information out loud, builds logical chains ("if Charlotte and Dom are both evil, then..."), and doesn't panic under social pressure. Her one weakness is that she can be talked out of correct reads — she nearly chose Sullivan over Rachel at the critical Game 2 assassination moment. Her liberal credibility is as near-certain as it gets without explicit confirmation.</p>
+<hr />
+<h3>Sullivan</h3>
+<p><strong>Suspicion level: LOW (confirmed liberal, host)</strong></p>
+<p><strong>Key evidence:</strong><br />
+- Game 1: Claimed drew 2F+1L, passed L+F to Holly. Holly initially said "handed two fascists" [443s] — a contradiction — but later confirmed "a liberal and a fascist" [693s]. The initial Holly statement may have been panic/misremembering.<br />
+- Consistently visible and transparent as host — his information disclosures are public and trackable.<br />
+- Never accused seriously; the social heat from being host and the dice-roll presidency kept him politically neutral.<br />
+- Game 3: When he drew 2F+1L as president and gave Dom 2F [4082–4086s], this is the moment the fascist chancellor (Dom as Hitler) enacted the fascist policy — Sullivan was genuinely unlucky with the draw.</p>
+<p><strong>Behavioural notes:</strong> Sullivan's host role gives him a natural cover of transparency — he explains rules, narrates, keeps the game moving. This paradoxically makes him harder to read as a fascist, because he occupies performative social space constantly. Clean liberal record across all three games.</p>
+<hr />
+<h2>ALLIANCE CLUSTERS</h2>
+<p><strong>Game 1 &amp; 2 — The Consistent Fascist Pair:</strong><br />
+Rachel + Charlotte operated as a team in both games. Their coordination was elegant: Charlotte as the "visible" fascist taking heat and claiming bad draws, Rachel as the "hidden" Hitler staying clean through liberal chancellor moves. They never had to visibly protect each other — the deck statistics did the work.</p>
+<p><strong>Liberal Core — Games 1–3:</strong><br />
+Holly + Dom + Sullivan formed the analytical liberal bloc in Games 1–2. Dom and Holly built mutual trust through their chancellor exchange [Dom→Rachel→Liberal; Holly→Sullivan→Liberal], and Sullivan's host role kept him politically neutral. This cluster correctly identified Charlotte as suspicious but kept failing to lock onto Rachel.</p>
+<p><strong>Fascist Misdirection — Game 3:</strong><br />
+Dom (Hitler) appears to have operated with a different fascist partner (likely John) in Game 3. The strategy shifted: Dom played passively liberal while the partner tried to pass fascist policies, hoping Dom would eventually get a chancellor position where Hitler could be elected. The liberals' clean policy chain prevented this.</p>
+<hr />
+<h2>SUMMARY</h2>
+<p>The dominant story of this three-game session is Rachel's extraordinary performance as Hitler in back-to-back games. Her core strategy was structural: by passing a liberal policy in Game 1 as chancellor under Dom [676s], she built a trust anchor that survived through the rest of both games. Charlotte absorbed suspicion with the "three fascists" excuse while Rachel stayed clean. The liberals came within one vote of not assassinating Rachel in Game 2 — Holly nearly chose Sullivan — which tells you how well Rachel managed the table's perception.</p>
+<p>What makes Rachel's play analytically interesting is the use of guilt displacement. She played Charlotte as a "loud fascist" who drew suspicion, while Hitler remained quiet and analytical. The [1282s] moment where Dom says "I think it's bullshit" about Charlotte is exactly when liberal attention should have turned to who benefits from Charlotte absorbing all the heat — and that's Rachel. The liberals got the right answer (Charlotte is fascist) without following the implication to its conclusion (so who's Hitler?).</p>
+<p>Game 3 inverts the dynamic: Dom, who built two games of liberal credibility, was assigned Hitler and could not convert it into a win because the liberals' policy chain was too clean. The biggest uncertainty across the session is the identity of Dom's Game 3 fascist partner. The post-game debrief voice at [4204–4228s] — explaining a strategy of passing liberals to avoid detection — suggests someone who had presidential authority but kept getting liberal-adjacent draws that forced cooperation. John's perpetual suspicion without ever being confirmed or cleared makes him the most probable candidate, but without explicit speaker diarisation or a role reveal, this remains the single piece of information that would most change the read of Game 3.</p>
+</div>
+<script>
+// Colour ranking table rows by position
+document.querySelectorAll('table').forEach(tbl => {
+  const rows = tbl.querySelectorAll('tbody tr');
+  // Check if first column looks like rank numbers
+  rows.forEach((row, i) => {
+    const first = row.cells[0]?.textContent?.trim() || '';
+    const num = parseInt(first);
+    if (!isNaN(num) && num >= 1 && num <= 7) {
+      row.classList.add('rank-' + num);
+    } else if (rows.length <= 7 && i < 7) {
+      // Unnamed ranking table — colour by position
+      const tblHeader = tbl.previousElementSibling;
+      if (tblHeader && /rank|suspect|fascist/i.test(tblHeader.textContent || '')) {
+        row.classList.add('rank-' + (i + 1));
+      }
+    }
+  });
+});
+
+// Highlight suspicion level text
+const patterns = [
+  [/\bConfirmed\b/g,            'sus-confirmed'],
+  [/\bStrong\s+Fascist\s+read\b/gi, 'sus-strong'],
+  [/\bLikely\s+Fascist\b/gi,   'sus-likely'],
+  [/\bLeaning\s+Fascist\b/gi,  'sus-leaning-f'],
+  [/\bHigh\b/g,                'sus-high'],
+  [/\bUncertain\b/g,           'sus-uncertain'],
+  [/\bMedium\b/g,              'sus-medium'],
+  [/\bLeaning\s+Liberal\b/gi,  'sus-leaning-l'],
+  [/\bLow\b/g,                 'sus-low'],
+];
+
+function walkTextNodes(el) {
+  if (el.nodeType === Node.TEXT_NODE) return [el];
+  const nodes = [];
+  el.childNodes.forEach(c => nodes.push(...walkTextNodes(c)));
+  return nodes;
+}
+
+// Only apply inside td and li elements to avoid mangling headings
+document.querySelectorAll('td, li, p').forEach(el => {
+  patterns.forEach(([re, cls]) => {
+    walkTextNodes(el).forEach(node => {
+      if (!re.test(node.textContent)) return;
+      re.lastIndex = 0;
+      const frag = document.createDocumentFragment();
+      let last = 0, m;
+      while ((m = re.exec(node.textContent)) !== null) {
+        frag.appendChild(document.createTextNode(node.textContent.slice(last, m.index)));
+        const span = document.createElement('span');
+        span.className = cls;
+        span.textContent = m[0];
+        frag.appendChild(span);
+        last = m.index + m[0].length;
+      }
+      frag.appendChild(document.createTextNode(node.textContent.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  });
+});
+</script>
+</body>
+</html>

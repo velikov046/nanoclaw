@@ -1,0 +1,1 @@
+file '/home/aurellian/nanoclaw/projects/youtube/demo/live_test/short_smoke/tmp_vertical/seg_01.mp4'

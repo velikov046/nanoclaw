@@ -1,0 +1,48 @@
+## SESSION CONTEXT
+
+French-to-English live translation session. The conversation is a casual exchange between two female hosts covering spring weather, a walk in the Bois de Vincennes, summer holiday plans, the Paris Olympics disrupting hospital on-call schedules, and a YouTube channel outro.
+
+## GLOSSARY
+
+| Source term | Target rendering |
+|---|---|
+| bord de la mer | seaside |
+| canicule | heatwave |
+| chaîne | channel |
+| copain | boyfriend |
+| de garde | on call |
+| easydeyfrench.org | easydeyfrench.org |
+| en retard | behind |
+| épisode | episode |
+| faire autre chose | do something else |
+| faire la grasse matinée | sleep in |
+| grasse matinée | sleep in |
+| j'ai trop hâte | I can't wait |
+| jeux olympiques | the Olympic Games |
+| jour de repos | day off |
+| l'hôpital | the hospital |
+| la lessive | laundry |
+| le cinéma | the cinema |
+| le ménage | housework |
+| le Sud | the South |
+| les abonnés | subscribers |
+| ma foule | my crowd |
+| on verra bien | we'll see |
+| partir en vacances | go on holiday |
+| profiter du temps | enjoy the weather |
+| se balader | go for a walk |
+| septembre | September |
+| Tu m'étonnes | I'm not surprised / tell me about it |
+
+## SPEAKERS
+
+| ID | Label |
+|---|---|
+| S1 | host 1 (female) |
+| S2 | host 2 (female, medical professional, on-call constraints) |
+
+## NOTES
+
+- "Tu m'étonnes" is rendered as "I'm not surprised" or "tell me about it" depending on context; both readings were active in this session.
+- "Ma foule" (literally "my crowd") is an informal address to the audience, kept close to the source rather than normalized to "everyone" or "guys."
+- "Faire la grasse matinée" has no single English equivalent; "sleep in" was used consistently throughout.

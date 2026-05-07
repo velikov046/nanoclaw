@@ -1,0 +1,12 @@
+{
+  "channels": {
+    "1": {
+      "name": "Game Vibe Feels",
+      "token": "yt_token.json"
+    },
+    "2": {
+      "name": "Velikov's Visions",
+      "token": "yt_token_2.json"
+    }
+  }
+}

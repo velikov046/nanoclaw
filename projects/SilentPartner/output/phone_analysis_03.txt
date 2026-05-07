@@ -1,0 +1,120 @@
+## GRIMOIRE LOG
+
+| Player | Claimed | True | Status | Poisoned/Drunk | Notes |
+|--------|---------|------|--------|----------------|-------|
+| **Jojo** | Butler's master | Unknown (good implied) | Alive | Poisoned N0, N2 by Ben | Butler master; ST placed poison token on her N0 |
+| **Inspiration** | Empath (drunk, got 0) | **Drunk** (confirmed ST [46s]) | Alive — survived D2 exec via Scapegoat | Is the Drunk | All info false; registered as Empath to herself |
+| **Bruce** | Virgin → Gunslinger → Scapegoat → **Bureaucrat** | **Virgin** (ST [694s]) | Alive as Bureaucrat traveler | None | Chain: Virgin exec D1 → Gunslinger killed N1 → Scapegoat died D2 → Bureaucrat |
+| **Lyra** | Implied Monk | Monk (probable) or Soldier | Alive | Unknown | Picked Ree to "protect" N1 [828s]; targeted Jojo N2 in pirate framing; survived Iris's N3 attack |
+| **Ree** | Chef or Empath (got 1) | Empath (probable) | Alive | Unknown | Bruce's shared-neighbor theory [1831s]; Slayer shot fizzled [1736s] |
+| **Iris** | "Version demon" [1537s] | **Imp** (confirmed ST + [2040s]) | Alive | None | Kills nightly; N1→Bruce, N2→Jojo (blocked), N3→Lyra (blocked) |
+| **Alejo** | Librarian/Investigator [294s] → Monk | **Monk** (ST [1950s]) | Alive as Thief traveler | None | Executed D3; Monk ability lost on traveler transition |
+| **Malachi** | Unknown | Unknown | Alive | Unknown | Nominated multiple days; survives each time |
+| **Rachel** | Non-waking role [1666s] (lists Soldier, Virgin, Mayor, Recluse, Baron, Saint, Slayer as possibilities) | Unknown | Alive (missed wake N3, ST noted [1644s]) | Unknown | Slayer shot at Ree D3 [1736s] — no effect |
+| **Ben** | Poisoner (self-revealed to ST N2 [1448s]) | **Poisoner** (ST confirmed [2445s]) | **Executed D4** | N/A | Evil; poisoned Jojo N0, N2; poisoned Iris N3 — possibly scorched-earth or misplay |
+
+**Travelers (non-script):**
+| Traveler | Player | Alignment | Status | Ability |
+|----------|--------|-----------|--------|---------|
+| Bureaucrat | Bruce | Good | Alive | N3: gave Lyra 3 votes |
+| Thief | Alejo | Good | Alive | N3: stole Jojo's vote (−1) |
+
+---
+
+## INFO TOKEN LEDGER
+
+| # | Night | Character → Player | Token | True/False | Note |
+|---|-------|--------------------|-------|-----------|------|
+| 1 | N0 | Empath(Inspiration/Drunk) | **0** | FALSE | ST chose 0; she is the Drunk [46s] |
+| 2 | N0 | Empath (real, unknown player) | **1** | Likely true | One evil neighbor alive |
+| 3 | N1 | Empath(Inspiration/Drunk) | **0** | FALSE | Same false drop |
+| 4 | N1 | Empath (real) | **1** | Likely true | Evil neighbor composition unchanged |
+| 5 | N2 | Empath (real, order swapped) | **1** | Likely true | |
+| 6 | N2 | Empath(Inspiration/Drunk) | **0** | FALSE | |
+| 7 | N3 | Empath 1 | **0** | ? | Ben just executed; if Ben was this empath's neighbor, this is now accurate |
+| 8 | N3 | Empath 2 | **1** | ? | If Iris is this empath's other neighbor, still accurate |
+
+**⚠ Ledger flag — upcoming contradiction risk:** Ben is now dead. If the real Empath's evil neighbor was Ben, the number MUST drop to 0 next night. If it stays at 1, Iris is that empath's neighbor — decisive evidence. ST must pre-decide the number before the night phase and be consistent with seating.
+
+---
+
+## RULE EDGE CASES
+
+**1. Virgin + Drunk nomination — resolved as ST error [660s–712s]**
+> "we have a drunk nominating the virgin" [678s] → Bruce executed → "I shouldn't have killed you" [712s]
+
+Inspiration (Drunk) is an Outsider, not a Townsfolk. Virgin reads: *"The 1st time you are nominated by a Townsfolk, that player is executed immediately."* The Drunk does not satisfy "Townsfolk." The trigger should not have fired. ST acknowledged the error and compensated by converting Bruce to a Gunslinger traveler. Net effect on game balance: moderate — Bruce got an extra death-and-return cycle but is now on the good team as Bureaucrat. No do-over needed at this stage.
+
+**2. Alejo (Monk) → Thief transition — Monk ability status**
+> "you were a good monk" [1950s]; Alejo immediately chose Thief steal-votes target.
+
+When Alejo was executed and became the Thief traveler, his Monk ability ceased. This means Night 3 forward has no Monk protection. The Night 2 no-death is plausibly explained by Alejo protecting Jojo [1484-1505s] — his last night of Monk ability before the D3 execution. If so, Night 3's no-death (Iris attacked Lyra [2059s]) must have another explanation — **Lyra as Soldier is the cleanest answer** (Soldier is immune to Imp kills, requires no wake).
+
+**3. Librarian "at least one vs exactly one" — resolved by ST [500-511s]**
+> "I think they can both be that thing because it satisfies it."
+
+ST ruled that showing a Librarian two Saints and saying "one of them is a Saint" is valid. Reasonable within the spirit; consistent with how the Investigator also operates. No further ruling needed.
+
+**4. Poisoner poisoning Iris (own Demon) Night 3 [2023-2028s]**
+> Ben picks Iris for the Night 3 poison.
+
+Mechanically valid — the Poisoner can poison any player including evil teammates. Effect: Iris's Imp kill ability fails that night (gives false feedback to Iris that she killed). **This explains Night 3's second consecutive no-death.** Whether Ben did this intentionally (coordinated with Iris) or as a panicked misplay is unclear from the transcript — Ben seemed to be improvising [1995-2028s].
+
+**5. Butler master / poisoned Jojo interaction**
+The Poisoner poisoned Jojo N0 and N2. The Butler's master is Jojo. Jojo being poisoned does not affect the Butler's relationship — the Butler's constraint (can only vote when master votes) is not an ability triggered by Jojo; it's a restriction on the Butler. No ruling needed, but worth noting for clarity.
+
+---
+
+## PACING & BALANCE
+
+**Information temperature:** Good team is running hot. By Day 4, multiple players have deduced the Drunk, the Monk, and implicitly zeroed in on Ben as Poisoner [2244s]: "Inspiration has got to be the drug… unless Bruce is the spy." The execution of Ben (confirmed evil) means good team has one confirmed kill. However, good has spent considerable D1–D3 killing their own (Virgin proc, Scapegoat, Monk) — those are self-inflicted losses, not evil's work.
+
+**Evil exposure:** Iris is fully exposed as Demon to the ST and is one bad nomination away. Iris has not died and has not killed anyone (Monk blocked N2, Poisoner accidentally blocked N3). This is an extremely weak Demon performance — zero kills in three nights. Good team does not yet publicly name Iris as Demon, but the empath logic will nail it Day 5.
+
+**Current alive count (approx):** 9 real players + Bruce (Bureaucrat) + Alejo (Thief) as travelers. Evil = Iris only. Good has overwhelming numerical advantage. Game should end Day 5 or Day 6.
+
+**Who is bulletproof:** Nobody. Iris is the obvious execution target once the empath confirms the 1 stays post-Ben-death.
+
+**Who is one bad day from dying:** Iris — if the empath number stays at 1 and the empath's seating is known, Iris is cornered. Also Malachi has been nominated four consecutive days without dying; if they're not confirmed good soon, they'll take an execution.
+
+---
+
+## NOMINATION & VOTE LOG
+
+| Day | Nominator | Target | Threshold | Outcome | What it reveals |
+|-----|-----------|--------|-----------|---------|----------------|
+| D1 | Jojo | Alejo | 5 | Not executed | Jojo dislikes Alejo's pirate-talk obfuscation; not decisive |
+| D1 | Inspiration | Bruce | ? | **Bruce executed** | Drunk nominates Virgin — misfired proc; Bruce confirmed Virgin |
+| D1 | Unknown | Lyra | 10 | Not executed | Low threat |
+| D2 | Bruce | Inspiration | ? | Not executed at threshold | Bruce's empath logic; correctly identifies drunk empath |
+| D2 | Unknown | Ree | 6 | Not executed | Shared-neighbor theory introduced |
+| D2 | Unknown | Malachi | ? | Not executed | |
+| D2 | Unknown | Inspiration | ? | **Inspiration executed** → Scapegoat (Bruce) dies instead | Confirms Scapegoat mechanic; Inspiration survives |
+| D3 | Lyra | Alejo | 5 | Not executed (insufficient) | |
+| D3 | Bruce | Ree | 6 | Not executed | Empath neighbor theory; Ree under suspicion |
+| D3 | Jojo(?) | Malachi | 7 | Not executed | |
+| D3 | ? | Alejo | ? | **Alejo executed** → Thief traveler | ST confirms Alejo was Monk; Monk ability now gone |
+| D4 | Malachi | Alejo/Lyra | 5 | Not executed | |
+| D4 | Bruce | Ree | 6 | Not executed | Same theory; Ree survives again |
+| D4 | ? | Malachi | 7 | Not executed | |
+| D4 | ? | "Three" (Ben) | ? | **Ben executed — revealed Poisoner (evil)** | Confirms one evil down; Iris is last evil |
+
+---
+
+## ST RECOMMENDATIONS
+
+**Tonight (Night 4) — pre-decisions needed:**
+
+**1. Empath numbers — the decisive drop.** Ben was one of the Poisoner's neighbors relative to the Empath who has been reading 1. With Ben dead, this empath's number should mathematically change. If Iris is sitting in the same neighborhood as this empath, the number stays at 1 — which will be a bombshell tell Day 5. Pre-decide the seating layout and be consistent. Do NOT give a 0 tonight if Iris is still that empath's neighbor; it would be a false token and contradict prior accurate drops.
+
+**2. Iris picks a kill — no protection.** Alejo is now the Thief (Monk ability gone). If Lyra is the Soldier, Iris should avoid Lyra and target someone unprotected. Lyra surviving N3 suggests Soldier; steer Iris toward a softer target (Malachi, Rachel, or Ree) to keep drama alive.
+
+**3. Butler wake.** The Butler still picks their master each night. Confirm who the Butler is (not identified in transcript), wake them, confirm or change master. No info token needed — just process.
+
+**4. Inspiration's false empath token.** Inspiration is Drunk. She is alive and will receive another false 0. This is consistent — maintain it.
+
+**5. Ben's death does not change the Poisoner wake.** Ben is dead; skip the Poisoner wake entirely from Night 4 forward.
+
+**Highest-leverage Day 5 drop:** After the empath reads — if the sober Empath's number goes to 0, that tells the table Ben was their evil neighbor and Iris may be clear-seated from them. If it stays at 1, that's a direct arrow pointing to Iris's seat. Either way, coach the Empath to share their number publicly early in Day 5. The good team is ready to close; they just need seating confirmation on Iris.
+
+**Pace:** Push toward execution. With 9 alive and Iris as last evil, good wins in 1–2 more correct executions. If the day drags into private conversations without a nomination, nudge toward the block — the game has enough open information to close cleanly.

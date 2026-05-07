@@ -1,0 +1,223 @@
+{
+  "topic": "World Championship Snooker",
+  "domain": "World Championship Snooker",
+  "scene": "The deciding frame of a World Championship match at the Crucible Theatre, Sheffield, between Ronnie ('The Rocket') and John Higgins. Both players have now missed chances in this frame: Higgins missed to the middle pocket earlier, and Ronnie missed a red at the right corner [450s] after what the commentator called an excellent opportunity. Despite both errors, one player has built a 41-point lead with balls still remaining [540s]; the commentator suggests that player is closing in on a 'very famous picture' -- winning the World Championship.",
+  "entities": [
+    {
+      "name": "John Higgins",
+      "role": "Player",
+      "one_line": "One of snooker's all-time greats; has missed to the middle pocket and is seen grimacing [477s] as the deciding frame appears to slip away from him.",
+      "first_seen": "[165s]",
+      "source_quote": "John Higgins, he's been in the last two frames, John Higgins, will he get another show?",
+      "confidence": "high"
+    },
+    {
+      "name": "Ronnie",
+      "role": "Player",
+      "one_line": "Referred to as 'The Rocket'; had an excellent opportunity in the deciding frame but missed the red at the right corner [450s]. One player is now described as closing in on the title.",
+      "first_seen": "[187s]",
+      "source_quote": "Ronnie was in with an excellent opportunity and just lost the white a little bit and missed",
+      "confidence": "high"
+    },
+    {
+      "name": "Stephen",
+      "role": "Commentator",
+      "one_line": "Named commentator in the booth, addressed by colleagues while analysing shot choices in the deciding frame.",
+      "first_seen": "[482s]",
+      "source_quote": "Yeah, this was the shot, Stephen, wasn't it?",
+      "confidence": "medium"
+    }
+  ],
+  "glossary": [
+    {
+      "term": "deciding frame",
+      "definition": "The final frame of a match when both players are level; whoever wins it wins the match.",
+      "first_seen": "[15s]",
+      "source_quote": "just one chance in the deciding frame and this is a potential chance",
+      "confidence": "high"
+    },
+    {
+      "term": "sessions",
+      "definition": "In major snooker matches, play is split into sessions of roughly 8 frames each, with breaks between them.",
+      "first_seen": "[115s]",
+      "source_quote": "winning it in two sessions",
+      "confidence": "high"
+    },
+    {
+      "term": "cannon",
+      "definition": "A shot where the cue ball contacts two object balls without potting either, used to nudge balls into better positions tactically.",
+      "first_seen": "[135s]",
+      "source_quote": "instead of playing it on a more exact cannon",
+      "confidence": "high"
+    },
+    {
+      "term": "long pot",
+      "definition": "Potting a ball from a long distance across the table; high-skill, higher-risk than a short pot.",
+      "first_seen": "[192s]",
+      "source_quote": "Terrific long pot",
+      "confidence": "high"
+    },
+    {
+      "term": "the black",
+      "definition": "The black ball, worth 7 points, the highest-value ball on the table. Aggressive play on the black in a deciding frame is a calculated gamble.",
+      "first_seen": "[229s]",
+      "source_quote": "Both players have played aggressive shots off the black",
+      "confidence": "high"
+    },
+    {
+      "term": "the white",
+      "definition": "The cue ball -- the white ball the player strikes with their cue. Losing control of it means losing position for the next shot.",
+      "first_seen": "[450s]",
+      "source_quote": "just lost the white a little bit and missed the red",
+      "confidence": "high"
+    },
+    {
+      "term": "snooker yourself",
+      "definition": "Accidentally leaving yourself unable to see the ball you need to hit next, caused by your own shot rather than the opponent's.",
+      "first_seen": "[577s]",
+      "source_quote": "just snooker yourself on the red",
+      "confidence": "high"
+    }
+  ],
+  "narratives": [
+    {
+      "title": "Both players missed; one now leads by 41 and closing in",
+      "summary": "Ronnie missed a red at the right corner [450s] after an excellent opportunity, and Higgins had missed earlier. Despite both errors, one player has built a 41-point lead in the frame [540s] with balls still on the table. The commentator describes them as closing in on 'a very famous picture' [600s], implying a World Championship win is imminent.",
+      "status": "active",
+      "confidence": "medium"
+    },
+    {
+      "title": "Remarkable comeback from 8-3 down",
+      "summary": "One player trailed 8-3 across sessions and looked certain to lose; the trailing player played what the commentator calls unreadable snooker to claw back to a deciding frame. The turnaround surprised even the commentators.",
+      "status": "background",
+      "confidence": "high"
+    },
+    {
+      "title": "Two all-time greats, sudden death",
+      "summary": "The commentator explicitly frames this as a match between two all-time greats, adding weight to the tension. Even at the highest level, a deciding frame remains unpredictable.",
+      "status": "active",
+      "confidence": "high"
+    }
+  ],
+  "key_moments": [
+    {
+      "position": "[210s]",
+      "what": "Ronnie named; commentator confirms both players have a chance in the deciding frame",
+      "why_it_matters": "Neither player had yet taken control; the frame was genuinely open."
+    },
+    {
+      "position": "[229s]",
+      "what": "Both players played aggressive shots off the black, both left tricky positions",
+      "why_it_matters": "The black is the highest-value ball; attacking it in a deciding frame reflects the high-stakes urgency."
+    },
+    {
+      "position": "[238s]",
+      "what": "John Higgins misses his shot to the middle pocket",
+      "why_it_matters": "Missing a makeable pot in a deciding frame can hand the match to the opponent."
+    },
+    {
+      "position": "[270s]",
+      "what": "Another chance described for John Higgins; commentator reads his body language as knowing",
+      "why_it_matters": "Higgins appears to sense he has left himself in difficulty, hinting his chance may have passed."
+    },
+    {
+      "position": "[278s]",
+      "what": "Commentator says Higgins might just have played his last shot",
+      "why_it_matters": "In snooker this means the opponent may have a clear run to the colours needed to win, without Higgins returning to the table."
+    },
+    {
+      "position": "[285s]",
+      "what": "Commentator calls both players all-time greats, notes anything can happen in a deciding frame",
+      "why_it_matters": "Frames the occasion: two of the sport's greatest ever players, sudden death, no lead is safe."
+    },
+    {
+      "position": "[450s]",
+      "what": "Ronnie misses a red at the right corner after an excellent opportunity",
+      "why_it_matters": "Even Ronnie -- widely considered one of the greatest potters in history -- could not escape the pressure of the deciding frame."
+    },
+    {
+      "position": "[477s]",
+      "what": "A grimace from John visible at the table",
+      "why_it_matters": "Body language suggesting frustration or resignation; mirrors the earlier read on Higgins's situation."
+    },
+    {
+      "position": "[507s]",
+      "what": "Commentator notes both players paid the penalty for their shot choices",
+      "why_it_matters": "Confirms neither player took clean control; errors on both sides shaped the frame."
+    },
+    {
+      "position": "[540s]",
+      "what": "Scoreboard shows one player 41 points in front with balls still on the table",
+      "why_it_matters": "A 41-point lead in a single frame is significant; the trailing player would need their opponent to miss to have a realistic chance."
+    },
+    {
+      "position": "[585s]",
+      "what": "Commentator says the pink was the much easier shot to get onto the red",
+      "why_it_matters": "Illustrates how fine the margins are: choosing one ball over another can determine the outcome of the entire frame."
+    },
+    {
+      "position": "[600s]",
+      "what": "Commentator says the leading player is 'closing in on a very famous picture'",
+      "why_it_matters": "Winning the World Championship is one of snooker's most celebrated achievements; this signals the match may almost be over."
+    }
+  ],
+  "do_not_say": [
+    {
+      "item": "aerodromes",
+      "reason": "Whisper artifact; not a snooker term, underlying word unclear"
+    },
+    {
+      "item": "shops / food / paths",
+      "reason": "Repeated Whisper artifacts; underlying snooker terms (likely 'shots', 'pot') unclear"
+    },
+    {
+      "item": "8-3",
+      "reason": "Past scoreline from earlier sessions; verify before repeating as exact score"
+    },
+    {
+      "item": "under-readable",
+      "reason": "Whisper artifact for 'unreadable'; do not repeat the mangled form"
+    },
+    {
+      "item": "partner",
+      "reason": "Whisper artifact at [117s]; likely 'opponent' or a player name, underlying word unclear"
+    },
+    {
+      "item": "old rat",
+      "reason": "Whisper artifact at [255s]; underlying word or phrase unclear in snooker context"
+    },
+    {
+      "item": "pressure pop",
+      "reason": "Whisper artifact at [225s]; almost certainly 'pressure pot', a tense potting opportunity"
+    },
+    {
+      "item": "disco board",
+      "reason": "Whisper artifact at [540s]; clearly means scoreboard or display board"
+    },
+    {
+      "item": "bunge",
+      "reason": "Whisper artifact at [502s]; almost certainly 'bunch' of reds"
+    },
+    {
+      "item": "Steve wonder",
+      "reason": "Whisper artifact at [465s]; likely mangling of 'Stephen' or a player reference"
+    },
+    {
+      "item": "wax off the spot",
+      "reason": "Whisper artifact at [495s]; likely 'black off the spot', a specific shot type in snooker"
+    },
+    {
+      "item": "paint colour",
+      "reason": "Whisper artifact at [555s]; likely 'pink, colour' in snooker terminology"
+    },
+    {
+      "item": "8-side red",
+      "reason": "Whisper artifact at [562s]; underlying shot description unclear"
+    },
+    {
+      "item": "41",
+      "reason": "Score stat from scoreboard at [540s]; stat -- verify before repeating"
+    }
+  ],
+  "analysis_count": 4
+}

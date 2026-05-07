@@ -1,0 +1,27 @@
+## SESSION CONTEXT
+Persian (Farsi) to English. Informal gathering or group activity: participants introducing themselves and receiving brief instructions from an organiser.
+
+## GLOSSARY
+
+| Source term | Target rendering |
+|---|---|
+| بهار | Bahar |
+| در پناه خدا | in God's protection |
+| سیمون | Seymour / Simon |
+| کامران | Kamran |
+| خدا | God |
+| Seymour John | Seymour John (goes by Seymour) |
+
+## SPEAKERS
+
+| ID | Rough label |
+|---|---|
+| S1 | First speaker, male, opens with salaam |
+| S2 | Bahar, introduces herself |
+| S3 | Seymour John / Simon |
+| S4 | Unidentified, gives instructions |
+
+## NOTES
+
+- "سیمون" is ambiguous between Simon and Seymour; the glossary records both since the full name "Seymour John" clarifies it in context.
+- "در پناه خدا" is a conventional Persian farewell/blessing; rendered idiomatically rather than literally.

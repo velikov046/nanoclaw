@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SilentPartner — Analysis</title>
+<style>
+  :root {
+    --bg:        #0e0a0a;
+    --surface:   #1a1010;
+    --border:    #3a1a1a;
+    --text:      #d8cccc;
+    --muted:     #8a7070;
+    --accent:    #cc2222;
+    --red:       #cc2222;
+    --orange:    #cc6622;
+    --yellow:    #cc9922;
+    --green:     #228844;
+    --blue:      #2266aa;
+    --header-bg: #1a0808;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: .5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    color: #c08080;
+    margin: 2rem 0 .75rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    border-left: 3px solid var(--accent);
+    padding-left: .6rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+    color: var(--text);
+    margin: 1.25rem 0 .5rem;
+    font-style: italic;
+  }
+
+  p { margin-bottom: .75rem; }
+
+  ul, ol {
+    margin: .5rem 0 .75rem 1.5rem;
+  }
+
+  li { margin-bottom: .25rem; }
+
+  strong { color: #e8d0d0; }
+
+  em { color: var(--muted); font-style: italic; }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.5rem 0;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    font-size: .9rem;
+  }
+
+  thead tr {
+    background: var(--header-bg);
+    border-bottom: 2px solid var(--accent);
+  }
+
+  th {
+    padding: .5rem .75rem;
+    text-align: left;
+    color: var(--muted);
+    font-weight: normal;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    font-size: .8rem;
+  }
+
+  td {
+    padding: .5rem .75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tbody tr:hover { background: rgba(255,255,255,.02); }
+
+  /* Suspicion colour bands on ranking table rows */
+  tr.rank-1, tr.rank-2 { border-left: 3px solid var(--red); }
+  tr.rank-3, tr.rank-4 { border-left: 3px solid var(--orange); }
+  tr.rank-5            { border-left: 3px solid var(--yellow); }
+  tr.rank-6, tr.rank-7 { border-left: 3px solid var(--green); }
+
+  tr.rank-1 td:first-child, tr.rank-2 td:first-child { color: var(--red); font-weight: bold; }
+  tr.rank-3 td:first-child, tr.rank-4 td:first-child { color: var(--orange); }
+  tr.rank-5 td:first-child                            { color: var(--yellow); }
+  tr.rank-6 td:first-child, tr.rank-7 td:first-child { color: var(--green); }
+
+  /* Inline suspicion badges */
+  .sus-confirmed   { color: var(--red);    font-weight: bold; }
+  .sus-likely      { color: var(--red); }
+  .sus-strong      { color: var(--red); }
+  .sus-leaning-f   { color: var(--orange); }
+  .sus-high        { color: var(--orange); }
+  .sus-uncertain   { color: var(--yellow); }
+  .sus-medium      { color: var(--yellow); }
+  .sus-leaning-l   { color: var(--blue); }
+  .sus-low         { color: var(--green); }
+  .sus-liberal     { color: var(--blue); }
+
+  blockquote {
+    border-left: 2px solid var(--border);
+    padding-left: .75rem;
+    color: var(--muted);
+    margin: .75rem 0;
+    font-style: italic;
+  }
+
+  code {
+    background: var(--surface);
+    padding: .1em .4em;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: .9em;
+    color: #c08080;
+  }
+
+  .meta {
+    color: var(--muted);
+    font-size: .8rem;
+    margin-bottom: 2rem;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<p class="meta">Game 2</p><h2>SUSPICION RANKING</h2>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Player</th>
+<th>Role</th>
+<th>One-Line Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Rachel</strong></td>
+<td><strong>CONFIRMED Hitler</strong></td>
+<td>Revealed at game-end (~3376s); engineered a 3-fascist opening government and rode liberal confusion to the end</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Sullivan</strong></td>
+<td><strong>CONFIRMED Fascist</strong></td>
+<td>Self-confirmed post-game (~3396s); first government as Chancellor produced a liberal (trust-building), consistent fascist protection of Rachel</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Charlotte</strong></td>
+<td><strong>High — likely 3rd Fascist</strong></td>
+<td>Lied about giving John "a liberal and a fascist" when John flatly contradicts her; the Charlotte–Sullivan government link is the most suspicious pairing</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Tom</strong></td>
+<td><strong>Medium</strong></td>
+<td>Was in Rachel's opening government; voted no on his own chancellor nomination — textbook fascist optics-management — but likely liberal given only 3 evil slots</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>John</strong></td>
+<td><strong>Low</strong></td>
+<td>Discarded fascist when given a choice, correctly read Charlotte, and correctly suspected Rachel toward the end</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Dom</strong></td>
+<td><strong>Low</strong></td>
+<td>Clean on policy test; liberal reasoning throughout; Holly's trust in Dom was vindicated by the win</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Holly</strong></td>
+<td><strong>CONFIRMED Liberal</strong></td>
+<td>Correctly identified and executed Hitler to win the game</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>SPEAKER MAPPING</h2>
+<blockquote>
+<p><strong>Note:</strong> The provided transcript does not include diarization labels (SPEAKER_00, etc.) — it is timestamped raw dialogue without speaker attribution. Names are recoverable only from in-conversation mentions and addressing patterns. The following map is derived entirely from those patterns.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Player</th>
+<th>Evidence for Identification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Rachel</strong></td>
+<td>Named as president at ~1899s; confirmed Hitler at ~3376s; "former Hitler" from previous game</td>
+</tr>
+<tr>
+<td><strong>Tom</strong></td>
+<td>Named as Rachel's nominated Chancellor (~1954s); "Tom said no to his own proposition" (~2178s); "Tom, choose those policies" (~2182s)</td>
+</tr>
+<tr>
+<td><strong>Charlotte</strong></td>
+<td>Named as next president (~2044s); later identified in "Charlotte Sullivan thing" (~2418s) as president in that pairing</td>
+</tr>
+<tr>
+<td><strong>Sullivan</strong></td>
+<td>Referred to by surname throughout; "Is this my first time doing anything? I think it is" (~2406s); self-confirmed fascist post-game</td>
+</tr>
+<tr>
+<td><strong>Dom</strong></td>
+<td>Named in analysis segments ("Lovely Dom," ~2284s); president around ~2488s tested by Holly</td>
+</tr>
+<tr>
+<td><strong>Holly</strong></td>
+<td>The "Adolf Holley" nickname from previous game (~1851s); performs the assassination that wins; confirmed liberal</td>
+</tr>
+<tr>
+<td><strong>John</strong></td>
+<td>Named as target of sexist-joke chancellor pick (~2146s); final government chancellor; "I will be killing Charlotte" (~3324s)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Unmapped labels:</strong> N/A — all seven players are identifiable from name mentions. No SPEAKER_XX diarization labels were present to map.</p>
+<hr />
+<h2>SUSPICION PROFILES</h2>
+<hr />
+<h3>Rachel</h3>
+<p><strong>Suspicion Level: CONFIRMED Hitler</strong></p>
+<p><strong>Key Evidence:</strong><br />
+- <strong>Game-end reveal (~3374s–3378s):</strong> Holly asks "Are you Hitler?" and Rachel replies "I am." No ambiguity.<br />
+- <strong>Opening government choice (~1952s):</strong> As first president, Rachel nominates Tom — "my bigger supporter" — a social rather than strategic framing that kept her true motive (Hitler ensuring a fascist-aligned government) obscured.<br />
+- <strong>Three-fascist sweep (~2028s):</strong> Government 1 (Rachel–Tom) produces all three fascist policies. As Hitler, Rachel knew she'd be giving Tom fascist policies regardless; choosing a compliant ally maximised the chance Tom wouldn't break the chain.<br />
+- <strong>Previous game pattern (~1851s–1881s):</strong> The pre-game banter confirms Rachel was Hitler in the session immediately before. She uses the "Adolf Holley" misdirection then — running parallel tactics again here.</p>
+<p><strong>Behavioural Notes:</strong><br />
+Rachel's Hitler gameplay is disciplined: she nominated a "supporter" rather than a known liberal, stayed quiet during mid-game liberal investigations, and let the fascist infighting do its work. Her role as first president — framed as an honour for the "former Hitler" — actually gave her enormous early board control. The game noted that "the Hitler win was the only way" (~1847s) and she nearly pulled it off a second time via election before being hunted down.</p>
+<hr />
+<h3>Sullivan</h3>
+<p><strong>Suspicion Level: CONFIRMED Fascist</strong></p>
+<p><strong>Key Evidence:</strong><br />
+- <strong>Post-game admission (~3394s–3396s):</strong> When asked "were you fascist?" Sullivan replies "I was."<br />
+- <strong>Charlotte–Sullivan government (~2400s–2450s):</strong> Sullivan as Chancellor under Charlotte's presidency produces a liberal policy — the fascist team deliberately passing liberal to build trust. Charlotte discards her fascist and gives Sullivan two liberals (~2450s); Sullivan passes one. Clean play by design.<br />
+- <strong>First appearance comment (~2406s):</strong> "Is this my first time doing anything? I think it is." — Sullivan has been staying deliberately low-profile, a classic fascist holding pattern.<br />
+- <strong>Presidential term (~2560s–2650s):</strong> Sullivan nominates Holly as Chancellor. Holly passes a liberal. This extends Sullivan's credibility.</p>
+<p><strong>Behavioural Notes:</strong><br />
+Sullivan's strategy was low-volume, low-suspicion accumulation. He never pushed a fascist policy in a government he controlled, building a clean record. His confirmation as fascist (not Hitler) is consistent with the fascist playbook: know who Hitler is, protect them by absorbing suspicion elsewhere or appearing inert. The "Charlotte Sullivan thing" (~2418s) is the one moment where his alliance with Charlotte is named out loud — and it was largely dismissed.</p>
+<hr />
+<h3>Charlotte</h3>
+<p><strong>Suspicion Level: HIGH — likely 3rd Fascist</strong></p>
+<p><strong>Key Evidence:</strong><br />
+- <strong>The policy lie (~3102s–3110s):</strong> Charlotte tells John "I gave you a liberal and a fascist" — twice. John immediately and flatly says "No, you didn't." (~3108s). John was confirmed to have received two fascist policies (~3298s). A liberal who accidentally discards the wrong card might say "I'm sorry, I thought I gave you a liberal" — not repeat the false claim twice. This is the single most damning moment in the transcript.<br />
+- <strong>Voted-down draw claim (~2086s–2088s):</strong> Charlotte's government is voted down (~2060s–2070s), yet she claims to have drawn three fascist policies. In standard rules, the president does not draw until after the government is confirmed. This claim is either a house-rule artefact or a lie — either way it placed early suspicion on the policy deck rather than on herself.<br />
+- <strong>Charlotte–Sullivan alliance (~2418s):</strong> "The Charlotte Sullivan thing" is noted by other players precisely because the pairing is suspicious. Both confirmed evil; both in the same government.<br />
+- <strong>John's read (~3324s):</strong> "Yes, and I will be killing Charlotte." John — a liberal who was correctly analysing the board — identified Charlotte as his kill target, independently and consistently.<br />
+- <strong>Government 8 (Charlotte P + John C):</strong> Charlotte passes John two fascist policies in the critical late-game government, advancing the fascist track and triggering the execution power.</p>
+<p><strong>Behavioural Notes:</strong><br />
+Charlotte's alibi is the liberal-passing government with Sullivan (~2450s). Fascists routinely sacrifice fascist policies early to build trust; this is the obvious counter. Her mid-game reasoning sounds liberal-flavoured — she participates in suspicion discussions credibly — but her actions at the key moments (the John government, the policy lie) betray her. The lie is the tell: liberals caught in a bad draw apologise; they don't insist on a false version of events.</p>
+<hr />
+<h3>Tom</h3>
+<p><strong>Suspicion Level: MEDIUM</strong></p>
+<p><strong>Key Evidence:</strong><br />
+- <strong>Government 1 complicity (~2014s):</strong> As Chancellor under Rachel (Hitler), Tom says "It's not tough at all when all you've been given is fascism" — confirming he received two fascist policies with no choice. This is exculpatory for the Government 1 result but doesn't clear him of being fascist.<br />
+- <strong>Voting no on own nomination (~2178s):</strong> "Tom said no to his own proposition." If Tom was nominated as Chancellor and voted against his own government, this is either a fascist optics move (appear liberal by rejecting a government you know will produce fascists) or genuine liberal nervousness. Either reading is suspicious.<br />
+- <strong>Hesitation as Chancellor (~2008s):</strong> "He doesn't know which one to give" — Tom took an unusually long time choosing which policy to discard as Chancellor, despite having no liberal option. Players note this.</p>
+<p><strong>Behavioural Notes:</strong><br />
+Tom occupies an uncomfortable middle zone. He was in the worst possible government — Rachel (Hitler) as president, all-fascist draw — without necessarily being complicit. But voting no on his own chancellor nomination is rare liberal behaviour and common fascist theatre. The seven-player game has only three evil roles (all accounted for as Rachel, Sullivan, Charlotte), which makes Tom a liberal by elimination — but his behaviour was suspicious enough that he'd have been a reasonable kill target in a tighter game.</p>
+<hr />
+<h3>John</h3>
+<p><strong>Suspicion Level: LOW</strong></p>
+<p><strong>Key Evidence:</strong><br />
+- <strong>Policy test (~2222s–2236s):</strong> When given a liberal and a fascist as Chancellor, John discards the fascist and passes the liberal. The president explicitly notes this was a test (~2224s).<br />
+- <strong>Correct read on Charlotte (~3324s):</strong> John identifies Charlotte as his kill target — the right call based on the available evidence.<br />
+- <strong>Correct read on Rachel (~3360s–3368s):</strong> John argues Rachel is "definitely fascist" and possibly Hitler, even when others are wavering.<br />
+- <strong>Final government (~3298s):</strong> John reports receiving two fascist policies — consistent with Charlotte's lie and John's honest play throughout.</p>
+<p><strong>Behavioural Notes:</strong><br />
+John's analysis track record is solid. He made the right call on Charlotte, the right call on Rachel, and his policy play was clean when he had agency. His only liability is being the Chancellor in Charlotte's final government — not through any fault of his own.</p>
+<hr />
+<h3>Dom</h3>
+<p><strong>Suspicion Level: LOW</strong></p>
+<p><strong>Key Evidence:</strong><br />
+- <strong>Policy test (~2540s–2550s):</strong> When given a liberal and a fascist as Chancellor, Dom discards the fascist. The president states: "Had to test Dom" and "I'm glad you tested me." (~2548s–2550s).<br />
+- <strong>Liberal reasoning (~2254s–2264s):</strong> Dom correctly identifies that presidents have more power over policy outcomes than chancellors, directing suspicion toward Rachel and Charlotte rather than chancellors. This is accurate liberal analysis.<br />
+- <strong>Holly's trust vindicated:</strong> Holly chooses Dom as Chancellor partially on the basis of his trustworthiness, and that trust is confirmed when Dom passes clean.</p>
+<p><strong>Behavioural Notes:</strong><br />
+Dom functions as the liberal anchor: he reasons well, plays cleanly when tested, and his instincts about the Rachel–Charlotte presidency cluster turn out to be correct. The only moment of doubt is that his trust of Charlotte's government explanation briefly held before Charlotte's lie became undeniable.</p>
+<hr />
+<h3>Holly</h3>
+<p><strong>Suspicion Level: CONFIRMED Liberal</strong></p>
+<p><strong>Key Evidence:</strong><br />
+- <strong>Winning assassination (~3370s–3378s):</strong> Holly chooses to shoot Rachel over Sullivan, correctly identifying the Hitler rather than the easier "confirmed fascist" target. Rachel is confirmed Hitler on execution.<br />
+- <strong>Policy play clean:</strong> As Chancellor under Sullivan, Holly passes a liberal policy (~2640s). Sullivan's trust in Holly is reciprocated.<br />
+- <strong>Deliberation quality (~3330s–3370s):</strong> Holly's reasoning toward the kill is the most analytically sound in the game: "I think it might be Sullivan, and I want to go for Sullivan... but I think that Rachel is definitely fascist... it's just whether Rachel is Hitler... I want to get Hitler." She correctly weights the Hitler-kill upside over the safe fascist-kill option.</p>
+<p><strong>Behavioural Notes:</strong><br />
+Holly carries the liberal team home. She absorbs the "Adolf Holley" running joke from the previous game without losing her analytical focus, correctly reads the board state in the final kill decision, and makes the high-variance play that wins. The only visible pressure on Holly is that her next-president status means a fascist could target her if she takes the shot and misses — which she doesn't.</p>
+<hr />
+<h2>ALLIANCE CLUSTERS</h2>
+<p><strong>Cluster 1: Rachel + Sullivan + Charlotte (Fascist Team)</strong><br />
+- Rachel (Hitler) + Sullivan (Fascist): confirmed<br />
+- Rachel + Charlotte: Charlotte's government produces two-fascist → John; Charlotte lies to cover it<br />
+- Sullivan + Charlotte: share a government in the mid-game; Charlotte discards fascist and passes liberals to Sullivan — a deliberate trust-building sacrifice by a fascist president<br />
+- "The Charlotte Sullivan thing" (~2418s): other players notice the pairing without quite acting on it</p>
+<p><strong>Cluster 2: Holly + Dom (Liberal Core)</strong><br />
+- Holly tests Dom as Chancellor; Dom passes clean<br />
+- Holly extends trust to Dom and vice versa; this pair drives the final liberal analysis</p>
+<p><strong>Cluster 3: Dom + John (Emerging Liberal Alliance)</strong><br />
+- Dom's analysis points toward Rachel and Charlotte as the fascist presidents<br />
+- John correctly identifies Charlotte and Rachel as the kill targets<br />
+- Neither Dom nor John acts on the Charlotte hypothesis aggressively enough to save a liberal policy, but their reasoning converges correctly by the end</p>
+<hr />
+<h2>SUMMARY</h2>
+<p>The fascist team — Rachel (Hitler), Sullivan (Fascist), Charlotte (almost certainly the third Fascist) — played a textbook fascist game structured around misdirection and paced liberal sacrifice. Rachel's opening play was high-risk and high-yield: three fascist policies in round one is an enormous board advantage, but it concentrated suspicion on the Rachel–Tom government immediately. The fascists weathered that scrutiny by having Sullivan and Charlotte pass liberal policies in their early governments, deliberately burning fascist cards to buy credibility. Charlotte's liberal-passing government with Sullivan (~2450s) is the clearest example — a confirmed fascist president discarding her own fascist policy to make her co-fascist chancellor look clean.</p>
+<p>The game's decisive mistake was Charlotte's final government with John. Charlotte had a genuine opportunity to play liberal — she could have passed John one liberal and one fascist — but chose (or was forced by deck luck) to pass him two fascists, and then lied about it. The lie is what collapses the alibi. A liberal who makes a bad draw apologises; Charlotte repeated the false claim twice before John's flat denial exposed it. Had Charlotte told the truth ("I drew two fascists and a liberal, discarded the liberal — I know it's bad"), she might have survived the subsequent execution deliberation. The lie handed Holly the confirmatory evidence she needed to choose Rachel over Sullivan as the Hitler-kill target.</p>
+<p>The dominant hypothesis holds cleanly: Rachel–Sullivan–Charlotte is the fascist team, with Tom, Dom, Holly, and John as liberals. The biggest remaining uncertainty is whether Charlotte's final government was intentional fascist play or catastrophic liberal misplay followed by a panicked lie. The lie itself is the only piece of evidence that can't be explained by bad luck alone — it is the single data point that most separates "Charlotte is fascist" from "Charlotte is an unlucky liberal." If Charlotte had been honest about her draw, this analysis would be genuinely undecided between Charlotte and Tom as the third evil player. She wasn't, so it isn't.</p>
+</div>
+<script>
+// Colour ranking table rows by position
+document.querySelectorAll('table').forEach(tbl => {
+  const rows = tbl.querySelectorAll('tbody tr');
+  // Check if first column looks like rank numbers
+  rows.forEach((row, i) => {
+    const first = row.cells[0]?.textContent?.trim() || '';
+    const num = parseInt(first);
+    if (!isNaN(num) && num >= 1 && num <= 7) {
+      row.classList.add('rank-' + num);
+    } else if (rows.length <= 7 && i < 7) {
+      // Unnamed ranking table — colour by position
+      const tblHeader = tbl.previousElementSibling;
+      if (tblHeader && /rank|suspect|fascist/i.test(tblHeader.textContent || '')) {
+        row.classList.add('rank-' + (i + 1));
+      }
+    }
+  });
+});
+
+// Highlight suspicion level text
+const patterns = [
+  [/\bConfirmed\b/g,            'sus-confirmed'],
+  [/\bStrong\s+Fascist\s+read\b/gi, 'sus-strong'],
+  [/\bLikely\s+Fascist\b/gi,   'sus-likely'],
+  [/\bLeaning\s+Fascist\b/gi,  'sus-leaning-f'],
+  [/\bHigh\b/g,                'sus-high'],
+  [/\bUncertain\b/g,           'sus-uncertain'],
+  [/\bMedium\b/g,              'sus-medium'],
+  [/\bLeaning\s+Liberal\b/gi,  'sus-leaning-l'],
+  [/\bLow\b/g,                 'sus-low'],
+];
+
+function walkTextNodes(el) {
+  if (el.nodeType === Node.TEXT_NODE) return [el];
+  const nodes = [];
+  el.childNodes.forEach(c => nodes.push(...walkTextNodes(c)));
+  return nodes;
+}
+
+// Only apply inside td and li elements to avoid mangling headings
+document.querySelectorAll('td, li, p').forEach(el => {
+  patterns.forEach(([re, cls]) => {
+    walkTextNodes(el).forEach(node => {
+      if (!re.test(node.textContent)) return;
+      re.lastIndex = 0;
+      const frag = document.createDocumentFragment();
+      let last = 0, m;
+      while ((m = re.exec(node.textContent)) !== null) {
+        frag.appendChild(document.createTextNode(node.textContent.slice(last, m.index)));
+        const span = document.createElement('span');
+        span.className = cls;
+        span.textContent = m[0];
+        frag.appendChild(span);
+        last = m.index + m[0].length;
+      }
+      frag.appendChild(document.createTextNode(node.textContent.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  });
+});
+</script>
+</body>
+</html>

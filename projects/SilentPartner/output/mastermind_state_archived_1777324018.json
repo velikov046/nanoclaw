@@ -1,0 +1,260 @@
+{
+  "topic": "StarCraft Brood War strategy commentary -- live match, Flash vs Ample",
+  "domain": "StarCraft Brood War (original 1998 RTS) -- professional match commentary",
+  "scene": "Live professional BW match between two Terran players, Flash and Ample, being analyzed by two commentators. Both players opened into a double-factory build for vulture-based map control -- the standard TvT path. Ample made an unusual early barracks move that baffled the analysts, then pulled a unit back to deny Flash's scouting. The big reveal: Ample diverged from the expected third-factory path and is instead going Starport. Flash is committing to vultures to press ground control before Ample's air units can arrive.",
+  "entities": [
+    {
+      "name": "Flash",
+      "role": "Player (Terran)",
+      "one_line": "Flash is one of the most celebrated BW pros ever, widely regarded as the greatest of all time -- known for clean macro and mechanics, not cheese or gimmicks.",
+      "first_seen": "[105s]",
+      "source_quote": "Flash would never cheese Ample on this map",
+      "confidence": "high"
+    },
+    {
+      "name": "Ample",
+      "role": "Player (Terran)",
+      "one_line": "Ample opened with a confusing barracks placement and is now going Starport instead of the standard third-factory follow-up -- the defining strategic gamble of this game.",
+      "first_seen": "[105s]",
+      "source_quote": "Flash would never cheese Ample on this map",
+      "confidence": "high"
+    },
+    {
+      "name": "Clash",
+      "role": "Player (referenced, not in match)",
+      "one_line": "Another player name dropped once as a comparison -- someone the analyst thought might plausibly run Ample's unusual barracks rush.",
+      "first_seen": "[183s]",
+      "source_quote": "I could have seen Clash doing it because it's like maybe Amp was desperate",
+      "confidence": "low"
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Command Center",
+      "definition": "Terran main structure; taking an early second Command Center signals an economic rather than aggressive opening",
+      "first_seen": "[45s]",
+      "source_quote": "Flash just has a command center here",
+      "confidence": "high"
+    },
+    {
+      "term": "Barracks",
+      "definition": "Terran infantry production building; Ample placing one early on was seen as bizarre and aggressive, suggesting a rush attempt",
+      "first_seen": "[135s]",
+      "source_quote": "it's such a weird thing to open up with a barracks here",
+      "confidence": "high"
+    },
+    {
+      "term": "Factory",
+      "definition": "Terran building that produces mechanical units -- Vultures, Siege Tanks, Goliaths; both players are going double-factory here",
+      "first_seen": "[195s]",
+      "source_quote": "three factory vulture oh nice block with the sd",
+      "confidence": "high"
+    },
+    {
+      "term": "Double factory",
+      "definition": "Build order where Terran builds two Factories simultaneously; standard TvT opener for establishing vulture-based map control",
+      "first_seen": "[210s]",
+      "source_quote": "So both sides are going for double-factor, right?",
+      "confidence": "high"
+    },
+    {
+      "term": "Vulture",
+      "definition": "Fast Terran mechanical unit from the Factory; core unit for map control and harassment in TvT; can lay Spider Mines",
+      "first_seen": "[195s]",
+      "source_quote": "three factory vulture oh nice block with the sd",
+      "confidence": "high"
+    },
+    {
+      "term": "Starport",
+      "definition": "Terran air-unit production building; Ample going Starport instead of a third factory is the major strategic split this game -- commentators say it is well-suited to this map",
+      "first_seen": "[240s]",
+      "source_quote": "he's doing Starport. There you go. Starport is so good on this map",
+      "confidence": "high"
+    },
+    {
+      "term": "Siege Tank",
+      "definition": "Terran heavy artillery unit from the Factory; can switch to immobile Siege mode for high-damage area denial; standard in the double-factory follow-up",
+      "first_seen": "[228s]",
+      "source_quote": "two factories, Siege Bank, Goliath",
+      "confidence": "high"
+    },
+    {
+      "term": "Goliath",
+      "definition": "Terran mech unit effective against both ground and air targets; part of standard double-factory follow-up in TvT",
+      "first_seen": "[228s]",
+      "source_quote": "two factories, Siege Bank, Goliath",
+      "confidence": "high"
+    },
+    {
+      "term": "Cheese",
+      "definition": "An unconventional, high-risk all-in strategy; analysts note Flash would never attempt this on this particular map",
+      "first_seen": "[105s]",
+      "source_quote": "Flash would never cheese Ample on this map",
+      "confidence": "high"
+    },
+    {
+      "term": "Supply Depot (SD)",
+      "definition": "Terran supply-providing structure; placed here to wall off a path and block an enemy unit from entering the base",
+      "first_seen": "[201s]",
+      "source_quote": "nice block with the sd",
+      "confidence": "medium"
+    }
+  ],
+  "narratives": [
+    {
+      "title": "Reaper opener decision tree",
+      "summary": "Early discussion now superseded by confirmed game context: this is TvT, double-factory opening. The prior 'Reaper' framing was almost certainly a Whisper artifact.",
+      "status": "resolved",
+      "confidence": "low"
+    },
+    {
+      "title": "Ample's confusing early barracks",
+      "summary": "Ample opened with a barracks in an unusual position, which analysts called bizarre. Their current read: Ample used it as a mind-game, pulling a unit back to deny Flash's scouting and force a misread.",
+      "status": "active",
+      "confidence": "high"
+    },
+    {
+      "title": "Ample's Starport divergence vs Flash's vulture push",
+      "summary": "Ample is going Starport where the standard path would be a third factory; analysts view Starport as strong on this map. Flash is committing to vultures -- if he dominates the ground before Ample's air arrives, the gamble may backfire on Ample.",
+      "status": "active",
+      "confidence": "high"
+    }
+  ],
+  "key_moments": [
+    {
+      "position": "[105s]",
+      "what": "Flash and Ample named as the two players; Flash described as unlikely to cheese on this map",
+      "why_it_matters": "Establishes meta expectation: Flash plays clean textbook macro, not gimmicks -- so his movements carry real strategic intent"
+    },
+    {
+      "position": "[112s]",
+      "what": "Flash apparently sent a unit (likely an SCV) on a wide scouting loop instead of pressing forward",
+      "why_it_matters": "Unusual routing; analysts think it was purely for map information, not aggression -- suggests Flash lacked a clean read on Ample's build"
+    },
+    {
+      "position": "[125s]",
+      "what": "Flash has a Command Center already established",
+      "why_it_matters": "Fast CC signals Flash is playing an economic, not all-in, game -- he is not panicking despite the unusual opener from Ample"
+    },
+    {
+      "position": "[154s]",
+      "what": "Ample pulls his unit back to block Flash from scouting inside his base",
+      "why_it_matters": "The early barracks deception partially worked: Ample is actively denying information, buying time to hide his actual build path"
+    },
+    {
+      "position": "[182s]",
+      "what": "Analysts call the early barracks bizarre; only Clash or a desperate player would normally do it",
+      "why_it_matters": "Ample was playing off-script, likely trying to create an unreadable opening that forces Flash to guess"
+    },
+    {
+      "position": "[201s]",
+      "what": "Supply Depot used to block an enemy unit from entering",
+      "why_it_matters": "Terran walling with Supply Depots is a common defensive technique; denying entry buys time for base development"
+    },
+    {
+      "position": "[210s]",
+      "what": "Both players confirmed going double-factory",
+      "why_it_matters": "Sets up the vulture race; whoever wins map control with vultures often controls the pace of the mid-game"
+    },
+    {
+      "position": "[214s]",
+      "what": "Flash has slightly more SCVs (workers) and is a step ahead in development",
+      "why_it_matters": "Small early worker leads compound over time in macro games -- Flash may have a subtle economic edge"
+    },
+    {
+      "position": "[240s]",
+      "what": "Ample goes Starport instead of third factory",
+      "why_it_matters": "Major strategic split: air units vs pure ground mech; commentators believe Starport is well-suited to this map's layout"
+    },
+    {
+      "position": "[255s]",
+      "what": "Flash committing to vultures to contest map control while Ample's Starport builds",
+      "why_it_matters": "If Flash's vultures dominate the ground before Ample's air units are ready, Ample's gamble becomes very costly"
+    },
+    {
+      "position": "[270s]",
+      "what": "A scouting unit missed six consecutive shots trying to gain vision",
+      "why_it_matters": "Lost scouting opportunity; Flash may be heading into the mid-game with incomplete information on Ample's exact tech"
+    },
+    {
+      "position": "[293s]",
+      "what": "Three of Ample's vultures moving around the map",
+      "why_it_matters": "Ample is maintaining vulture pressure even while investing in Starport -- contesting on two fronts simultaneously"
+    }
+  ],
+  "do_not_say": [
+    {
+      "item": "Reaper / one-Rax Reaper",
+      "reason": "Reaper unit does not exist in BW; likely Whisper mishearing of Reaver or another unit"
+    },
+    {
+      "item": "StarCraft 2 / SC2",
+      "reason": "This is Brood War, not SC2; different units, different meta"
+    },
+    {
+      "item": "rape / raping / rape advantage",
+      "reason": "Whisper artifact -- broadcast almost certainly said 'Reaper'; repeating would be harmful"
+    },
+    {
+      "item": "rocket research",
+      "reason": "Whisper artifact -- likely mangled unit or upgrade name; meaning unclear"
+    },
+    {
+      "item": "one-port race",
+      "reason": "Whisper artifact -- likely 'one-Rax Reaper'; confirm before repeating"
+    },
+    {
+      "item": "hack",
+      "reason": "Likely Whisper mishearing of 'harass'"
+    },
+    {
+      "item": "bears here for me",
+      "reason": "Whisper artifact -- unintelligible phrase, do not quote"
+    },
+    {
+      "item": "Axe",
+      "reason": "Whisper artifact at [112s] -- likely 'SCV' (worker used for scouting); do not repeat"
+    },
+    {
+      "item": "campfire",
+      "reason": "Whisper artifact at [135s] -- likely 'Comsat' (scanner add-on for Command Center)"
+    },
+    {
+      "item": "SUVs",
+      "reason": "Whisper artifact -- should be 'SCVs' (Terran worker units)"
+    },
+    {
+      "item": "lump",
+      "reason": "Whisper artifact at [114s] -- likely 'loop' (scouting loop around the map)"
+    },
+    {
+      "item": "Siege Bank",
+      "reason": "Whisper artifact at [228s] -- likely 'Siege Tank'"
+    },
+    {
+      "item": "free factory",
+      "reason": "Whisper artifact at [255s] -- likely 'three factory' or 'two factory'; meaning unclear without confirmation"
+    },
+    {
+      "item": "hard flying powering",
+      "reason": "Whisper artifact at [98s] -- meaning unclear, do not repeat"
+    },
+    {
+      "item": "wet elements",
+      "reason": "Whisper artifact at [98s] -- likely a map or terrain description; meaning unclear"
+    },
+    {
+      "item": "Eric's",
+      "reason": "Whisper artifact at [300s] -- likely 'SCV' or another unit name"
+    },
+    {
+      "item": "Clash",
+      "reason": "Named only once as a comparison; low confidence this is a real player name vs. a Whisper artifact"
+    },
+    {
+      "item": "flag / stopped by flag",
+      "reason": "Whisper artifact at [270s] -- likely 'mine' (Spider Mine deployed by a Vulture)"
+    }
+  ],
+  "analysis_count": 2
+}

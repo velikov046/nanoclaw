@@ -1,0 +1,37 @@
+
+Loading Whisper (medium)...
+
+WSL2 — waiting for cloudflared tunnel URL...
+(LAN fallback: http://172.27.204.210:8766 — may not reach phone)
+
+Chunk size: 15s | Role: 
+Players: spectator
+
+Enter = analyse now | q+Enter = quit
+
+
+── Tunnel ready ──────────────────────────────────────────
+  Open on your phone: https://causes-postcards-concentration-admitted.trycloudflare.com/?t=saqzQQVYLSbrxM2gvs_olQ
+──────────────────────────────────────────────────────────
+
+[0m captured | 3 segments]   [0m captured | 6 segments]   [0m captured | 10 segments]   [1m captured | 12 segments]   [1m captured | 13 segments]   [1m captured | 15 segments]   [1m captured | 17 segments]   [2m captured | 23 segments]   [2m captured | 29 segments]   [2m captured | 32 segments]   [2m captured | 35 segments]   [3m captured | 40 segments]   [3m captured | 47 segments]   [3m captured | 52 segments]   [3m captured | 59 segments]   [4m captured | 62 segments]   [4m captured | 65 segments]   [4m captured | 71 segments]   [4m captured | 74 segments]   [5m captured | 77 segments]   [5m captured | 78 segments]   [5m captured | 80 segments]   [5m captured | 83 segments]   Analysing 83 segments...
+Sending to Claude for analysis...
+Traceback (most recent call last):
+  File "/home/aurellian/nanoclaw/projects/SilentPartner/main.py", line 733, in <module>
+    main()
+  File "/home/aurellian/nanoclaw/projects/SilentPartner/main.py", line 663, in main
+    phone_mode(players, role, chunk_secs=args.chunk, portion=args.portion,
+  File "/home/aurellian/nanoclaw/projects/SilentPartner/main.py", line 607, in phone_mode
+    analysis = analyze(text, players, role, partial=True, game=game, topic=topic)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aurellian/nanoclaw/projects/SilentPartner/main.py", line 94, in analyze
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'claude'

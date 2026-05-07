@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SilentPartner — Analysis</title>
+<style>
+  :root {
+    --bg:        #0e0a0a;
+    --surface:   #1a1010;
+    --border:    #3a1a1a;
+    --text:      #d8cccc;
+    --muted:     #8a7070;
+    --accent:    #cc2222;
+    --red:       #cc2222;
+    --orange:    #cc6622;
+    --yellow:    #cc9922;
+    --green:     #228844;
+    --blue:      #2266aa;
+    --header-bg: #1a0808;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: .5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    color: #c08080;
+    margin: 2rem 0 .75rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    border-left: 3px solid var(--accent);
+    padding-left: .6rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+    color: var(--text);
+    margin: 1.25rem 0 .5rem;
+    font-style: italic;
+  }
+
+  p { margin-bottom: .75rem; }
+
+  ul, ol {
+    margin: .5rem 0 .75rem 1.5rem;
+  }
+
+  li { margin-bottom: .25rem; }
+
+  strong { color: #e8d0d0; }
+
+  em { color: var(--muted); font-style: italic; }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.5rem 0;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    font-size: .9rem;
+  }
+
+  thead tr {
+    background: var(--header-bg);
+    border-bottom: 2px solid var(--accent);
+  }
+
+  th {
+    padding: .5rem .75rem;
+    text-align: left;
+    color: var(--muted);
+    font-weight: normal;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    font-size: .8rem;
+  }
+
+  td {
+    padding: .5rem .75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tbody tr:hover { background: rgba(255,255,255,.02); }
+
+  /* Suspicion colour bands on ranking table rows */
+  tr.rank-1, tr.rank-2 { border-left: 3px solid var(--red); }
+  tr.rank-3, tr.rank-4 { border-left: 3px solid var(--orange); }
+  tr.rank-5            { border-left: 3px solid var(--yellow); }
+  tr.rank-6, tr.rank-7 { border-left: 3px solid var(--green); }
+
+  tr.rank-1 td:first-child, tr.rank-2 td:first-child { color: var(--red); font-weight: bold; }
+  tr.rank-3 td:first-child, tr.rank-4 td:first-child { color: var(--orange); }
+  tr.rank-5 td:first-child                            { color: var(--yellow); }
+  tr.rank-6 td:first-child, tr.rank-7 td:first-child { color: var(--green); }
+
+  /* Inline suspicion badges */
+  .sus-confirmed   { color: var(--red);    font-weight: bold; }
+  .sus-likely      { color: var(--red); }
+  .sus-strong      { color: var(--red); }
+  .sus-leaning-f   { color: var(--orange); }
+  .sus-high        { color: var(--orange); }
+  .sus-uncertain   { color: var(--yellow); }
+  .sus-medium      { color: var(--yellow); }
+  .sus-leaning-l   { color: var(--blue); }
+  .sus-low         { color: var(--green); }
+  .sus-liberal     { color: var(--blue); }
+
+  blockquote {
+    border-left: 2px solid var(--border);
+    padding-left: .75rem;
+    color: var(--muted);
+    margin: .75rem 0;
+    font-style: italic;
+  }
+
+  code {
+    background: var(--surface);
+    padding: .1em .4em;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: .9em;
+    color: #c08080;
+  }
+
+  .meta {
+    color: var(--muted);
+    font-size: .8rem;
+    margin-bottom: 2rem;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<p class="meta">translation slow pass #2</p><h2>SESSION CONTEXT</h2>
+<p>Persian (Farsi) to English. A group gathering or activity session with introductions, informal instructions, a religious farewell, and a late arrival calling for Mrs. Sami.</p>
+<h2>GLOSSARY</h2>
+<table>
+<thead>
+<tr>
+<th>Source term</th>
+<th>Target rendering</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>بهار</td>
+<td>Bahar</td>
+</tr>
+<tr>
+<td>حسا</td>
+<td>Hasan (possible name)</td>
+</tr>
+<tr>
+<td>خدا</td>
+<td>God</td>
+</tr>
+<tr>
+<td>خیلی شما باشید</td>
+<td>be well, all of you</td>
+</tr>
+<tr>
+<td>در پناه خدا</td>
+<td>in God's protection</td>
+</tr>
+<tr>
+<td>delegation سمی خانوم</td>
+<td>Mrs. Sami</td>
+</tr>
+<tr>
+<td>سیمون</td>
+<td>Seymour / Simon</td>
+</tr>
+<tr>
+<td>طالعون</td>
+<td>Taloon (possible name)</td>
+</tr>
+<tr>
+<td>کامران</td>
+<td>Kamran</td>
+</tr>
+<tr>
+<td>مهران</td>
+<td>Mehran</td>
+</tr>
+<tr>
+<td>Seymour John</td>
+<td>Seymour John (goes by Seymour)</td>
+</tr>
+</tbody>
+</table>
+<h2>SPEAKERS</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Rough label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1</td>
+<td>First speaker, male, opens with salaam</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>Bahar, introduces herself</td>
+</tr>
+<tr>
+<td>S3</td>
+<td>Seymour John / Simon</td>
+</tr>
+<tr>
+<td>S4</td>
+<td>Unidentified, gives instructions</td>
+</tr>
+<tr>
+<td>S5</td>
+<td>Mehran, new arrival, calls for Mrs. Sami</td>
+</tr>
+</tbody>
+</table>
+<h2>NOTES</h2>
+<ul>
+<li>"در پناه خدا" is a religious farewell idiom; rendered as "in God's protection" rather than the more generic "goodbye" to preserve register.</li>
+<li>"خیلی شما باشید" is a colloquial Farsi closing; closest natural English equivalent is "be well, all of you" -- no single word captures it.</li>
+<li>"حسا" and "طالعون" are phonetically transcribed and may be names with alternate spellings; flagged as uncertain in the glossary.</li>
+</ul>
+</div>
+<script>
+// Colour ranking table rows by position
+document.querySelectorAll('table').forEach(tbl => {
+  const rows = tbl.querySelectorAll('tbody tr');
+  // Check if first column looks like rank numbers
+  rows.forEach((row, i) => {
+    const first = row.cells[0]?.textContent?.trim() || '';
+    const num = parseInt(first);
+    if (!isNaN(num) && num >= 1 && num <= 7) {
+      row.classList.add('rank-' + num);
+    } else if (rows.length <= 7 && i < 7) {
+      // Unnamed ranking table — colour by position
+      const tblHeader = tbl.previousElementSibling;
+      if (tblHeader && /rank|suspect|fascist/i.test(tblHeader.textContent || '')) {
+        row.classList.add('rank-' + (i + 1));
+      }
+    }
+  });
+});
+
+// Highlight suspicion level text
+const patterns = [
+  [/\bConfirmed\b/g,            'sus-confirmed'],
+  [/\bStrong\s+Fascist\s+read\b/gi, 'sus-strong'],
+  [/\bLikely\s+Fascist\b/gi,   'sus-likely'],
+  [/\bLeaning\s+Fascist\b/gi,  'sus-leaning-f'],
+  [/\bHigh\b/g,                'sus-high'],
+  [/\bUncertain\b/g,           'sus-uncertain'],
+  [/\bMedium\b/g,              'sus-medium'],
+  [/\bLeaning\s+Liberal\b/gi,  'sus-leaning-l'],
+  [/\bLow\b/g,                 'sus-low'],
+];
+
+function walkTextNodes(el) {
+  if (el.nodeType === Node.TEXT_NODE) return [el];
+  const nodes = [];
+  el.childNodes.forEach(c => nodes.push(...walkTextNodes(c)));
+  return nodes;
+}
+
+// Only apply inside td and li elements to avoid mangling headings
+document.querySelectorAll('td, li, p').forEach(el => {
+  patterns.forEach(([re, cls]) => {
+    walkTextNodes(el).forEach(node => {
+      if (!re.test(node.textContent)) return;
+      re.lastIndex = 0;
+      const frag = document.createDocumentFragment();
+      let last = 0, m;
+      while ((m = re.exec(node.textContent)) !== null) {
+        frag.appendChild(document.createTextNode(node.textContent.slice(last, m.index)));
+        const span = document.createElement('span');
+        span.className = cls;
+        span.textContent = m[0];
+        frag.appendChild(span);
+        last = m.index + m[0].length;
+      }
+      frag.appendChild(document.createTextNode(node.textContent.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+file '/home/aurellian/nanoclaw/projects/youtube/demo/live_test/audio/segment_01.mp3'
+file '/home/aurellian/nanoclaw/projects/youtube/demo/live_test/audio/segment_02.mp3'

@@ -1,0 +1,40 @@
+## SCENE
+
+A snooker match at what is likely the Crucible Theatre, Sheffield -- home of the World Championship. The match appears to be in a deciding frame, meaning both players are level and this final frame determines the winner. A player is at the table with what the commentator describes as a makeable chance.
+
+## DOMAIN
+
+World Championship Snooker, the sport's most prestigious annual event, held at the Crucible.
+
+## WHO'S INVOLVED
+
+No entities confirmed to high confidence yet.
+
+## DON'T SAY
+
+- **aerodromes** -- Whisper artifact, not a snooker term; underlying word unclear, possibly "players" or a player name
+- **shops / food / paths** -- Repeated Whisper artifacts across the broadcast; underlying snooker terms (likely "shots", "pot") are unclear
+
+## GLOSSARY
+
+| Term | Meaning here |
+|------|-------------|
+| deciding frame | The final frame of a match when both players are level; whoever wins it wins the match |
+
+## CURRENT NARRATIVES
+
+**Deciding frame chance at the table**
+A player has a chance on the table in the deciding frame. The commentator describes it as makeable, and suggests the player must convert.
+
+## KEY MOMENTS
+
+- [37s] -- Commentator says the shot is among the easiest available and must be potted (signals a straightforward ball the player cannot afford to miss under this pressure)
+- [15s] -- Deciding frame, player at table with a chance (sudden death -- whoever wins this frame wins the entire match)
+
+## TALKING POINTS
+
+- This is what the Crucible does to people.
+- One frame, everything on the line.
+- Easiest shot on the table and it's still nerve-wracking.
+- Can't miss that one, can you?
+- Classic deciding frame tension.

@@ -1,0 +1,21 @@
+{
+  "source_lang": "fr",
+  "target_lang": "en",
+  "topic_inferred": "workplace logistics and casual street encounter; lunch plans, visiting boss, bus commute",
+  "glossary": {
+    "Charlotte": "Charlotte",
+    "Am\u00e9lie": "Am\u00e9lie",
+    "patron": "boss",
+    "d\u00e9jeuner": "lunch",
+    "l'avantage": "the advantage",
+    "malades": "sick people",
+    "le plan": "the plan"
+  },
+  "speaker_map": {
+    "S1": "worker discussing boss visit and lunch",
+    "S2": "Charlotte",
+    "S3": "Am\u00e9lie"
+  },
+  "predictions": [],
+  "analysis_count": 1
+}

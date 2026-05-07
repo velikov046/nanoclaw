@@ -1,0 +1,66 @@
+## SCENE
+
+The deciding frame of a World Championship match at the Crucible Theatre, Sheffield, between Ronnie ("The Rocket") and John Higgins, two players the commentator calls all-time greats. One player led 8-3 across sessions and was expected to close out the match; the other mounted a dramatic comeback to force this deciding frame. Both players have now had chances in the deciding frame; John Higgins appears to have missed what the commentator implies may have been his last opportunity, potentially leaving Ronnie with a winning chance.
+
+## DOMAIN
+
+World Championship Snooker, the sport's most prestigious annual event, held at the Crucible Theatre in Sheffield.
+
+## WHO'S INVOLVED
+
+| Name | Role | One-line |
+|------|------|----------|
+| John Higgins | Player | One of snooker's all-time greats; missed a key shot to the middle pocket at a critical moment in the deciding frame. |
+| Ronnie ("The Rocket") | Player | One of snooker's all-time greats; appears to have a chance to close out the match after Higgins's miss. |
+
+## DON'T SAY
+
+- **8-3** -- Past scoreline from earlier sessions; it is historical context, not the current score.
+- **aerodromes** -- Whisper artifact; not a snooker term, underlying word unclear.
+- **shops / food / paths** -- Repeated Whisper artifacts; underlying snooker terms (likely "shots", "pot") unclear.
+- **under-readable** -- Whisper artifact for "unreadable"; do not repeat the mangled form.
+- **partner** -- Whisper artifact; likely "opponent" or a player name, underlying word unclear.
+- **old rat** -- Whisper artifact; underlying word or phrase unclear in snooker context.
+- **pressure pop** -- Whisper artifact; almost certainly "pressure pot", a tense potting opportunity.
+
+## GLOSSARY
+
+| Term | Meaning here |
+|------|-------------|
+| deciding frame | The final frame of a match when both players are level; whoever wins it wins the match. |
+| sessions | In major snooker matches, play is split into sessions of roughly 8 frames each, with breaks between them. |
+| cannon | A shot where the cue ball contacts two object balls without potting either, used to nudge balls into better positions tactically. |
+| long pot | Potting a ball from a long distance across the table; high-skill, higher-risk than a short pot. |
+| the black | The black ball, worth 7 points, the highest-value ball on the table. Attacking it in a deciding frame is a calculated gamble. |
+
+## CURRENT NARRATIVES
+
+**Deciding frame: both had chances, Higgins may have run out**
+Both players took aggressive shots off the black and both left themselves in difficulty. Higgins missed to the middle pocket, and the commentator reads his body language as resignation, suggesting he may have played his last shot of the match.
+
+**Two all-time greats, sudden death**
+The commentator explicitly frames this as a match between two of the sport's greatest ever players. Even at this level, a deciding frame is unpredictable, and the stakes could not be higher.
+
+**Remarkable comeback (background)**
+One player trailed heavily across sessions and looked certain to lose; the trailing player produced what commentators called unreadable snooker to claw back to a deciding frame, surprising everyone.
+
+## KEY MOMENTS
+
+- [285s] -- Commentator calls both players all-time greats and notes anything can happen in a deciding frame (frames the occasion: sudden death, no lead is safe)
+- [278s] -- Commentator says Higgins might just have played his last shot (in snooker, this means the opponent may have a clear run to the colours needed to win)
+- [270s] -- Another chance described for Higgins; commentator reads his body language as knowing he's left himself in trouble
+- [238s] -- Higgins misses his shot to the middle pocket (missing a makeable pot in a deciding frame can hand the match to the opponent)
+- [229s] -- Both players attacked the black, both left tricky positions (the black is the highest-value ball; going for it here reflects the high-stakes urgency)
+- [210s] -- Ronnie named; commentator confirms both players have had a chance in the deciding frame (neither player has yet taken control)
+- [187s] -- "The Rocket" referenced as balls become available (confirms Ronnie's identity via his established nickname)
+- [165s] -- John Higgins named for the first time (one of snooker's most decorated champions, now confirmed as one of the two players)
+- [120s] -- Trailing player described as playing unreadable snooker this afternoon (shot selection hard to anticipate or counter: key quality in a comeback)
+- [105s] -- Heavy lead cited; commentator thought the leader could close it without needing a deciding frame (makes the comeback all the more striking)
+
+## TALKING POINTS
+
+- Ronnie in a deciding frame, classic.
+- Higgins looked gone there.
+- You can't write this off until it's done.
+- The Crucible does this every time.
+- That comeback was something else.

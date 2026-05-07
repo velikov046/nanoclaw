@@ -1,0 +1,82 @@
+## SUSPICION RANKING
+
+1. **Dom** — Confirmed Hitler. Role assigned on camera; behavioral tells and post-game strategy debrief seal it.
+2. **John** — High. Two independent players noted "bad vibes"; virtually no attributable dialogue in a group that talks constantly; almost certainly the president who forced the one fascist policy by handing Sullivan two fascist tiles.
+3. **Sullivan** — Medium. Flagged mid-game by two players; cleared by Rachel's deliberate test and his own account of testing Dom.
+4. **Rachel** — Low. Openly Fascist in a prior game but operates transparently as Liberal in round 3; tests Sullivan and names John as her suspicion.
+5. **Holly** — Low. Consistent card accounting, clean liberal confirmations, "Hitler killer" history from prior round.
+6. **Charlotte** — Low. Most structurally confirmed Liberal; correctly identified Hitler in every game played.
+
+---
+
+## SPEAKER MAPPING
+
+The transcript does not carry SPEAKER\_XX diarization labels — only timestamps. All attribution comes from direct address and first-person statements within the dialogue.
+
+| Player | Evidence of identity |
+|--------|---------------------|
+| **Dom** | Named in role-deal at 3456s; votes Nein on his own chancellorship at 3682s ("self-hating Chancellor"); "danke schön" at 3460s; delivers Hitler strategy debrief at ~4185–4230s |
+| **Rachel** | Named as prior Fascist at 3429s and 3547s; self-confirms at 3563–3573s ("I fully lied... I was, I was a fascist"); identified as president at 3800s |
+| **Holly** | Addressed as president first and as "Hitler killer" at 3474s; explains her card hand at 3634–3642s; re-nominates Charlotte at 4086s |
+| **Charlotte** | Nominated and addressed by name at 3538s; speaks as president at 3648s and 3928s; accounts for her hand at 3976–3980s |
+| **Sullivan** | Nominated at ~4028s; gives the two-fascist account and reads Dom's twitches at 4062–4070s; claims to have tested Dom at 4152–4156s |
+| **John** | Named only as a suspicion target at 3858–3862s; no identifiable first-person lines |
+
+**Could not map:** "Richard" at 4158–4164s — possibly a nickname for Dom, possibly a seventh player not in this game.
+
+---
+
+## SUSPICION PROFILES
+
+### Dom
+- **Suspicion level:** Confirmed Hitler
+- **Key evidence:** Role explicitly dealt at 3456s. Post-game debrief (~4185–4230s) is the internal monologue of a Hitler who ran out of moves — wrong chancellor picked, hoping for three fascists from an opponent, watching liberals confirm each other and feeling the walls close. Sullivan's account of Dom's "subtle twitches" when handed two fascist tiles as chancellor (4062–4070s) is the in-game tell that broke concealment.
+- **Behavioural notes:** Voting Nein on his own chancellorship nomination (3682s) while calling himself "self-hating Chancellor" is textbook Hitler evasion: stay off the board, avoid confirming pairs, wait for the elective win condition. Dom said almost nothing during active play — the silence of someone who has nothing liberal to verify and everything to hide.
+
+### John
+- **Suspicion level:** High — primary Fascist suspect
+- **Key evidence:** Rachel says "I'm getting bad vibes from John" at 3858s; a second player immediately echoes "That's also where I'm getting bad vibes" at 3860s — two independent reads converging. John has essentially zero attributed dialogue throughout a transcript where every other player speaks at length. The government that produced the one fascist policy (~4040–4074s) falls in a sequence consistent with John holding the presidency and handing Sullivan two fascist tiles to force the outcome.
+- **Behavioural notes:** The silence is the tell. Every confirmed Liberal in this group practices vocal card accounting — they say what they drew, what they discarded, what they passed on. John contributes nothing traceable. As regular Fascist his job was to stay hidden and create pathways to Dom's chancellorship; he had no need to explain himself and every reason not to.
+
+### Sullivan
+- **Suspicion level:** Medium — cleared by game's end
+- **Key evidence:** Flagged as a target mid-game at 4028s. However, Rachel deliberately tested him: as president she discarded a fascist tile, handing Sullivan only fascist+liberal. Sullivan discarded the fascist (3904–3906s) — the clearest liberal confirmation of the game. Sullivan then ran his own test of Dom, documenting that Dom's physical reaction to receiving two fascist tiles as chancellor (4062–4070s) was behaviorally inconsistent with a liberal.
+- **Behavioural notes:** Sullivan's willingness to name exactly what he received and describe Dom's tell suggests transparent liberal-oriented play. A Fascist given two fascist tiles as chancellor would not describe their co-fascist's twitches as suspicious. The Rachel → Sullivan → Dom test chain is the analytical backbone of the liberal win.
+
+### Rachel
+- **Suspicion level:** Low
+- **Key evidence:** Prior Fascist history openly acknowledged (3563–3573s). In round 3, overcompensates with unusual transparency: publicly frames her presidential discard as a deliberate test (3904s), names John specifically as her suspicion while noting she has "good vibes" with everyone else (3852–3862s). Card accounting is clean.
+- **Behavioural notes:** Rachel knows that her Fascist reputation makes her a natural target and converts that liability into a trust-building mechanism by visibly sacrificing a fascist tile. Naming John — rather than misdirecting toward a known Liberal — is consistent with genuine Liberal reasoning rather than deflection.
+
+### Holly
+- **Suspicion level:** Low
+- **Key evidence:** "Hitler killer" from prior round (3476s). In round 3: drew 2F+1L as first president, discarded a fascist, passed Charlotte fascist+liberal. Charlotte's matching account (3634–3642s) confirms both sides of the transaction. Holly's final presidency simply picked Charlotte again and won on the 5th liberal — no complications, no inconsistencies.
+- **Behavioural notes:** Holly's prior-game admission that she "almost talked herself out of" pulling the trigger on Rachel even with knowledge of her fascism (3424–3436s) reveals a Liberal who reasons carefully and is susceptible to uncertainty — the opposite of Fascist overconfidence.
+
+### Charlotte
+- **Suspicion level:** Low
+- **Key evidence:** "Charlotte has known who Hitler is every single time" (3882s). In round 3, structurally confirmed Liberal: Holly accounts for her hand in full (3634–3642s), Charlotte confirms receipt (3976–3978s), and their matching narratives leave no room for deception. Charlotte "chose early cover" (3632s) — played the liberal tile when she had a choice, a play that benefits only the Liberal side given no fascist policy pressure at that stage.
+- **Behavioural notes:** The observation that Charlotte always knows Hitler's identity (3882–3886s) is ambiguous — in games where she was Fascist, she had perfect information; in games where she was Liberal, she apparently reads it correctly anyway. In round 3 her behavior is structurally clean. The "using not to share it" remark suggests strategic discipline rather than concealment of allegiance.
+
+---
+
+## ALLIANCE CLUSTERS
+
+**Liberal core:** Holly – Charlotte  
+Two separate matching governments with full card accounting on both sides. The most robust confirmation chain in the game.
+
+**Liberal extension:** Rachel – Sullivan  
+Rachel's deliberate test of Sullivan and Sullivan's transparent response created a second confirmed pair that crossed into the core.
+
+**Fascist cluster (reconstructed):** Dom – John  
+Dom operated silently as Hitler; John's suspected Fascist role would explain his complete absence from attributed dialogue. Their partnership failed because the deck front-loaded liberal tiles and gave them almost no window to force fascist enactment without the accounting system catching them.
+
+---
+
+## SUMMARY
+
+The dominant hypothesis — Dom as Hitler, John as regular Fascist, the remaining four Liberal — is robust by the end of the transcript. What makes this game analytically interesting is not the identification of the fascist team (Dom's role was dealt on camera and John's silence was flagged by two players independently early on) but the mechanism of the Liberal win. No one was investigated or executed. The liberals won entirely through card accounting and deliberate testing: Holly and Charlotte confirmed each other through two separate governments, Rachel converted her own Fascist reputation into a trust signal by visibly sacrificing a tile, and Sullivan connected that confirmed block to Dom by documenting a behavioral tell rather than relying on deduction. The fascist team had almost no viable moves — the deck was heavily liberal at the top, every government that could have forced a fascist policy was between players who would immediately cross-check their hands, and Dom's only realistic path to the chancellorship narrowed each round.
+
+The Fascist partnership's strategic failure is clearest in Dom's post-game debrief (~4185–4230s). He describes watching liberals confirm each other, running out of plausible chancellor options, and banking on an opponent having three fascists — essentially hoping for deck composition to save him rather than executing a plan. This is the picture of a Hitler who lost his partner's cover early: John's silence may have kept him hidden, but it also meant Dom was operating without visible fascist support in the critical middle rounds, unable to build a credible path to his own chancellorship.
+
+The single biggest uncertainty is John's definitive confirmation. Two players independently flagged him, the silent-speaker tell is strong, and the one fascist policy enacted fits his suspected presidential slot — but the post-game reveal in the transcript does not explicitly name John as the Fascist. If John turns out to be Liberal, Dom's debrief would imply he had no viable partner at all, which reshapes the entire read of why the fascists played so passively. That confirmation, or its absence, is the one piece of information that fully closes the analysis.

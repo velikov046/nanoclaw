@@ -1,0 +1,96 @@
+## SCENE
+
+The deciding frame of a World Championship match at the Crucible Theatre, Sheffield, between Ronnie ("The Rocket") and John Higgins. Both players have now missed chances in this frame: Higgins missed to the middle pocket earlier, and Ronnie missed a red at the right corner [450s] after what the commentator called an excellent opportunity. Despite both errors, one player has built a 41-point lead with balls still remaining [540s]; the commentator suggests that player is closing in on a "very famous picture" -- winning the World Championship.
+
+---
+
+## DOMAIN
+
+World Championship Snooker at the Crucible, Sheffield -- the sport's most prestigious annual event, equivalent in stature to Wimbledon or the Masters.
+
+---
+
+## WHO'S INVOLVED
+
+| Name | Role | One-line |
+|---|---|---|
+| John Higgins | Player | One of snooker's all-time greats; missed to the middle pocket and was seen grimacing as the deciding frame appeared to slip away. |
+| Ronnie ("The Rocket") | Player | Widely regarded as the greatest potter in history; missed a red at the right corner under pressure, but one player now leads by a significant margin and is closing in on the title. |
+
+---
+
+## DON'T SAY
+
+- **aerodromes** -- Whisper artifact; not a snooker term, underlying word unclear
+- **shops / food / paths** -- Repeated Whisper artifacts; underlying snooker terms (likely "shots", "pot") unclear
+- **8-3** -- Past scoreline from earlier sessions; verify before repeating as current score
+- **under-readable** -- Whisper artifact for "unreadable"; do not repeat the mangled form
+- **partner** -- Whisper artifact at [117s]; likely "opponent" or a player name, underlying word unclear
+- **old rat** -- Whisper artifact at [255s]; underlying word or phrase unclear in snooker context
+- **pressure pop** -- Whisper artifact at [225s]; almost certainly "pressure pot", a tense potting opportunity
+- **disco board** -- Whisper artifact at [540s]; clearly means scoreboard or display board
+- **bunge** -- Whisper artifact at [502s]; almost certainly "bunch" of reds
+- **Steve wonder** -- Whisper artifact at [465s]; likely mangling of "Stephen" or a player reference
+- **wax off the spot** -- Whisper artifact at [495s]; likely "black off the spot", a specific shot in snooker
+- **paint colour** -- Whisper artifact at [555s]; likely "pink, colour" in snooker terminology
+- **8-side red** -- Whisper artifact at [562s]; underlying shot description unclear
+- **41** -- Score stat from scoreboard at [540s]; verify before repeating
+- **Stephen** -- Commentator named in booth, confidence only medium; do not present as confirmed fact
+
+---
+
+## GLOSSARY
+
+| Term | Meaning here |
+|---|---|
+| deciding frame | The final frame of a match when both players are level; whoever wins it wins the match. |
+| sessions | In major snooker matches, play is split into sessions of roughly 8 frames each, with breaks between them. |
+| cannon | A shot where the cue ball contacts two object balls without potting either, used to nudge balls into better positions tactically. |
+| long pot | Potting a ball from a long distance across the table; high-skill, higher-risk than a short pot. |
+| the black | The black ball, worth 7 points, the highest-value ball on the table. Attacking it in a deciding frame is a calculated gamble. |
+| the white | The cue ball -- the ball the player strikes with their cue. Losing control of it means losing position for the next shot. |
+| snooker yourself | Accidentally leaving yourself unable to see the ball you need to hit next, caused by your own shot rather than the opponent's. |
+
+---
+
+## CURRENT NARRATIVES
+
+**Both players missed; one now leads and is closing in**
+Both Higgins and Ronnie had chances in the deciding frame and both missed. Despite those errors on each side, one player has opened up a significant lead with balls still on the table. The commentator has described them as closing in on a World Championship win.
+
+**Two all-time greats, sudden death**
+The commentator has explicitly framed this as a match between two of snooker's greatest ever players. Even at the highest level, a deciding frame is unpredictable -- the occasion itself adds weight to every shot.
+
+**Remarkable comeback (background)**
+One player had trailed heavily across sessions and looked certain to lose; the trailing player produced what commentators called unreadable snooker to claw back to a deciding frame. The turnaround surprised even the commentary team.
+
+---
+
+## KEY MOMENTS
+
+- **[600s]** -- Commentator says the leading player is "closing in on a very famous picture" (signals the match may almost be over)
+- **[585s]** -- Commentator identifies the pink as the easier route to the next red (illustrates how fine the margins are at this level)
+- **[540s]** -- Scoreboard shows a significant lead with balls still on the table (trailing player now needs opponent to miss)
+- **[507s]** -- Commentator confirms both players paid the penalty for their shot choices (neither took clean control; errors shaped the frame)
+- **[477s]** -- A grimace from John visible at the table (body language suggesting resignation, mirroring earlier reads)
+- **[450s]** -- Ronnie misses a red at the right corner after an excellent opportunity (even the greatest potter in the game could not escape deciding-frame pressure)
+- **[285s]** -- Commentator calls both players all-time greats, notes anything can happen in a deciding frame (frames the stakes: sudden death, no lead is safe)
+- **[278s]** -- Commentator suggests Higgins might have just played his last shot (implies opponent may have a clear run to the colours needed to win)
+- **[238s]** -- John Higgins misses to the middle pocket (a makeable pot missed; potentially the turning point of the frame)
+- **[229s]** -- Both players attacked aggressively off the black, both left difficult positions (highest-value ball, highest risk, both gambled)
+
+---
+
+## TALKING POINTS
+
+Ronnie missing there, you just don't see that.
+
+Higgins knows it's gone.
+
+Two all-time greats, deciding frame -- doesn't get bigger than this.
+
+Classic Crucible pressure.
+
+That comeback was something else.
+
+Pink or red, the margins here are everything.

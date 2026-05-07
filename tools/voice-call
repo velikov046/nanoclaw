@@ -1,0 +1,5 @@
+#!/bin/bash
+# Wrapper to run tools/voice_call.py under the venv that has audio + anthropic deps.
+# Usage: tools/voice-call --agent stella
+exec /home/aurellian/nanoclaw/projects/stella-voice/.venv/bin/python \
+  /home/aurellian/nanoclaw/tools/voice_call.py "$@"

@@ -1,0 +1,386 @@
+{
+  "title": "Live pipeline validation",
+  "music": true,
+  "segments": [
+    {
+      "id": 1,
+      "duration": 17.162449,
+      "text": "[deadpan] The H five N one outbreak in dairy cattle wasn't a surprise to anyone watching the influenza literature. [pause] The agency spent six months calling it untransmissible while building no surveillance. That tells you something. Not about the virus.",
+      "image_prompt": "Stark documentary photography of empty laboratory hallway, dim institutional lighting, cinematic, dramatic shadows",
+      "audio_file": "/home/aurellian/nanoclaw/projects/youtube/demo/live_test/audio/segment_01.mp3",
+      "tagged_text": "[deadpan] The H five N one outbreak in dairy cattle wasn't a surprise to anyone watching the influenza literature. [pause] The agency spent six months calling it untransmissible while building no surveillance. That tells you something. Not about the virus.",
+      "words": [
+        {
+          "text": "The",
+          "start": 0.137,
+          "end": 0.161
+        },
+        {
+          "text": "H",
+          "start": 0.361,
+          "end": 0.561
+        },
+        {
+          "text": "five",
+          "start": 0.673,
+          "end": 1.121
+        },
+        {
+          "text": "N",
+          "start": 1.361,
+          "end": 1.601
+        },
+        {
+          "text": "one",
+          "start": 1.641,
+          "end": 1.761
+        },
+        {
+          "text": "outbreak",
+          "start": 1.823,
+          "end": 2.319
+        },
+        {
+          "text": "in",
+          "start": 2.372,
+          "end": 2.478
+        },
+        {
+          "text": "dairy",
+          "start": 2.531,
+          "end": 2.796
+        },
+        {
+          "text": "cattle",
+          "start": 2.853,
+          "end": 3.195
+        },
+        {
+          "text": "wasn't",
+          "start": 3.339,
+          "end": 3.995
+        },
+        {
+          "text": "a",
+          "start": 4.035,
+          "end": 4.075
+        },
+        {
+          "text": "surprise",
+          "start": 4.137,
+          "end": 4.633
+        },
+        {
+          "text": "to",
+          "start": 4.686,
+          "end": 4.792
+        },
+        {
+          "text": "anyone",
+          "start": 4.849,
+          "end": 5.191
+        },
+        {
+          "text": "watching",
+          "start": 5.235,
+          "end": 5.587
+        },
+        {
+          "text": "the",
+          "start": 5.627,
+          "end": 5.747
+        },
+        {
+          "text": "influenza",
+          "start": 5.803,
+          "end": 6.307
+        },
+        {
+          "text": "literature.",
+          "start": 6.358,
+          "end": 6.948
+        },
+        {
+          "text": "The",
+          "start": 8.207,
+          "end": 8.228
+        },
+        {
+          "text": "agency",
+          "start": 8.308,
+          "end": 8.788
+        },
+        {
+          "text": "spent",
+          "start": 8.841,
+          "end": 9.106
+        },
+        {
+          "text": "six",
+          "start": 9.186,
+          "end": 9.426
+        },
+        {
+          "text": "months",
+          "start": 9.495,
+          "end": 9.909
+        },
+        {
+          "text": "calling",
+          "start": 9.939,
+          "end": 10.149
+        },
+        {
+          "text": "it",
+          "start": 10.202,
+          "end": 10.308
+        },
+        {
+          "text": "untransmissible",
+          "start": 10.441,
+          "end": 11.587
+        },
+        {
+          "text": "while",
+          "start": 11.694,
+          "end": 12.229
+        },
+        {
+          "text": "building",
+          "start": 12.265,
+          "end": 12.553
+        },
+        {
+          "text": "no",
+          "start": 12.606,
+          "end": 12.712
+        },
+        {
+          "text": "surveillance.",
+          "start": 12.761,
+          "end": 13.429
+        },
+        {
+          "text": "That",
+          "start": 13.589,
+          "end": 14.229
+        },
+        {
+          "text": "tells",
+          "start": 14.269,
+          "end": 14.469
+        },
+        {
+          "text": "you",
+          "start": 14.509,
+          "end": 14.629
+        },
+        {
+          "text": "something.",
+          "start": 14.677,
+          "end": 15.189
+        },
+        {
+          "text": "Not",
+          "start": 15.349,
+          "end": 15.829
+        },
+        {
+          "text": "about",
+          "start": 15.869,
+          "end": 16.069
+        },
+        {
+          "text": "the",
+          "start": 16.109,
+          "end": 16.229
+        },
+        {
+          "text": "virus.",
+          "start": 16.309,
+          "end": 16.789
+        }
+      ],
+      "beats": [
+        {
+          "at_sec": 0.0,
+          "image_prompt": "Stark documentary photography of empty laboratory hallway, dim institutional lighting, cinematic, dramatic shadows, scene: [deadpan] The H five N one outbreak in dairy cattle wasn't a surprise to anyone watching the influenza literature. [pause] The agency spent six months calling it untransmissible while building no surveillance.",
+          "image_file": "/home/aurellian/nanoclaw/projects/youtube/demo/live_test/images/seg_01_beat_01.jpg"
+        },
+        {
+          "at_sec": 14.122,
+          "image_prompt": "Stark documentary photography of empty laboratory hallway, dim institutional lighting, cinematic, dramatic shadows, scene: That tells you something.",
+          "image_file": "/home/aurellian/nanoclaw/projects/youtube/demo/live_test/images/seg_01_beat_02.jpg"
+        },
+        {
+          "at_sec": 15.811,
+          "image_prompt": "Stark documentary photography of empty laboratory hallway, dim institutional lighting, cinematic, dramatic shadows, scene: Not about the virus.",
+          "image_file": "/home/aurellian/nanoclaw/projects/youtube/demo/live_test/images/seg_01_beat_03.jpg"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "duration": 12.930612,
+      "text": "[slowly] When the surveillance system is structurally incapable of detecting what it isn't looking for, the all-clear it produces is meaningless. [mischievously] Worth remembering when the next mysterious cluster inevitably arrives.",
+      "image_prompt": "Conspiratorial close-up of vintage typewriter and stack of redacted documents, warm lamplight, noir aesthetic",
+      "audio_file": "/home/aurellian/nanoclaw/projects/youtube/demo/live_test/audio/segment_02.mp3",
+      "tagged_text": "[slowly] When the surveillance system is structurally incapable of detecting what it isn't looking for, the all-clear it produces is meaningless. [mischievously] Worth remembering when the next mysterious cluster inevitably arrives.",
+      "words": [
+        {
+          "text": "When",
+          "start": 0.134,
+          "end": 0.158
+        },
+        {
+          "text": "the",
+          "start": 0.198,
+          "end": 0.318
+        },
+        {
+          "text": "surveillance",
+          "start": 0.361,
+          "end": 0.877
+        },
+        {
+          "text": "system",
+          "start": 0.934,
+          "end": 1.276
+        },
+        {
+          "text": "is",
+          "start": 1.329,
+          "end": 1.435
+        },
+        {
+          "text": "structurally",
+          "start": 1.492,
+          "end": 2.074
+        },
+        {
+          "text": "incapable",
+          "start": 2.154,
+          "end": 2.874
+        },
+        {
+          "text": "of",
+          "start": 2.954,
+          "end": 3.114
+        },
+        {
+          "text": "detecting",
+          "start": 3.17,
+          "end": 3.674
+        },
+        {
+          "text": "what",
+          "start": 3.706,
+          "end": 3.834
+        },
+        {
+          "text": "it",
+          "start": 3.861,
+          "end": 3.915
+        },
+        {
+          "text": "isn't",
+          "start": 3.975,
+          "end": 4.235
+        },
+        {
+          "text": "looking",
+          "start": 4.265,
+          "end": 4.475
+        },
+        {
+          "text": "for,",
+          "start": 4.555,
+          "end": 5.435
+        },
+        {
+          "text": "the",
+          "start": 5.475,
+          "end": 5.595
+        },
+        {
+          "text": "all-clear",
+          "start": 5.675,
+          "end": 6.317
+        },
+        {
+          "text": "it",
+          "start": 6.37,
+          "end": 6.476
+        },
+        {
+          "text": "produces",
+          "start": 6.547,
+          "end": 7.115
+        },
+        {
+          "text": "is",
+          "start": 7.195,
+          "end": 7.355
+        },
+        {
+          "text": "meaningless.",
+          "start": 7.415,
+          "end": 8.435
+        },
+        {
+          "text": "Worth",
+          "start": 9.001,
+          "end": 9.036
+        },
+        {
+          "text": "remembering",
+          "start": 9.096,
+          "end": 9.756
+        },
+        {
+          "text": "when",
+          "start": 9.804,
+          "end": 9.996
+        },
+        {
+          "text": "the",
+          "start": 10.016,
+          "end": 10.076
+        },
+        {
+          "text": "next",
+          "start": 10.14,
+          "end": 10.396
+        },
+        {
+          "text": "mysterious",
+          "start": 10.447,
+          "end": 10.957
+        },
+        {
+          "text": "cluster",
+          "start": 11.017,
+          "end": 11.437
+        },
+        {
+          "text": "inevitably",
+          "start": 11.51,
+          "end": 12.24
+        },
+        {
+          "text": "arrives.",
+          "start": 12.32,
+          "end": 12.88
+        }
+      ],
+      "beats": [
+        {
+          "at_sec": 0.0,
+          "image_prompt": "Conspiratorial close-up of vintage typewriter and stack of redacted documents, warm lamplight, noir aesthetic, scene: [slowly] When the surveillance system is structurally incapable of detecting what it isn't looking for, the all-clear it produces is meaningless. [mischievously] Worth remembering when the next mysterious cluster inevitably arrives.",
+          "image_file": "/home/aurellian/nanoclaw/projects/youtube/demo/live_test/images/seg_02_beat_01.jpg"
+        }
+      ]
+    }
+  ],
+  "output_file": "/home/aurellian/nanoclaw/projects/youtube/demo/live_test/output.mp4"
+}

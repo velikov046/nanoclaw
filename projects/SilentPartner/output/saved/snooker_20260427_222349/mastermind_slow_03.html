@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SilentPartner — Analysis</title>
+<style>
+  :root {
+    --bg:        #0e0a0a;
+    --surface:   #1a1010;
+    --border:    #3a1a1a;
+    --text:      #d8cccc;
+    --muted:     #8a7070;
+    --accent:    #cc2222;
+    --red:       #cc2222;
+    --orange:    #cc6622;
+    --yellow:    #cc9922;
+    --green:     #228844;
+    --blue:      #2266aa;
+    --header-bg: #1a0808;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: .5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    color: #c08080;
+    margin: 2rem 0 .75rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    border-left: 3px solid var(--accent);
+    padding-left: .6rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+    color: var(--text);
+    margin: 1.25rem 0 .5rem;
+    font-style: italic;
+  }
+
+  p { margin-bottom: .75rem; }
+
+  ul, ol {
+    margin: .5rem 0 .75rem 1.5rem;
+  }
+
+  li { margin-bottom: .25rem; }
+
+  strong { color: #e8d0d0; }
+
+  em { color: var(--muted); font-style: italic; }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.5rem 0;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    font-size: .9rem;
+  }
+
+  thead tr {
+    background: var(--header-bg);
+    border-bottom: 2px solid var(--accent);
+  }
+
+  th {
+    padding: .5rem .75rem;
+    text-align: left;
+    color: var(--muted);
+    font-weight: normal;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    font-size: .8rem;
+  }
+
+  td {
+    padding: .5rem .75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tbody tr:hover { background: rgba(255,255,255,.02); }
+
+  /* Suspicion colour bands on ranking table rows */
+  tr.rank-1, tr.rank-2 { border-left: 3px solid var(--red); }
+  tr.rank-3, tr.rank-4 { border-left: 3px solid var(--orange); }
+  tr.rank-5            { border-left: 3px solid var(--yellow); }
+  tr.rank-6, tr.rank-7 { border-left: 3px solid var(--green); }
+
+  tr.rank-1 td:first-child, tr.rank-2 td:first-child { color: var(--red); font-weight: bold; }
+  tr.rank-3 td:first-child, tr.rank-4 td:first-child { color: var(--orange); }
+  tr.rank-5 td:first-child                            { color: var(--yellow); }
+  tr.rank-6 td:first-child, tr.rank-7 td:first-child { color: var(--green); }
+
+  /* Inline suspicion badges */
+  .sus-confirmed   { color: var(--red);    font-weight: bold; }
+  .sus-likely      { color: var(--red); }
+  .sus-strong      { color: var(--red); }
+  .sus-leaning-f   { color: var(--orange); }
+  .sus-high        { color: var(--orange); }
+  .sus-uncertain   { color: var(--yellow); }
+  .sus-medium      { color: var(--yellow); }
+  .sus-leaning-l   { color: var(--blue); }
+  .sus-low         { color: var(--green); }
+  .sus-liberal     { color: var(--blue); }
+
+  blockquote {
+    border-left: 2px solid var(--border);
+    padding-left: .75rem;
+    color: var(--muted);
+    margin: .75rem 0;
+    font-style: italic;
+  }
+
+  code {
+    background: var(--surface);
+    padding: .1em .4em;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: .9em;
+    color: #c08080;
+  }
+
+  .meta {
+    color: var(--muted);
+    font-size: .8rem;
+    margin-bottom: 2rem;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<p class="meta">mastermind slow pass #3</p><h2>SCENE</h2>
+<p>The deciding frame of a World Championship match at the Crucible Theatre, Sheffield, between Ronnie ("The Rocket") and John Higgins, two players the commentator calls all-time greats. One player led 8-3 across sessions and was expected to close out the match; the other mounted a dramatic comeback to force this deciding frame. Both players have now had chances in the deciding frame; John Higgins appears to have missed what the commentator implies may have been his last opportunity, potentially leaving Ronnie with a winning chance.</p>
+<h2>DOMAIN</h2>
+<p>World Championship Snooker, the sport's most prestigious annual event, held at the Crucible Theatre in Sheffield.</p>
+<h2>WHO'S INVOLVED</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Role</th>
+<th>One-line</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>John Higgins</td>
+<td>Player</td>
+<td>One of snooker's all-time greats; missed a key shot to the middle pocket at a critical moment in the deciding frame.</td>
+</tr>
+<tr>
+<td>Ronnie ("The Rocket")</td>
+<td>Player</td>
+<td>One of snooker's all-time greats; appears to have a chance to close out the match after Higgins's miss.</td>
+</tr>
+</tbody>
+</table>
+<h2>DON'T SAY</h2>
+<ul>
+<li><strong>8-3</strong> -- Past scoreline from earlier sessions; it is historical context, not the current score.</li>
+<li><strong>aerodromes</strong> -- Whisper artifact; not a snooker term, underlying word unclear.</li>
+<li><strong>shops / food / paths</strong> -- Repeated Whisper artifacts; underlying snooker terms (likely "shots", "pot") unclear.</li>
+<li><strong>under-readable</strong> -- Whisper artifact for "unreadable"; do not repeat the mangled form.</li>
+<li><strong>partner</strong> -- Whisper artifact; likely "opponent" or a player name, underlying word unclear.</li>
+<li><strong>old rat</strong> -- Whisper artifact; underlying word or phrase unclear in snooker context.</li>
+<li><strong>pressure pop</strong> -- Whisper artifact; almost certainly "pressure pot", a tense potting opportunity.</li>
+</ul>
+<h2>GLOSSARY</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>deciding frame</td>
+<td>The final frame of a match when both players are level; whoever wins it wins the match.</td>
+</tr>
+<tr>
+<td>sessions</td>
+<td>In major snooker matches, play is split into sessions of roughly 8 frames each, with breaks between them.</td>
+</tr>
+<tr>
+<td>cannon</td>
+<td>A shot where the cue ball contacts two object balls without potting either, used to nudge balls into better positions tactically.</td>
+</tr>
+<tr>
+<td>long pot</td>
+<td>Potting a ball from a long distance across the table; high-skill, higher-risk than a short pot.</td>
+</tr>
+<tr>
+<td>the black</td>
+<td>The black ball, worth 7 points, the highest-value ball on the table. Attacking it in a deciding frame is a calculated gamble.</td>
+</tr>
+</tbody>
+</table>
+<h2>CURRENT NARRATIVES</h2>
+<p><strong>Deciding frame: both had chances, Higgins may have run out</strong><br />
+Both players took aggressive shots off the black and both left themselves in difficulty. Higgins missed to the middle pocket, and the commentator reads his body language as resignation, suggesting he may have played his last shot of the match.</p>
+<p><strong>Two all-time greats, sudden death</strong><br />
+The commentator explicitly frames this as a match between two of the sport's greatest ever players. Even at this level, a deciding frame is unpredictable, and the stakes could not be higher.</p>
+<p><strong>Remarkable comeback (background)</strong><br />
+One player trailed heavily across sessions and looked certain to lose; the trailing player produced what commentators called unreadable snooker to claw back to a deciding frame, surprising everyone.</p>
+<h2>KEY MOMENTS</h2>
+<ul>
+<li>[285s] -- Commentator calls both players all-time greats and notes anything can happen in a deciding frame (frames the occasion: sudden death, no lead is safe)</li>
+<li>[278s] -- Commentator says Higgins might just have played his last shot (in snooker, this means the opponent may have a clear run to the colours needed to win)</li>
+<li>[270s] -- Another chance described for Higgins; commentator reads his body language as knowing he's left himself in trouble</li>
+<li>[238s] -- Higgins misses his shot to the middle pocket (missing a makeable pot in a deciding frame can hand the match to the opponent)</li>
+<li>[229s] -- Both players attacked the black, both left tricky positions (the black is the highest-value ball; going for it here reflects the high-stakes urgency)</li>
+<li>[210s] -- Ronnie named; commentator confirms both players have had a chance in the deciding frame (neither player has yet taken control)</li>
+<li>[187s] -- "The Rocket" referenced as balls become available (confirms Ronnie's identity via his established nickname)</li>
+<li>[165s] -- John Higgins named for the first time (one of snooker's most decorated champions, now confirmed as one of the two players)</li>
+<li>[120s] -- Trailing player described as playing unreadable snooker this afternoon (shot selection hard to anticipate or counter: key quality in a comeback)</li>
+<li>[105s] -- Heavy lead cited; commentator thought the leader could close it without needing a deciding frame (makes the comeback all the more striking)</li>
+</ul>
+<h2>TALKING POINTS</h2>
+<ul>
+<li>Ronnie in a deciding frame, classic.</li>
+<li>Higgins looked gone there.</li>
+<li>You can't write this off until it's done.</li>
+<li>The Crucible does this every time.</li>
+<li>That comeback was something else.</li>
+</ul>
+</div>
+<script>
+// Colour ranking table rows by position
+document.querySelectorAll('table').forEach(tbl => {
+  const rows = tbl.querySelectorAll('tbody tr');
+  // Check if first column looks like rank numbers
+  rows.forEach((row, i) => {
+    const first = row.cells[0]?.textContent?.trim() || '';
+    const num = parseInt(first);
+    if (!isNaN(num) && num >= 1 && num <= 7) {
+      row.classList.add('rank-' + num);
+    } else if (rows.length <= 7 && i < 7) {
+      // Unnamed ranking table — colour by position
+      const tblHeader = tbl.previousElementSibling;
+      if (tblHeader && /rank|suspect|fascist/i.test(tblHeader.textContent || '')) {
+        row.classList.add('rank-' + (i + 1));
+      }
+    }
+  });
+});
+
+// Highlight suspicion level text
+const patterns = [
+  [/\bConfirmed\b/g,            'sus-confirmed'],
+  [/\bStrong\s+Fascist\s+read\b/gi, 'sus-strong'],
+  [/\bLikely\s+Fascist\b/gi,   'sus-likely'],
+  [/\bLeaning\s+Fascist\b/gi,  'sus-leaning-f'],
+  [/\bHigh\b/g,                'sus-high'],
+  [/\bUncertain\b/g,           'sus-uncertain'],
+  [/\bMedium\b/g,              'sus-medium'],
+  [/\bLeaning\s+Liberal\b/gi,  'sus-leaning-l'],
+  [/\bLow\b/g,                 'sus-low'],
+];
+
+function walkTextNodes(el) {
+  if (el.nodeType === Node.TEXT_NODE) return [el];
+  const nodes = [];
+  el.childNodes.forEach(c => nodes.push(...walkTextNodes(c)));
+  return nodes;
+}
+
+// Only apply inside td and li elements to avoid mangling headings
+document.querySelectorAll('td, li, p').forEach(el => {
+  patterns.forEach(([re, cls]) => {
+    walkTextNodes(el).forEach(node => {
+      if (!re.test(node.textContent)) return;
+      re.lastIndex = 0;
+      const frag = document.createDocumentFragment();
+      let last = 0, m;
+      while ((m = re.exec(node.textContent)) !== null) {
+        frag.appendChild(document.createTextNode(node.textContent.slice(last, m.index)));
+        const span = document.createElement('span');
+        span.className = cls;
+        span.textContent = m[0];
+        frag.appendChild(span);
+        last = m.index + m[0].length;
+      }
+      frag.appendChild(document.createTextNode(node.textContent.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  });
+});
+</script>
+</body>
+</html>

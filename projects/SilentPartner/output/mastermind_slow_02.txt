@@ -1,0 +1,54 @@
+## SCENE
+
+A snooker match at the Crucible Theatre, Sheffield. One player led 8-3 and was expected by commentators to close out the match in two sessions; the trailing player instead fought back dramatically to level it and force a deciding frame. The comeback player has been playing, in the commentator's words, unreadable snooker this afternoon. The deciding frame is still in progress, with a chance on the table.
+
+## DOMAIN
+
+World Championship Snooker, the sport's most prestigious annual event, held at the Crucible Theatre in Sheffield.
+
+## WHO'S INVOLVED
+
+No entities with high confidence have been identified yet -- player names have not been confirmed from the audio.
+
+## DON'T SAY
+
+- **aerodromes** -- Whisper artifact; not a snooker term, underlying word unclear
+- **shops / food / paths** -- Repeated Whisper artifacts; likely "shots" or "pot" underneath
+- **8-3** -- Past scoreline from commentary; verify before repeating as the exact score
+- **under-readable** -- Whisper artifact for "unreadable"; don't repeat the mangled form
+- **partner** -- Whisper artifact at around 2 minutes; likely "opponent" or a player name
+
+## GLOSSARY
+
+| Term | Meaning here |
+|------|-------------|
+| Deciding frame | The final frame when both players are level; whoever wins it wins the match -- sudden death |
+| Sessions | Major snooker matches split play into blocks of roughly 8 frames each, with breaks between them |
+
+## CURRENT NARRATIVES
+
+**Deciding frame chance at the table**
+A player has a live chance on the table right now. The commentator flagged it as makeable and something the player must convert to win the match.
+
+**Remarkable comeback from 8-3 down**
+One player trailed heavily and the match looked all but over; that player has since played what commentators call "unreadable" snooker -- unpredictable shot selection that is hard to counter -- clawing all the way back to a deciding frame and stunning everyone in the process.
+
+## KEY MOMENTS
+
+- **~2:00** -- Trailing player described as playing "unreadable snooker this afternoon" (means their shot choices are near-impossible to anticipate, making them very hard to play against)
+- **~1:45** -- Score of 8-3 referenced; commentator had expected the leader to wrap it up in two sessions (puts the scale of the comeback in sharp relief)
+- **~1:15** -- Commentators note many expected the leader to simply walk away with the match (underscores how one-sided it looked before the turnaround)
+- **~0:37** -- Commentator says the shot at the table is among the easiest available and must be potted (a "must pot" signal means the ball is straightforward; missing it here would be a serious error under pressure)
+- **~0:15** -- Deciding frame under way, a chance on the table (sudden death: whoever wins this frame wins the entire match)
+
+## TALKING POINTS
+
+That comeback is extraordinary.
+
+Unreadable is right -- you just can't get a read on him.
+
+Deciding frame snooker is something else.
+
+What a chance to have right now.
+
+One frame, winner takes all.

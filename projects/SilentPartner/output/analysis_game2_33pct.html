@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SilentPartner — Analysis</title>
+<style>
+  :root {
+    --bg:        #0e0a0a;
+    --surface:   #1a1010;
+    --border:    #3a1a1a;
+    --text:      #d8cccc;
+    --muted:     #8a7070;
+    --accent:    #cc2222;
+    --red:       #cc2222;
+    --orange:    #cc6622;
+    --yellow:    #cc9922;
+    --green:     #228844;
+    --blue:      #2266aa;
+    --header-bg: #1a0808;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: .5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    color: #c08080;
+    margin: 2rem 0 .75rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    border-left: 3px solid var(--accent);
+    padding-left: .6rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+    color: var(--text);
+    margin: 1.25rem 0 .5rem;
+    font-style: italic;
+  }
+
+  p { margin-bottom: .75rem; }
+
+  ul, ol {
+    margin: .5rem 0 .75rem 1.5rem;
+  }
+
+  li { margin-bottom: .25rem; }
+
+  strong { color: #e8d0d0; }
+
+  em { color: var(--muted); font-style: italic; }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.5rem 0;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    font-size: .9rem;
+  }
+
+  thead tr {
+    background: var(--header-bg);
+    border-bottom: 2px solid var(--accent);
+  }
+
+  th {
+    padding: .5rem .75rem;
+    text-align: left;
+    color: var(--muted);
+    font-weight: normal;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    font-size: .8rem;
+  }
+
+  td {
+    padding: .5rem .75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tbody tr:hover { background: rgba(255,255,255,.02); }
+
+  /* Suspicion colour bands on ranking table rows */
+  tr.rank-1, tr.rank-2 { border-left: 3px solid var(--red); }
+  tr.rank-3, tr.rank-4 { border-left: 3px solid var(--orange); }
+  tr.rank-5            { border-left: 3px solid var(--yellow); }
+  tr.rank-6, tr.rank-7 { border-left: 3px solid var(--green); }
+
+  tr.rank-1 td:first-child, tr.rank-2 td:first-child { color: var(--red); font-weight: bold; }
+  tr.rank-3 td:first-child, tr.rank-4 td:first-child { color: var(--orange); }
+  tr.rank-5 td:first-child                            { color: var(--yellow); }
+  tr.rank-6 td:first-child, tr.rank-7 td:first-child { color: var(--green); }
+
+  /* Inline suspicion badges */
+  .sus-confirmed   { color: var(--red);    font-weight: bold; }
+  .sus-likely      { color: var(--red); }
+  .sus-strong      { color: var(--red); }
+  .sus-leaning-f   { color: var(--orange); }
+  .sus-high        { color: var(--orange); }
+  .sus-uncertain   { color: var(--yellow); }
+  .sus-medium      { color: var(--yellow); }
+  .sus-leaning-l   { color: var(--blue); }
+  .sus-low         { color: var(--green); }
+  .sus-liberal     { color: var(--blue); }
+
+  blockquote {
+    border-left: 2px solid var(--border);
+    padding-left: .75rem;
+    color: var(--muted);
+    margin: .75rem 0;
+    font-style: italic;
+  }
+
+  code {
+    background: var(--surface);
+    padding: .1em .4em;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: .9em;
+    color: #c08080;
+  }
+
+  .meta {
+    color: var(--muted);
+    font-size: .8rem;
+    margin-bottom: 2rem;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<h2>PREDICTED ROLE RANKING</h2>
+<p><em>(Most → Least Likely Fascist — early game, treat as predictions)</em></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Player</th>
+<th>Confidence</th>
+<th>One-line Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>John</strong></td>
+<td>Strong read</td>
+<td>Enacted fascist as chancellor after allegedly receiving a liberal; claimed 3-fascist draw as president when deck made that statistically unlikely</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Charlotte</strong></td>
+<td>Leaning</td>
+<td>Consistent "question mark" from multiple players, zero positive liberal plays, behavior matches Hitler playing conservative</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Rachel</strong></td>
+<td>Uncertain</td>
+<td>Alternative fascist candidate if she lied about giving John a liberal; keeping peek entirely secret is a mild flag</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Sullivan</strong></td>
+<td>Uncertain</td>
+<td>First-president all-fascist draw is plausible but unfalsifiable; otherwise clean record</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Dom</strong></td>
+<td>Leaning Liberal</td>
+<td>Gave Rachel a real test in round 2, no fascist-adjacent play, genuine liberal strategic engagement</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Holly</strong></td>
+<td>Likely Liberal</td>
+<td>Transparent liberal plays in rounds 1 and 3, active investigator, cross-corroborated by Sullivan</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>SPEAKER MAPPING</h2>
+<p><strong>Critical limitation:</strong> The transcript provided is a raw timestamped feed with no SPEAKER labels (SPEAKER_00, etc.) — it appears diarization was not applied to this file. Speaker attribution below is derived entirely from in-dialogue name references and response patterns.</p>
+<table>
+<thead>
+<tr>
+<th>Player</th>
+<th>Attribution Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Holly</strong></td>
+<td>Reacts to "Adolf Holley" at [749s]; confirms "I got two liberals" as round-3 president [794s]</td>
+</tr>
+<tr>
+<td><strong>John</strong></td>
+<td>Called out by name at [727s]; says "I think it's bullshit, guys" [1282s] after fascist accusations</td>
+</tr>
+<tr>
+<td><strong>Rachel</strong></td>
+<td>Others ask "Rachel, what did you give him?" [1268s]; responds "I did give him a liberal" [1270s]</td>
+</tr>
+<tr>
+<td><strong>Charlotte</strong></td>
+<td>Says "Give me a chance" [836s] when nominated; "I also don't want to pick Hitler as chancellor" [1385s]</td>
+</tr>
+<tr>
+<td><strong>Dom</strong></td>
+<td>Says "Finally" [534s] becoming president; "Who out of us three..." [541s] as second president</td>
+</tr>
+<tr>
+<td><strong>Sullivan</strong></td>
+<td>"Thank you, thank you" [760s] after being chosen as chancellor; confirms receiving policies</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Unresolved:</strong> The host/narrator voice and in-game voices blur in several places. Without proper diarization, the round-4 chancellor identity is inferred rather than confirmed.</p>
+<hr />
+<h2>EARLY SUSPICION PROFILES</h2>
+<h3>Holly</h3>
+<p><strong>Suspicion: Likely Liberal</strong></p>
+<ul>
+<li><strong>Round 1 (chancellor):</strong> Received 2 fascists from the president — no choice, enacted fascist. She immediately disclosed this and showed frustration ["I was handed two fascists" — 443s].</li>
+<li><strong>Round 3 (president):</strong> Drew 1F + 2L, discarded the fascist, passed 2 liberals to Sullivan. Sullivan independently enacted a liberal and confirmed receiving 2 liberal tiles. This is strong corroborating evidence of transparency.</li>
+<li><strong>Investigation behavior:</strong> Explicitly names Charlotte as the "biggest question mark" [739s], passed on Charlotte in favor of testing Sullivan — suggesting real analytical intent rather than performance.</li>
+<li><strong>Watch for:</strong> Whether she protects or avoids John as Charlotte's chancellorship unfolds.</li>
+</ul>
+<hr />
+<h3>John</h3>
+<p><strong>Suspicion: Strong Fascist Read</strong></p>
+<ul>
+<li><strong>Round 4 (president):</strong> Claimed to draw 3 consecutive fascists. By this point the deck had approximately 5 fascists and 3 liberals remaining among 8 cards — probability of all-fascist draw is roughly 18%. His chancellor confirmed receiving 2 fascists ["I got given two" — 950s], consistent with John's account, but John's claim of an all-fascist draw is exactly what a fascist president would say to have cover for passing 2 fascists to a trusted partner.</li>
+<li><strong>Round 5 (chancellor):</strong> Rachel (president) states she passed John a liberal ["I did give him a liberal" — 1270s]. John enacted a fascist. His discard was also a fascist [1294s]. John claims ["I didn't have a choice" — 1288s], but the chancellor's own moment of hesitation at [1248s] — "I'm going to try to discard the right one" — implies he had <em>a choice to make</em>. You don't try to "discard the right one" when both cards are identical.</li>
+<li><strong>Pattern:</strong> Two consecutive rounds (4 and 5) producing fascist policies, with John at the center of both. His explanations rely entirely on his own uncorroborated word.</li>
+<li><strong>Watch for:</strong> Whether Charlotte nominates John as chancellor (fascist protection pattern); how John votes on Charlotte's government vs. other governments.</li>
+</ul>
+<hr />
+<h3>Rachel</h3>
+<p><strong>Suspicion: Uncertain</strong></p>
+<ul>
+<li><strong>Round 2 (chancellor):</strong> Received liberal + fascist from Dom, enacted the liberal. This is the clearest liberal play in the game and establishes an early trustworthy baseline.</li>
+<li><strong>Round 5 (president, probable):</strong> If seating order reconstruction is correct, Rachel drew the round-5 policies, passed John a liberal, and watched him enact fascist. She accused him directly and accurately.</li>
+<li><strong>Policy Peek:</strong> Rachel appears to have used the Policy Peek (triggered by 3rd fascist policy [1312s]) and chose to keep the information entirely to herself [1350s: "Yeah, I'm going to keep this to myself."]. A liberal president who sees 3 fascist tiles coming would typically warn the group, at least obliquely. Full suppression is ambiguous — could be liberal information hoarding or fascist cover.</li>
+<li><strong>Watch for:</strong> Whether she eventually shares the peek information and what she says; whether she steers Charlotte toward or away from John.</li>
+</ul>
+<hr />
+<h3>Charlotte</h3>
+<p><strong>Suspicion: Leaning Fascist</strong></p>
+<ul>
+<li><strong>No government involvement yet</strong> — Charlotte hasn't been president or chancellor in any round the group can evaluate. This creates an information vacuum that can be exploited.</li>
+<li><strong>Multiple players flag her</strong> as "the biggest question mark" [739s] without being able to articulate specific evidence. Holly considered picking Charlotte in round 3 before choosing Sullivan instead. This ambient suspicion from players with no concrete trigger is notable.</li>
+<li><strong>Current presidency behavior:</strong> Charlotte expresses explicit concern about electing Hitler as chancellor now that 3F are on the board [1385s: "I also don't want to pick Hitler as chancellor right now"]. This is a classic liberal-sounding statement — but it's also exactly what Hitler would say performatively. She says "I know I'm a liberal" [1418s] while deliberating chancellor choice.</li>
+<li><strong>Watch for:</strong> Her chancellor nomination is the critical diagnostic moment. If she nominates John, Dom, or Holly — read accordingly. Also watch whether she avoids nominating herself into a position where she'd be tested.</li>
+</ul>
+<hr />
+<h3>Dom</h3>
+<p><strong>Suspicion: Leaning Liberal</strong></p>
+<ul>
+<li><strong>Round 2 (president):</strong> Drew 2F + 1L, deliberately passed 1F + 1L to Rachel as an explicit test ["which I thought would be a good test" — 688s]. Disclosed his hand fully after the round. This is transparent, liberal-optimal behavior.</li>
+<li><strong>Political commentary:</strong> Consistently frames statements in liberal terms and argues against appeasement logic. Could be performance, but the consistency is noted.</li>
+<li><strong>No fascist-adjacent moments</strong> across the transcript.</li>
+<li><strong>Watch for:</strong> How he votes on Charlotte's government; whether he starts softening on John.</li>
+</ul>
+<hr />
+<h3>Sullivan</h3>
+<p><strong>Suspicion: Uncertain</strong></p>
+<ul>
+<li><strong>Round 1 (president, probable):</strong> If seating reconstruction holds, Sullivan was the first president and drew all 3 fascists — no choice. The deck at that point was 11F/6L (65% fascist), making a full-fascist draw plausible (~24% probability). Unfalsifiable.</li>
+<li><strong>Round 3 (chancellor):</strong> Received 2 liberals from Holly, enacted liberal, confirmed receiving the 2 liberal tiles. Clean, corroborated play.</li>
+<li><strong>Otherwise passive:</strong> Sullivan hasn't been flagged by other players and hasn't flagged others.</li>
+<li><strong>Watch for:</strong> Whether he steers Charlotte's chancellor nomination quietly (fascist partner behavior); how he votes.</li>
+</ul>
+<hr />
+<h2>EARLY ALLIANCE CLUSTERS</h2>
+<p><strong>Suspected Fascist Pair: John + Charlotte</strong><br />
+The strongest structural hypothesis. John has the most direct fascist evidence; Charlotte's profile matches Hitler playing low-profile — letting the Fascist run the board while staying off the radar. Charlotte's current presidency with 3F on the board is exactly where Hitler needs to be careful: she can't be chancellor, so she's safe, and as president she controls the next government.</p>
+<p><strong>Liberal Bloc (provisional):</strong> Holly + Dom + Rachel — all three have demonstrated clean or corroborating liberal plays. Rachel's round-2 chancellor decision and Dom's round-2 president decision are the most trustworthy single-round observations in the game.</p>
+<p><strong>Loose question:</strong> Sullivan sits in a neutral zone. He has no definitive liberal or fascist moment beyond round 3.</p>
+<hr />
+<h2>KEY MOMENTS</h2>
+<p><strong>1. [1248–1295] — The chancellor hesitation (most diagnostic moment)</strong><br />
+Someone (likely John as chancellor) pauses and says "I'm going to try to discard the right one" — then enacts a fascist policy. The hesitation language implies a choice between two different cards. Rachel states she gave John a liberal. John's discard was "another fascist." His post-hoc claim of "I didn't have a choice" contradicts the behavior and the president's account.</p>
+<p><strong>2. [947–960] — John's "three fascists" claim as president</strong><br />
+John tells his round-4 chancellor he drew 3 fascists. The chancellor validates receiving 2 fascist tiles with no choice. But a player flags [957s]: "It makes me a little more suspicious of you getting three because numbers-wise, that's trickier." With ~5 fascists and 3 liberals in the remaining 8-card deck, this is possible but sits at ~18% probability. Combined with round 5, two consecutive all-fascist claims from John strains credibility.</p>
+<p><strong>3. [1350] — Policy Peek suppressed</strong><br />
+The peek president (Rachel, probable) immediately and decisively says "Yeah, I'm going to keep this to myself." No hint about composition, no partial signal to allies. Full suppression from a player who has reason to warn the group — at minimum that John-as-chancellor should be avoided — is noteworthy.</p>
+<p><strong>4. [730–759] — Holly chooses Sullivan over Charlotte</strong><br />
+Holly explicitly names Charlotte as "the biggest question mark" but selects Sullivan as chancellor to gather information on him instead. This reveals Holly's genuine analytical priorities and suggests she was more uncertain about Sullivan at that moment than the language might imply — though her positive read on Sullivan post-round-3 is now corroborated.</p>
+<p><strong>5. [1363–1420] — Charlotte's presidential deliberation</strong><br />
+Charlotte as president explicitly discusses the Hitler election risk, claims to "know she's liberal," and identifies her choices as limited to Holly or another named player. Her stated reasoning is internally consistent with either liberal or Hitler-playing-liberal behavior. This moment matters because her chancellor choice will be the first evaluable action in her presidency.</p>
+<hr />
+<h2>SUMMARY</h2>
+<p>The dominant hypothesis is that <strong>John is the Fascist</strong> and <strong>Charlotte is Hitler</strong>. John's fingerprints are on two consecutive fascist-policy rounds in ways that can't be explained by deck luck alone — the chancellor-hesitation moment at [1248s], combined with Rachel's direct testimony that she passed him a liberal, points to John deliberately discarding the liberal tile and enacting fascist. His round-4 claim of three straight fascist draws as president is plausible in isolation but, stacked against round 5, follows a pattern: every round John participates in produces a fascist policy, and every time, the explanation requires trusting only his word.</p>
+<p>Charlotte fits the Hitler profile precisely because she has <em>nothing to evaluate her against</em> yet. She has floated through five rounds without touching a government, while ambient suspicion follows her without any specific incident to anchor it. That profile — known to multiple players as suspicious, no concrete evidence, still alive — is exactly where Hitler wants to be with 3F on the board. Her current presidency is her highest-risk moment: she cannot be elected chancellor (she's president), but she controls who gets tested next.</p>
+<p>The biggest uncertainty is <strong>Rachel's peek information</strong>. Rachel saw the next three policy tiles and said nothing. If the upcoming draw is 3 fascists, knowing that in advance allows a fascist Rachel to engineer a bad government by nominating someone who will take the blame for the forced policy. If she's liberal, that information is the most powerful tool liberals have right now — knowing whether the next government can produce a liberal policy regardless of player claims. Watch whether Rachel shares the peek in Charlotte's deliberation: if she steers Charlotte toward or away from a specific candidate citing the peek, that directional steer will be as revealing as anything else in the next round.</p>
+</div>
+<script>
+// Colour ranking table rows by position
+document.querySelectorAll('table').forEach(tbl => {
+  const rows = tbl.querySelectorAll('tbody tr');
+  // Check if first column looks like rank numbers
+  rows.forEach((row, i) => {
+    const first = row.cells[0]?.textContent?.trim() || '';
+    const num = parseInt(first);
+    if (!isNaN(num) && num >= 1 && num <= 7) {
+      row.classList.add('rank-' + num);
+    } else if (rows.length <= 7 && i < 7) {
+      // Unnamed ranking table — colour by position
+      const tblHeader = tbl.previousElementSibling;
+      if (tblHeader && /rank|suspect|fascist/i.test(tblHeader.textContent || '')) {
+        row.classList.add('rank-' + (i + 1));
+      }
+    }
+  });
+});
+
+// Highlight suspicion level text
+const patterns = [
+  [/\bConfirmed\b/g,            'sus-confirmed'],
+  [/\bStrong\s+Fascist\s+read\b/gi, 'sus-strong'],
+  [/\bLikely\s+Fascist\b/gi,   'sus-likely'],
+  [/\bLeaning\s+Fascist\b/gi,  'sus-leaning-f'],
+  [/\bHigh\b/g,                'sus-high'],
+  [/\bUncertain\b/g,           'sus-uncertain'],
+  [/\bMedium\b/g,              'sus-medium'],
+  [/\bLeaning\s+Liberal\b/gi,  'sus-leaning-l'],
+  [/\bLow\b/g,                 'sus-low'],
+];
+
+function walkTextNodes(el) {
+  if (el.nodeType === Node.TEXT_NODE) return [el];
+  const nodes = [];
+  el.childNodes.forEach(c => nodes.push(...walkTextNodes(c)));
+  return nodes;
+}
+
+// Only apply inside td and li elements to avoid mangling headings
+document.querySelectorAll('td, li, p').forEach(el => {
+  patterns.forEach(([re, cls]) => {
+    walkTextNodes(el).forEach(node => {
+      if (!re.test(node.textContent)) return;
+      re.lastIndex = 0;
+      const frag = document.createDocumentFragment();
+      let last = 0, m;
+      while ((m = re.exec(node.textContent)) !== null) {
+        frag.appendChild(document.createTextNode(node.textContent.slice(last, m.index)));
+        const span = document.createElement('span');
+        span.className = cls;
+        span.textContent = m[0];
+        frag.appendChild(span);
+        last = m.index + m[0].length;
+      }
+      frag.appendChild(document.createTextNode(node.textContent.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+{
+  "topic": "NHL hockey broadcast \u2014 Florida Panthers vs Edmonton Oilers, Game 6",
+  "domain": "NHL hockey playoff broadcast",
+  "scene": "Game 6 of the Stanley Cup Final, Panthers vs Oilers. Florida leads the series and holds a commanding 13-4 first-period scoring edge across all six games. This segment covers late in the second period: Reinhardt continues to be central, the Oilers are pressing in their own zone and trying to sustain offensive-zone time, and the broadcast references the series history including a 3-0 deficit Edmonton overcame. Jeff Skinner is the Oilers goaltender making key stops.",
+  "entities": [
+    {
+      "name": "Sam Reinhardt",
+      "role": "forward, Florida Panthers",
+      "one_line": "Scored the opening goal in Game 6, extending his scoring streak to four consecutive games; repeatedly involved in zone exits and two-way plays.",
+      "first_seen": "[52s]"
+    },
+    {
+      "name": "Poulet",
+      "role": "skater",
+      "one_line": "Player repeatedly in possession earlier, closely tracked by Currier through the zone.",
+      "first_seen": "[34s]"
+    },
+    {
+      "name": "Currier",
+      "role": "skater",
+      "one_line": "Player who pressured Poulet; referenced in score graphic.",
+      "first_seen": "[44s]"
+    },
+    {
+      "name": "Catherine",
+      "role": "skater",
+      "one_line": "Mentioned as a pass target earlier; timing was off.",
+      "first_seen": "[45s]"
+    },
+    {
+      "name": "Glenburg",
+      "role": "skater",
+      "one_line": "Mentioned in a passing sequence with Smith and Bennett.",
+      "first_seen": "[60s]"
+    },
+    {
+      "name": "Smith",
+      "role": "skater",
+      "one_line": "Mentioned alongside Glenburg in a sequence.",
+      "first_seen": "[62s]"
+    },
+    {
+      "name": "Bennett",
+      "role": "skater",
+      "one_line": "Received a pass from Glenburg.",
+      "first_seen": "[64s]"
+    },
+    {
+      "name": "Rodriguez",
+      "role": "skater",
+      "one_line": "Had the puck, passed it back to the ice.",
+      "first_seen": "[78s]"
+    },
+    {
+      "name": "Hopkins",
+      "role": "skater",
+      "one_line": "Subbed in for Edmondson during play.",
+      "first_seen": "[84s]"
+    },
+    {
+      "name": "Edmondson",
+      "role": "skater, Edmonton Oilers",
+      "one_line": "Came off as Hopkins came on; also involved in a late one-on-two rush chance.",
+      "first_seen": "[84s]"
+    },
+    {
+      "name": "Ryber Hagee",
+      "role": "skater, Florida Panthers",
+      "one_line": "Scored a goal for Florida, extending their lead.",
+      "first_seen": "[112s]"
+    },
+    {
+      "name": "Markov",
+      "role": "skater",
+      "one_line": "Walked up the side, moved toward the slot, took a shot stopped by Skinner.",
+      "first_seen": "[123s]"
+    },
+    {
+      "name": "Ramechi",
+      "role": "skater",
+      "one_line": "Took a shot that went wide.",
+      "first_seen": "[125s]"
+    },
+    {
+      "name": "Marsand",
+      "role": "skater",
+      "one_line": "Came off the bench during a sequence.",
+      "first_seen": "[128s]"
+    },
+    {
+      "name": "Seth Jones",
+      "role": "defenseman, Edmonton Oilers",
+      "one_line": "Veteran Oilers defenseman known for skating and two-way play; received a pass in a late sequence.",
+      "first_seen": "[137s]"
+    },
+    {
+      "name": "Jeff Skinner",
+      "role": "goaltender, Edmonton Oilers",
+      "one_line": "Oilers goalie: made a save to keep the puck alive for Kapanen; also stopped Markov's walk-up shot. Broadcast notes he has 16 postseason goals last year \u2014 likely a misattribution in audio; he is the goaltender.",
+      "first_seen": "[98s]"
+    },
+    {
+      "name": "Kaepernick (Kapanen)",
+      "role": "skater, Edmonton Oilers",
+      "one_line": "Active in an Oilers offensive-zone sequence; received a puck kept alive by Skinner before Reinhardt cleared.",
+      "first_seen": "[95s]"
+    },
+    {
+      "name": "Michael Horovsky",
+      "role": "skater",
+      "one_line": "Received a pass in a zone sequence alongside Kapanen; name may be approximate from broadcast audio.",
+      "first_seen": "[96s]"
+    },
+    {
+      "name": "Kechuk (Tkachuk?)",
+      "role": "skater, Florida Panthers",
+      "one_line": "Broadcast notes he looks noticeably quicker in the last couple of games \u2014 a threatening development for Edmonton.",
+      "first_seen": "[51s]"
+    },
+    {
+      "name": "Mark Coulson",
+      "role": "skater",
+      "one_line": "Blocked a shot, won a battle, then sent the puck deep with a shoulder play.",
+      "first_seen": "[220s]"
+    },
+    {
+      "name": "Bogoski / Bromlovski",
+      "role": "skater",
+      "one_line": "Settled the puck after Coulson sent it deep; also referenced as a positional marker in the sequence.",
+      "first_seen": "[223s]"
+    },
+    {
+      "name": "David Rideshottel",
+      "role": "skater",
+      "one_line": "Carried the puck; fell to the ice during a hard ride along the wall.",
+      "first_seen": "[182s]"
+    },
+    {
+      "name": "McDevitt",
+      "role": "skater",
+      "one_line": "Had the puck, weaved with a teammate, picked the top of the circle for a shot.",
+      "first_seen": "[320s]"
+    },
+    {
+      "name": "Brysona",
+      "role": "skater",
+      "one_line": "Leads all players in shots on goal through five games; the series' most active shooter.",
+      "first_seen": "[330s]"
+    },
+    {
+      "name": "David",
+      "role": "skater, Edmonton Oilers",
+      "one_line": "Generated a dangerous one-on-two rush chance late; still pressing for Edmonton.",
+      "first_seen": "[452s]"
+    },
+    {
+      "name": "Bouchard",
+      "role": "defenseman, Edmonton Oilers",
+      "one_line": "Spotted 'down there cold' \u2014 likely positioned deep in the zone; Evan Bouchard is Edmonton's offensive defenseman known for point shots.",
+      "first_seen": "[191s]"
+    },
+    {
+      "name": "Kulak",
+      "role": "defenseman, Edmonton Oilers",
+      "one_line": "Brett Kulak, Oilers defenseman; mentioned carrying or distributing the puck.",
+      "first_seen": "[275s]"
+    },
+    {
+      "name": "Nerset",
+      "role": "skater",
+      "one_line": "Ran the puck back in, causing an offside call.",
+      "first_seen": "[234s]"
+    }
+  ],
+  "glossary": [
+    {
+      "term": "zone clear",
+      "definition": "Getting the puck out of your own defensive zone to relieve pressure.",
+      "first_seen": "[42s]"
+    },
+    {
+      "term": "four consecutive games",
+      "definition": "Reinhardt has scored in each of his last four games: a notable playoff scoring streak.",
+      "first_seen": "[52s]"
+    },
+    {
+      "term": "neutral zone",
+      "definition": "The middle third of the ice between the two blue lines.",
+      "first_seen": "[255s]"
+    },
+    {
+      "term": "slot",
+      "definition": "High-danger area directly in front of the net; shots from here are hardest for goalies to stop.",
+      "first_seen": "[240s]"
+    },
+    {
+      "term": "TV timeout",
+      "definition": "Mandatory stoppage used for broadcast commercial breaks, often timed to give top lines extra rest.",
+      "first_seen": "[141s]"
+    },
+    {
+      "term": "big boys",
+      "definition": "Broadcaster slang for top-line or power-play unit players, deployed when it matters most.",
+      "first_seen": "[141s]"
+    },
+    {
+      "term": "pick your spots",
+      "definition": "Analyst advice: don't take random risks, wait for the right moment to push for the tying goal.",
+      "first_seen": "[278s]"
+    },
+    {
+      "term": "four on four",
+      "definition": "Both teams had a player penalized simultaneously; each plays with four skaters, opening up the ice.",
+      "first_seen": "[360s]"
+    },
+    {
+      "term": "blue line",
+      "definition": "The line marking entry into the attacking zone.",
+      "first_seen": "[328s]"
+    },
+    {
+      "term": "one on two",
+      "definition": "An attacker alone against two defenders: long odds, but still a scoring chance.",
+      "first_seen": "[461s]"
+    },
+    {
+      "term": "top of the circle",
+      "definition": "The upper arc of the face-off circle; shots from here carry a decent angle but require quick release.",
+      "first_seen": "[503s]"
+    },
+    {
+      "term": "high cycles",
+      "definition": "Maintaining possession in the offensive zone by cycling the puck along the boards at a high (blue-line) position rather than grinding it out in the corners; generates better shot angles and keeps defenders pinned.",
+      "first_seen": "[83s]"
+    },
+    {
+      "term": "offside",
+      "definition": "A player crosses the attacking blue line before the puck; play is stopped and the zone must be re-entered legally.",
+      "first_seen": "[234s]"
+    },
+    {
+      "term": "wrap around",
+      "definition": "A scoring attempt where the puck carrier skates behind the net and tries to tuck the puck in at the near post on the other side.",
+      "first_seen": "[120s]"
+    },
+    {
+      "term": "between the legs",
+      "definition": "A deceptive move where a skater pulls the puck through their own legs to change direction or delay a shot, drawing the goalie out of position.",
+      "first_seen": "[120s]"
+    }
+  ],
+  "narratives": [
+    {
+      "title": "Florida Panthers first-period dominance",
+      "summary": "Florida has outscored Edmonton 13-4 in first periods across all six games of the series, and 9-0 over the last four. The broadcast treats this as a defining structural advantage for the Panthers.",
+      "status": "active"
+    },
+    {
+      "title": "Florida Panthers lead Game 6",
+      "summary": "The Panthers scored first with Reinhardt and Hagee both netting goals. Florida leads and Edmonton is pressing hard, getting chances but struggling to convert in the second period.",
+      "status": "active"
+    },
+    {
+      "title": "Reinhardt scoring streak",
+      "summary": "Sam Reinhardt scored, marking goals in four straight games, and continues to be involved in key plays including zone exits and two-way play.",
+      "status": "active"
+    },
+    {
+      "title": "Oilers need to take risks",
+      "summary": "Down in Game 6, Edmonton must get more involved in the offensive zone and use high cycles. The broadcast notes they came back from 3-1 and 3-0 deficits earlier in the series.",
+      "status": "active"
+    },
+    {
+      "title": "Edmonton's comeback in this series",
+      "summary": "Edmonton trailed 3-1 in the series and 3-0 in a game, making this run historically notable. Game 6 is their chance to extend or the Panthers' chance to close it out.",
+      "status": "active"
+    },
+    {
+      "title": "Brysona shot volume",
+      "summary": "Brysona leads all players in shots on goal through five games, the statistical marker the broadcast highlighted as Edmonton's best offensive weapon.",
+      "status": "active"
+    },
+    {
+      "title": "Panthers civilian (power play?) unit struggles",
+      "summary": "The broadcast notes the 'civilian apps' (likely the Panthers' secondary or power-play unit) have not performed well this series, with a player injured earlier in the playoffs who had 16 postseason goals last year.",
+      "status": "active"
+    }
+  ],
+  "key_moments": [
+    {
+      "position": "[120s]",
+      "what": "Skater fakes a shot, goes between the legs, attempts a wraparound",
+      "why_it_matters": "Creative scoring attempt; shows the desperation and creativity of the pressing team"
+    },
+    {
+      "position": "[127s]",
+      "what": "Broadcast notes a skater had 15 goals during the close season, career high 28 in a regular season",
+      "why_it_matters": "Contextualizes a player's production ceiling; relevant when assessing offensive threat level"
+    },
+    {
+      "position": "[191s]",
+      "what": "Bouchard spotted cold in the zone",
+      "why_it_matters": "Evan Bouchard is Edmonton's key offensive defenseman; his positioning matters for shot generation"
+    },
+    {
+      "position": "[203s]",
+      "what": "Broadcast notes a player injured earlier in the playoffs had 16 postseason goals last year",
+      "why_it_matters": "Flags a significant absence from Edmonton's lineup; a scorer of that output missing is a real handicap"
+    },
+    {
+      "position": "[210s]",
+      "what": "Reinhardt goal deflected in by Milster Rieden",
+      "why_it_matters": "Another Florida goal extending their lead; deflections are hard for goalies to track"
+    },
+    {
+      "position": "[234s]",
+      "what": "Nerset runs it back in, causes offside",
+      "why_it_matters": "Edmonton loses offensive-zone time on an avoidable turnover at the line"
+    },
+    {
+      "position": "[236s]",
+      "what": "Sparta (likely Panthers) take a 3-0 lead referenced",
+      "why_it_matters": "Confirms the score context: Florida well ahead, Edmonton in serious trouble"
+    },
+    {
+      "position": "[240s]",
+      "what": "Broadcast references the 2024 Stanley Cup Final lasting three games",
+      "why_it_matters": "Historical context: the Panthers have recent Cup Final experience and swept that series"
+    },
+    {
+      "position": "[248s]",
+      "what": "Jeff Skinner defended by Spade in a sequence",
+      "why_it_matters": "Skinner (goaltender) in an unusual puck-handling moment, or a different Skinner; notable if a goalie is handling the puck under pressure"
+    },
+    {
+      "position": "[275s]",
+      "what": "Kulak with the puck, Panthers looking for an opening",
+      "why_it_matters": "Oilers defenseman involved in possession; Edmonton trying to generate from the back end"
+    },
+    {
+      "position": "[317s]",
+      "what": "Broadcast notes Edmonton trailed 3-1 and 3-0 in this series",
+      "why_it_matters": "Puts the Oilers' position in context: they've already pulled off a rare comeback once this series"
+    },
+    {
+      "position": "[523s]",
+      "what": "Game seven referenced",
+      "why_it_matters": "Broadcast implies the series could go to a deciding Game 7 if Edmonton ties tonight"
+    }
+  ],
+  "analysis_count": 5
+}

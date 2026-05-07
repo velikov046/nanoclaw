@@ -1,0 +1,127 @@
+## SUSPICION RANKING
+
+1. **Rachel** — Hitler in games 1 and 2 (both confirmed); the most dangerous player at the table, systematically underdetected across two games.
+2. **Charlotte** — Confirmed Fascist in game 1, post-game admitted full deception; drew three fascists as president in G1 and G2; likely recurrent fascist.
+3. **Dom** — Confirmed Hitler in game 3; hyper-credible liberal act in G1–G2 was itself the tell in hindsight — Hitler plays liberal.
+4. **John** — Suspected by everyone, confirmed fascist by no one; almost certainly a consistent liberal who reads guilty.
+5. **Sullivan** — Flew under the radar throughout; brief suspicion in G2 never stuck.
+6. **Holly** — Consistent liberal all three games; strongest analytical player at the table.
+
+---
+
+## SPEAKER MAPPING
+
+The transcript does not use SPEAKER_XX labels — names appear directly throughout. Players introduced at [58–63s]:
+
+| Player | Status | Notes |
+|--------|--------|-------|
+| Holly | Confirmed | Named [58s]; liberal all games |
+| John | Confirmed | Named [58s]; consistent liberal suspected unfairly |
+| Rachel | Confirmed | Named [60s]; Hitler G1+G2, both confirmed in transcript |
+| Charlotte | Confirmed | Named [63s]; Fascist G1 confirmed; likely recurrent |
+| Dom | Confirmed | Named [63s]; Hitler G3 confirmed by role deal |
+| Sullivan | Confirmed | Host + player; named as player at [757–765s] by others |
+
+No ambiguous labels to resolve — all six players are named directly.
+
+---
+
+## SUSPICION PROFILES
+
+### Rachel
+**Suspicion: Confirmed — Hitler × 2**
+
+**Key evidence:**
+- G1: Holly declares "I only trust Rachel" [1605s] — then Rachel is revealed Hitler [1779–1783s].
+- G2: Dom gives her liberal+fascist; she discards the liberal [3102–3120s]; Holly kills her → "I am" [3376s]. "Double Hitler. Once a Hitler, always a Hitler." [3380–3382s]
+- Physical tell called out retrospectively: "constantly reaching for the policies before the vote starts" [3756–3758s] — premature card-grabbing is a known fascist impatience tell.
+
+**Behavioural notes:** Rachel's strategy was textbook Hitler play — pass liberal policies whenever she had genuine discretion, let her Fascist partner (Charlotte in G1, unknown in G2) absorb the heat of bad draws, and present as a composed voice of reason. She never overargued. When John accused her in G1 [1282–1290s], she responded with calm denial and let the liberals do the rebuttal for her. Her tell was not behavioural but situational: she was always nearby when fascist policies went through but could always point to a co-signed explanation. The "Adolf Holley" nickname [849s] was a gift to her team — it created noise that absorbed liberal energy and kept Rachel invisible.
+
+---
+
+### Charlotte
+**Suspicion: Confirmed (Fascist G1), High (G3)**
+
+**Key evidence:**
+- G1: Draws three fascists as president [444s]; passes two fascists to Holly; confirmed post-game [1396s]: "I was."
+- Post-game confession [3564–3566s]: "I just want to say I fully lied the entire time. It was not the cards, it was very much me."
+- G2: Draws three fascists as president *again* [2088s]; passes fascist policy.
+- G3: Someone receives a card at [3450s] with "OK, Hitler for you" and responds "No. I don't want Hitler." In a 6-player game this is the Fascist card — Charlotte is the most likely recipient given the pattern.
+- Throughout: "Charlotte has known who Hitler is every single time" [3882–3886s] — the liberals noted this but dismissed it as luck.
+
+**Behavioural notes:** Charlotte's tell is the *proactive card confession* — in G1 she immediately announced "I picked up three fascists" [444s] as though it were bad news, which is strong liberal-coding. A fascist player leaning into "I was dealt a bad hand" reads as honest because it accepts blame rather than deflecting. She used this framing repeatedly. Her post-game admission reveals it was calculated, not accidental. Notably, the other liberals never pinned a *confirmed* fascist tag on her across three games despite repeated suspicion — she repeatedly survived votes and shifted scrutiny to John.
+
+---
+
+### Dom
+**Suspicion: Confirmed (Hitler G3), Low throughout G1–G2**
+
+**Key evidence:**
+- G3: Explicitly dealt Hitler card [3456s]: "And Hitler for you, Dom. Oh, danke schön."
+- G1: Holly flagged him [1494–1500s]: "I feel slightly too good to be true" — then talked herself out of it.
+- G3: Voted NEIN on his own chancellor nomination [3684s]: "A nine. From self-hating Chancellor." — this is an almost exclusive Hitler tell: voting against your own government to avoid election as Chancellor.
+- Post-game [4182–4230s]: Describes hoping someone drew three fascists as his only viable path — confirms active game 3 Hitler strategy.
+
+**Behavioural notes:** Dom's strategy across games 1 and 2 was patience and consistency. He passed liberal policies whenever in government, accused John early and often (keeping focus off himself), and built a "tested and clean" reputation with Holly that carried into game 3. His game 3 self-vote was the sharpest in-game tell across the entire session — nobody called it out in the moment. Holly specifically said "I tested him and he was a good boy" [4154–4156s], which was true in G1–G2 and irrelevant in G3.
+
+---
+
+### Holly
+**Suspicion: Low — consistent liberal**
+
+**Key evidence:**
+- G1: Receives two liberals, plays both through [793–806s]; when given a fascist she discards it and volunteers the information.
+- G2: Makes the correct kill against Rachel [3370s] despite being argued into shooting Sullivan — correctly weighs confirmed fascism over suspected Hitler.
+- G3: Builds liberal chain with Charlotte; both confirm each other's policy choices.
+
+**Behavioural notes:** The strongest analytical player at the table. Her weakness is loyalty: once she confirms an ally she defends them fiercely, which Rachel exploited in G1. Her tell as a liberal is vocal resistance to accusations — she argues back, elaborates, and gets louder, while confirmed fascists (Rachel in particular) stay measured and brief. The "Adolf Holley" nickname was a tactical windfall for the fascist team by directing suspicion at the most committed liberal.
+
+---
+
+### John
+**Suspicion: Medium — behavioural suspect, never confirmed**
+
+**Key evidence:**
+- Repeatedly flagged: "I think John has a question mark on his head" [1162s]; "things he was saying before the shoot started" [1170s].
+- G1: His accusation of Rachel [1282–1290s] was *correct* — he identified the actual Hitler — but was dismissed as deflection.
+- Never confirmed fascist in any of the three games.
+
+**Behavioural notes:** John is almost certainly a consistent liberal. His problem is that he analyses out loud in a way that reads as guilty. When he said he was "going to try to discard the right one" [1248s] before passing as Chancellor, it sounded suspicious — but it is exactly how a nervous liberal thinks about a forced fascist choice. His correct read on Rachel in G1 was buried by the social dynamics. He is the boy who cried wolf: right once, dismissed always.
+
+---
+
+### Sullivan
+**Suspicion: Low — minimal scrutiny throughout**
+
+**Key evidence:**
+- G2 as president: His government with Chancellor Charlotte passes a fascist policy [2650–2662s]; Charlotte reports "I've just got two fascists and one liberal."
+- Briefly targeted in G2 [3332–3344s]: "I think it might be Sullivan, and I want to go for Sullivan" — Holly correctly redirects this toward Rachel.
+- No confirmed fascist flag across any game.
+
+**Behavioural notes:** Sullivan's low profile is consistent with liberal behaviour. He is less dramatically present than Holly or John, which means less scrutiny. His policy record is explainable by bad draws given confirmed fascist chancellors (Charlotte) in his governments. The one moment of legitimate suspicion against him in G2 was suppressed by Holly's correct re-focus on Rachel.
+
+---
+
+## ALLIANCE CLUSTERS
+
+**Game 1 — Confirmed:**
+Rachel (Hitler) + Charlotte (Fascist): Operated through mutual cover. Charlotte drew the bad hand and passed the fascist; Rachel stayed clean. Both benefited from Holly being mislabelled "Adolf Holley" — liberal infighting suppressed the real investigation.
+
+**Liberal bloc (G1):** Holly–Dom–Sullivan formed the core trust chain, repeatedly confirming each other through policy transparency. Rachel was accepted into this cluster by Holly's explicit endorsement — a critical misread.
+
+**Game 2 — Confirmed Hitler, unknown Fascist:**
+Rachel (Hitler again) + unknown partner. The G2 Fascist's identity is not explicitly revealed in the transcript, but their governments overlapped with Charlotte's [2086–2088s] triple-fascist presidency and the Rachel/Dom-forced government [2008–2018s]. Charlotte is the most likely repeat Fascist given the three-fascist draw as president.
+
+**Game 3 — Confirmed Hitler, suspected Fascist:**
+Dom (Hitler) + likely Charlotte (Fascist): Charlotte's presence in the "not celebrating" group [4144s] alongside Dom, combined with her game 1 Fascist confirmation and recurring suspicious presidency draws, points to her as the G3 Fascist. Dom and Rachel ("the two Hitlers") apparently clashed [4246–4248s]: "now the two Hitlers hate each other's guts" — Rachel as liberal knows Dom is Hitler and can't help him, while Dom can't leverage her. This is the fascist coordination breaking down when a former Hitler becomes a liberal.
+
+---
+
+## SUMMARY
+
+The structural story of this session is Rachel. She was Hitler in two of three games and was never identified *before* it mattered — in both G1 and G2, the liberals only confirmed her at gunpoint. Her strategy was built on a single insight: Hitler wins by mimicking the best liberal at the table, not by hiding. She passed liberal policies when she had genuine choice, made substantive analytical contributions to liberal discussions, and let her Fascist partner draw fire. Charlotte's role as G1 Fascist was complementary to this — Charlotte's visible suspicion functioned as a heat-sink, pulling attention away from Rachel. The "Adolf Holley" dynamic was an additional gift: it gave the table a named fascist suspect who was obviously, provably innocent, which created social pressure against continued Rachel scrutiny.
+
+Dom's G3 Hitler performance is a cautionary study in reputation laundering. Two games of credible liberal play created a tested-and-clean status that transferred into game 3 as unearned trust. His self-vote NEIN [3684s] — voting against his own chancellor nomination — was the clearest single tell in the entire three-game session, and nobody acted on it. This is the classic problem with Hitler playing liberal: by the time a tell appears, the reputation capital from prior games absorbs it. Holly explicitly noted Dom felt "slightly too good to be true" in G1 [1498s] but did not pursue it. That instinct, left unexamined, cost the liberals G3.
+
+The biggest unresolved question is the identity of Dom's G3 Fascist partner. The evidence pattern — Charlotte's G1 confirmation, her recurrent triple-fascist draws as president, her admission of full deception, and the "these two are not celebrating" framing [4144s] — points to Charlotte as the answer. If correct, Charlotte was the only player to serve as Fascist in multiple games, doing so while surviving liberal scrutiny each time. The single piece of information that would most change this read is an explicit post-G3 role reveal: if Charlotte is confirmed clean in G3, then the G3 Fascist is almost certainly Sullivan, whose low profile across all three games would take on a different meaning entirely.

@@ -1,0 +1,158 @@
+## SUSPICION RANKING
+
+| Rank | Player | Role | One-Line Reasoning |
+|------|--------|------|--------------------|
+| 1 | **Rachel** | **CONFIRMED Hitler** | Revealed at game-end (~3376s); engineered a 3-fascist opening government and rode liberal confusion to the end |
+| 2 | **Sullivan** | **CONFIRMED Fascist** | Self-confirmed post-game (~3396s); first government as Chancellor produced a liberal (trust-building), consistent fascist protection of Rachel |
+| 3 | **Charlotte** | **High — likely 3rd Fascist** | Lied about giving John "a liberal and a fascist" when John flatly contradicts her; the Charlotte–Sullivan government link is the most suspicious pairing |
+| 4 | **Tom** | **Medium** | Was in Rachel's opening government; voted no on his own chancellor nomination — textbook fascist optics-management — but likely liberal given only 3 evil slots |
+| 5 | **John** | **Low** | Discarded fascist when given a choice, correctly read Charlotte, and correctly suspected Rachel toward the end |
+| 6 | **Dom** | **Low** | Clean on policy test; liberal reasoning throughout; Holly's trust in Dom was vindicated by the win |
+| 7 | **Holly** | **CONFIRMED Liberal** | Correctly identified and executed Hitler to win the game |
+
+---
+
+## SPEAKER MAPPING
+
+> **Note:** The provided transcript does not include diarization labels (SPEAKER_00, etc.) — it is timestamped raw dialogue without speaker attribution. Names are recoverable only from in-conversation mentions and addressing patterns. The following map is derived entirely from those patterns.
+
+| Player | Evidence for Identification |
+|--------|-----------------------------|
+| **Rachel** | Named as president at ~1899s; confirmed Hitler at ~3376s; "former Hitler" from previous game |
+| **Tom** | Named as Rachel's nominated Chancellor (~1954s); "Tom said no to his own proposition" (~2178s); "Tom, choose those policies" (~2182s) |
+| **Charlotte** | Named as next president (~2044s); later identified in "Charlotte Sullivan thing" (~2418s) as president in that pairing |
+| **Sullivan** | Referred to by surname throughout; "Is this my first time doing anything? I think it is" (~2406s); self-confirmed fascist post-game |
+| **Dom** | Named in analysis segments ("Lovely Dom," ~2284s); president around ~2488s tested by Holly |
+| **Holly** | The "Adolf Holley" nickname from previous game (~1851s); performs the assassination that wins; confirmed liberal |
+| **John** | Named as target of sexist-joke chancellor pick (~2146s); final government chancellor; "I will be killing Charlotte" (~3324s) |
+
+**Unmapped labels:** N/A — all seven players are identifiable from name mentions. No SPEAKER_XX diarization labels were present to map.
+
+---
+
+## SUSPICION PROFILES
+
+---
+
+### Rachel
+**Suspicion Level: CONFIRMED Hitler**
+
+**Key Evidence:**
+- **Game-end reveal (~3374s–3378s):** Holly asks "Are you Hitler?" and Rachel replies "I am." No ambiguity.
+- **Opening government choice (~1952s):** As first president, Rachel nominates Tom — "my bigger supporter" — a social rather than strategic framing that kept her true motive (Hitler ensuring a fascist-aligned government) obscured.
+- **Three-fascist sweep (~2028s):** Government 1 (Rachel–Tom) produces all three fascist policies. As Hitler, Rachel knew she'd be giving Tom fascist policies regardless; choosing a compliant ally maximised the chance Tom wouldn't break the chain.
+- **Previous game pattern (~1851s–1881s):** The pre-game banter confirms Rachel was Hitler in the session immediately before. She uses the "Adolf Holley" misdirection then — running parallel tactics again here.
+
+**Behavioural Notes:**
+Rachel's Hitler gameplay is disciplined: she nominated a "supporter" rather than a known liberal, stayed quiet during mid-game liberal investigations, and let the fascist infighting do its work. Her role as first president — framed as an honour for the "former Hitler" — actually gave her enormous early board control. The game noted that "the Hitler win was the only way" (~1847s) and she nearly pulled it off a second time via election before being hunted down.
+
+---
+
+### Sullivan
+**Suspicion Level: CONFIRMED Fascist**
+
+**Key Evidence:**
+- **Post-game admission (~3394s–3396s):** When asked "were you fascist?" Sullivan replies "I was."
+- **Charlotte–Sullivan government (~2400s–2450s):** Sullivan as Chancellor under Charlotte's presidency produces a liberal policy — the fascist team deliberately passing liberal to build trust. Charlotte discards her fascist and gives Sullivan two liberals (~2450s); Sullivan passes one. Clean play by design.
+- **First appearance comment (~2406s):** "Is this my first time doing anything? I think it is." — Sullivan has been staying deliberately low-profile, a classic fascist holding pattern.
+- **Presidential term (~2560s–2650s):** Sullivan nominates Holly as Chancellor. Holly passes a liberal. This extends Sullivan's credibility.
+
+**Behavioural Notes:**
+Sullivan's strategy was low-volume, low-suspicion accumulation. He never pushed a fascist policy in a government he controlled, building a clean record. His confirmation as fascist (not Hitler) is consistent with the fascist playbook: know who Hitler is, protect them by absorbing suspicion elsewhere or appearing inert. The "Charlotte Sullivan thing" (~2418s) is the one moment where his alliance with Charlotte is named out loud — and it was largely dismissed.
+
+---
+
+### Charlotte
+**Suspicion Level: HIGH — likely 3rd Fascist**
+
+**Key Evidence:**
+- **The policy lie (~3102s–3110s):** Charlotte tells John "I gave you a liberal and a fascist" — twice. John immediately and flatly says "No, you didn't." (~3108s). John was confirmed to have received two fascist policies (~3298s). A liberal who accidentally discards the wrong card might say "I'm sorry, I thought I gave you a liberal" — not repeat the false claim twice. This is the single most damning moment in the transcript.
+- **Voted-down draw claim (~2086s–2088s):** Charlotte's government is voted down (~2060s–2070s), yet she claims to have drawn three fascist policies. In standard rules, the president does not draw until after the government is confirmed. This claim is either a house-rule artefact or a lie — either way it placed early suspicion on the policy deck rather than on herself.
+- **Charlotte–Sullivan alliance (~2418s):** "The Charlotte Sullivan thing" is noted by other players precisely because the pairing is suspicious. Both confirmed evil; both in the same government.
+- **John's read (~3324s):** "Yes, and I will be killing Charlotte." John — a liberal who was correctly analysing the board — identified Charlotte as his kill target, independently and consistently.
+- **Government 8 (Charlotte P + John C):** Charlotte passes John two fascist policies in the critical late-game government, advancing the fascist track and triggering the execution power.
+
+**Behavioural Notes:**
+Charlotte's alibi is the liberal-passing government with Sullivan (~2450s). Fascists routinely sacrifice fascist policies early to build trust; this is the obvious counter. Her mid-game reasoning sounds liberal-flavoured — she participates in suspicion discussions credibly — but her actions at the key moments (the John government, the policy lie) betray her. The lie is the tell: liberals caught in a bad draw apologise; they don't insist on a false version of events.
+
+---
+
+### Tom
+**Suspicion Level: MEDIUM**
+
+**Key Evidence:**
+- **Government 1 complicity (~2014s):** As Chancellor under Rachel (Hitler), Tom says "It's not tough at all when all you've been given is fascism" — confirming he received two fascist policies with no choice. This is exculpatory for the Government 1 result but doesn't clear him of being fascist.
+- **Voting no on own nomination (~2178s):** "Tom said no to his own proposition." If Tom was nominated as Chancellor and voted against his own government, this is either a fascist optics move (appear liberal by rejecting a government you know will produce fascists) or genuine liberal nervousness. Either reading is suspicious.
+- **Hesitation as Chancellor (~2008s):** "He doesn't know which one to give" — Tom took an unusually long time choosing which policy to discard as Chancellor, despite having no liberal option. Players note this.
+
+**Behavioural Notes:**
+Tom occupies an uncomfortable middle zone. He was in the worst possible government — Rachel (Hitler) as president, all-fascist draw — without necessarily being complicit. But voting no on his own chancellor nomination is rare liberal behaviour and common fascist theatre. The seven-player game has only three evil roles (all accounted for as Rachel, Sullivan, Charlotte), which makes Tom a liberal by elimination — but his behaviour was suspicious enough that he'd have been a reasonable kill target in a tighter game.
+
+---
+
+### John
+**Suspicion Level: LOW**
+
+**Key Evidence:**
+- **Policy test (~2222s–2236s):** When given a liberal and a fascist as Chancellor, John discards the fascist and passes the liberal. The president explicitly notes this was a test (~2224s).
+- **Correct read on Charlotte (~3324s):** John identifies Charlotte as his kill target — the right call based on the available evidence.
+- **Correct read on Rachel (~3360s–3368s):** John argues Rachel is "definitely fascist" and possibly Hitler, even when others are wavering.
+- **Final government (~3298s):** John reports receiving two fascist policies — consistent with Charlotte's lie and John's honest play throughout.
+
+**Behavioural Notes:**
+John's analysis track record is solid. He made the right call on Charlotte, the right call on Rachel, and his policy play was clean when he had agency. His only liability is being the Chancellor in Charlotte's final government — not through any fault of his own.
+
+---
+
+### Dom
+**Suspicion Level: LOW**
+
+**Key Evidence:**
+- **Policy test (~2540s–2550s):** When given a liberal and a fascist as Chancellor, Dom discards the fascist. The president states: "Had to test Dom" and "I'm glad you tested me." (~2548s–2550s).
+- **Liberal reasoning (~2254s–2264s):** Dom correctly identifies that presidents have more power over policy outcomes than chancellors, directing suspicion toward Rachel and Charlotte rather than chancellors. This is accurate liberal analysis.
+- **Holly's trust vindicated:** Holly chooses Dom as Chancellor partially on the basis of his trustworthiness, and that trust is confirmed when Dom passes clean.
+
+**Behavioural Notes:**
+Dom functions as the liberal anchor: he reasons well, plays cleanly when tested, and his instincts about the Rachel–Charlotte presidency cluster turn out to be correct. The only moment of doubt is that his trust of Charlotte's government explanation briefly held before Charlotte's lie became undeniable.
+
+---
+
+### Holly
+**Suspicion Level: CONFIRMED Liberal**
+
+**Key Evidence:**
+- **Winning assassination (~3370s–3378s):** Holly chooses to shoot Rachel over Sullivan, correctly identifying the Hitler rather than the easier "confirmed fascist" target. Rachel is confirmed Hitler on execution.
+- **Policy play clean:** As Chancellor under Sullivan, Holly passes a liberal policy (~2640s). Sullivan's trust in Holly is reciprocated.
+- **Deliberation quality (~3330s–3370s):** Holly's reasoning toward the kill is the most analytically sound in the game: "I think it might be Sullivan, and I want to go for Sullivan... but I think that Rachel is definitely fascist... it's just whether Rachel is Hitler... I want to get Hitler." She correctly weights the Hitler-kill upside over the safe fascist-kill option.
+
+**Behavioural Notes:**
+Holly carries the liberal team home. She absorbs the "Adolf Holley" running joke from the previous game without losing her analytical focus, correctly reads the board state in the final kill decision, and makes the high-variance play that wins. The only visible pressure on Holly is that her next-president status means a fascist could target her if she takes the shot and misses — which she doesn't.
+
+---
+
+## ALLIANCE CLUSTERS
+
+**Cluster 1: Rachel + Sullivan + Charlotte (Fascist Team)**
+- Rachel (Hitler) + Sullivan (Fascist): confirmed
+- Rachel + Charlotte: Charlotte's government produces two-fascist → John; Charlotte lies to cover it
+- Sullivan + Charlotte: share a government in the mid-game; Charlotte discards fascist and passes liberals to Sullivan — a deliberate trust-building sacrifice by a fascist president
+- "The Charlotte Sullivan thing" (~2418s): other players notice the pairing without quite acting on it
+
+**Cluster 2: Holly + Dom (Liberal Core)**
+- Holly tests Dom as Chancellor; Dom passes clean
+- Holly extends trust to Dom and vice versa; this pair drives the final liberal analysis
+
+**Cluster 3: Dom + John (Emerging Liberal Alliance)**
+- Dom's analysis points toward Rachel and Charlotte as the fascist presidents
+- John correctly identifies Charlotte and Rachel as the kill targets
+- Neither Dom nor John acts on the Charlotte hypothesis aggressively enough to save a liberal policy, but their reasoning converges correctly by the end
+
+---
+
+## SUMMARY
+
+The fascist team — Rachel (Hitler), Sullivan (Fascist), Charlotte (almost certainly the third Fascist) — played a textbook fascist game structured around misdirection and paced liberal sacrifice. Rachel's opening play was high-risk and high-yield: three fascist policies in round one is an enormous board advantage, but it concentrated suspicion on the Rachel–Tom government immediately. The fascists weathered that scrutiny by having Sullivan and Charlotte pass liberal policies in their early governments, deliberately burning fascist cards to buy credibility. Charlotte's liberal-passing government with Sullivan (~2450s) is the clearest example — a confirmed fascist president discarding her own fascist policy to make her co-fascist chancellor look clean.
+
+The game's decisive mistake was Charlotte's final government with John. Charlotte had a genuine opportunity to play liberal — she could have passed John one liberal and one fascist — but chose (or was forced by deck luck) to pass him two fascists, and then lied about it. The lie is what collapses the alibi. A liberal who makes a bad draw apologises; Charlotte repeated the false claim twice before John's flat denial exposed it. Had Charlotte told the truth ("I drew two fascists and a liberal, discarded the liberal — I know it's bad"), she might have survived the subsequent execution deliberation. The lie handed Holly the confirmatory evidence she needed to choose Rachel over Sullivan as the Hitler-kill target.
+
+The dominant hypothesis holds cleanly: Rachel–Sullivan–Charlotte is the fascist team, with Tom, Dom, Holly, and John as liberals. The biggest remaining uncertainty is whether Charlotte's final government was intentional fascist play or catastrophic liberal misplay followed by a panicked lie. The lie itself is the only piece of evidence that can't be explained by bad luck alone — it is the single data point that most separates "Charlotte is fascist" from "Charlotte is an unlucky liberal." If Charlotte had been honest about her draw, this analysis would be genuinely undecided between Charlotte and Tom as the third evil player. She wasn't, so it isn't.

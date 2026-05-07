@@ -1,0 +1,292 @@
+{
+  "voice": "Roger - Laid-Back, Casual, Resonant",
+  "voice_id": "CwhRBWXzGAHq8TQ4Fs17",
+  "tagged_text": "[whispers] The mountain rose out of mist, and we were already too late. [pause] Cold air sat heavy in the pass, the kind that promises more than it gives. [excited] Then he saw the light, a single window in the lodge below, [laughs] and just like that, the whole story tipped. [slowly] Some discoveries arrive on schedule. [breathy] Others arrive against your will.",
+  "words": [
+    {
+      "text": "The",
+      "start": 0.07,
+      "end": 0.082
+    },
+    {
+      "text": "mountain",
+      "start": 0.135,
+      "end": 0.559
+    },
+    {
+      "text": "rose",
+      "start": 0.671,
+      "end": 1.119
+    },
+    {
+      "text": "out",
+      "start": 1.159,
+      "end": 1.279
+    },
+    {
+      "text": "of",
+      "start": 1.332,
+      "end": 1.438
+    },
+    {
+      "text": "mist,",
+      "start": 1.518,
+      "end": 2.558
+    },
+    {
+      "text": "and",
+      "start": 2.598,
+      "end": 2.718
+    },
+    {
+      "text": "we",
+      "start": 2.771,
+      "end": 2.877
+    },
+    {
+      "text": "were",
+      "start": 2.909,
+      "end": 3.037
+    },
+    {
+      "text": "already",
+      "start": 3.097,
+      "end": 3.517
+    },
+    {
+      "text": "too",
+      "start": 3.597,
+      "end": 3.837
+    },
+    {
+      "text": "late.",
+      "start": 3.917,
+      "end": 4.397
+    },
+    {
+      "text": "Cold",
+      "start": 6.452,
+      "end": 6.56
+    },
+    {
+      "text": "air",
+      "start": 6.66,
+      "end": 6.96
+    },
+    {
+      "text": "sat",
+      "start": 7.04,
+      "end": 7.28
+    },
+    {
+      "text": "heavy",
+      "start": 7.333,
+      "end": 7.598
+    },
+    {
+      "text": "in",
+      "start": 7.651,
+      "end": 7.757
+    },
+    {
+      "text": "the",
+      "start": 7.777,
+      "end": 7.837
+    },
+    {
+      "text": "pass,",
+      "start": 7.933,
+      "end": 8.717
+    },
+    {
+      "text": "the",
+      "start": 8.737,
+      "end": 8.797
+    },
+    {
+      "text": "kind",
+      "start": 8.877,
+      "end": 9.197
+    },
+    {
+      "text": "that",
+      "start": 9.245,
+      "end": 9.437
+    },
+    {
+      "text": "promises",
+      "start": 9.517,
+      "end": 10.157
+    },
+    {
+      "text": "more",
+      "start": 10.221,
+      "end": 10.477
+    },
+    {
+      "text": "than",
+      "start": 10.509,
+      "end": 10.637
+    },
+    {
+      "text": "it",
+      "start": 10.69,
+      "end": 10.796
+    },
+    {
+      "text": "gives.",
+      "start": 10.876,
+      "end": 11.356
+    },
+    {
+      "text": "Then",
+      "start": 12.428,
+      "end": 12.476
+    },
+    {
+      "text": "he",
+      "start": 12.556,
+      "end": 12.716
+    },
+    {
+      "text": "saw",
+      "start": 12.796,
+      "end": 13.036
+    },
+    {
+      "text": "the",
+      "start": 13.056,
+      "end": 13.116
+    },
+    {
+      "text": "light,",
+      "start": 13.183,
+      "end": 13.918
+    },
+    {
+      "text": "a",
+      "start": 13.998,
+      "end": 14.078
+    },
+    {
+      "text": "single",
+      "start": 14.124,
+      "end": 14.4
+    },
+    {
+      "text": "window",
+      "start": 14.457,
+      "end": 14.799
+    },
+    {
+      "text": "in",
+      "start": 14.826,
+      "end": 14.88
+    },
+    {
+      "text": "the",
+      "start": 14.9,
+      "end": 14.96
+    },
+    {
+      "text": "lodge",
+      "start": 15.027,
+      "end": 15.362
+    },
+    {
+      "text": "below,",
+      "start": 15.429,
+      "end": 15.844
+    },
+    {
+      "text": "and",
+      "start": 16.124,
+      "end": 16.163
+    },
+    {
+      "text": "just",
+      "start": 16.243,
+      "end": 16.563
+    },
+    {
+      "text": "like",
+      "start": 16.611,
+      "end": 16.803
+    },
+    {
+      "text": "that,",
+      "start": 16.867,
+      "end": 17.443
+    },
+    {
+      "text": "the",
+      "start": 17.463,
+      "end": 17.523
+    },
+    {
+      "text": "whole",
+      "start": 17.576,
+      "end": 17.841
+    },
+    {
+      "text": "story",
+      "start": 17.948,
+      "end": 18.483
+    },
+    {
+      "text": "tipped.",
+      "start": 18.54,
+      "end": 19.042
+    },
+    {
+      "text": "Some",
+      "start": 20.29,
+      "end": 20.322
+    },
+    {
+      "text": "discoveries",
+      "start": 20.382,
+      "end": 21.042
+    },
+    {
+      "text": "arrive",
+      "start": 21.099,
+      "end": 21.441
+    },
+    {
+      "text": "on",
+      "start": 21.494,
+      "end": 21.6
+    },
+    {
+      "text": "schedule.",
+      "start": 21.662,
+      "end": 22.238
+    },
+    {
+      "text": "Others",
+      "start": 23.191,
+      "end": 23.275
+    },
+    {
+      "text": "arrive",
+      "start": 23.378,
+      "end": 23.996
+    },
+    {
+      "text": "against",
+      "start": 24.056,
+      "end": 24.476
+    },
+    {
+      "text": "your",
+      "start": 24.508,
+      "end": 24.636
+    },
+    {
+      "text": "will.",
+      "start": 24.716,
+      "end": 25.116
+    }
+  ]
+}

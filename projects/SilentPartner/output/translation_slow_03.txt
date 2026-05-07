@@ -1,0 +1,44 @@
+## SESSION CONTEXT
+
+Persian (Farsi) to English. A group introduction session where participants take turns greeting and sharing brief personal details, including profession and recent activities. Religious blessing exchanges are common throughout.
+
+## GLOSSARY
+
+| Source term | Target rendering |
+|---|---|
+| آرائشگاه | salon / beauty parlour |
+| آرهشکری / معماری | architecture |
+| در پناه خدا | in God's protection |
+| دستازی | bless your hands (appreciation idiom) |
+| خدا | God |
+| خیلی شما باشید | be well, all of you |
+| سمی خانوم | Mrs. Sami |
+| سیمون | Seymour / Simon |
+| شغلم | my profession |
+| طالعون | Taloon (possible name) |
+| کامران | Kamran |
+| مهران | Mehran |
+| ناخن اتاک کردم | got my nails done |
+| نجید | Najid |
+| هودا | Hoda |
+| حسا | Hasan (possible name) |
+| بهار | Bahar |
+| Seymour John | Seymour John (goes by Seymour) |
+
+## SPEAKERS
+
+| ID | Rough label |
+|---|---|
+| S1 | First speaker, male, opens with salaam |
+| S2 | Bahar |
+| S3 | Seymour John / Simon |
+| S4 | Unidentified, gives instructions |
+| S5 | Mehran, new arrival, calls for Mrs. Sami |
+| S6 | Hoda, architect, went to salon |
+| S7 | Najid |
+
+## NOTES
+
+- "دستازی" is an idiomatic blessing directed at someone's hands after they've done skilled work; rendered as "bless your hands" to preserve the warmth, though English has no direct equivalent.
+- "ناخن اتاک کردم" is a loanword construction (from "attack" / acrylic nail application); "got my nails done" captures the meaning without the hybrid phrasing.
+- Speaker identities for S4 and the distinction between S5/Mehran and Mrs. Sami remain ambiguous from context alone.

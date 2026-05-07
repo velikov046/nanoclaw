@@ -1,0 +1,51 @@
+## SESSION CONTEXT
+French-to-English live translation session. The conversation is a casual podcast-style exchange between two female hosts covering spring weather, a walk in the Bois de Vincennes, summer holiday plans, the Paris Olympics disrupting hospital on-call schedules, and a YouTube channel sign-off.
+
+## GLOSSARY
+
+| Source term | Target rendering |
+|---|---|
+| à la semaine prochaine | see you next week |
+| bord de la mer | seaside |
+| Bordeaux | Bordeaux |
+| Bois de Vincennes | Bois de Vincennes |
+| canicule | heatwave |
+| chaîne | channel |
+| copain | boyfriend |
+| de garde | on call |
+| easydeyfrench.org | easydeyfrench.org |
+| en retard | behind |
+| épisode | episode |
+| faire la grasse matinée | sleep in |
+| grasse matinée | sleep in |
+| il fera encore chaud | it'll still be warm |
+| il y aura moins de monde | there'll be fewer people |
+| j'ai trop hâte | I can't wait |
+| jeux olympiques | the Olympic Games |
+| jour de repos | day off |
+| l'hôpital | the hospital |
+| la lessive | laundry |
+| le ménage | housework |
+| le Sud | the South |
+| les abonnés | subscribers |
+| ma foule | my crowd |
+| on verra bien | we'll see |
+| partir en vacances | go on holiday |
+| profiter du temps | enjoy the weather |
+| s'abonner | subscribe |
+| se balader | go for a walk |
+| septembre | September |
+| Tu m'étonnes | tell me about it |
+
+## SPEAKERS
+
+| ID | Rough label |
+|---|---|
+| S1 | Host 1 (female) |
+| S2 | Host 2 (female, medical professional, on-call constraints) |
+
+## NOTES
+
+- "Tu m'étonnes" is rendered as "tell me about it" (colloquial agreement) rather than the literal "you surprise me," which would invert the meaning.
+- "Ma foule" is an informal, affectionate way of addressing one's audience; "my crowd" preserves that warmth without sounding stiff.
+- "J'ai trop hâte" uses "trop" as an intensifier in informal speech, not as a negative; "I can't wait" captures the register accurately.
