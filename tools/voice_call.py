@@ -472,7 +472,17 @@ def main():
     # Route Anthropic + ElevenLabs through OneCLI proxy as this agent so the
     # proxy injects the right credentials. No raw .env keys needed.
     onecli_agent = AGENT_DIRS.get(agent, agent)
-    apply_for_agent(onecli_agent)
+    try:
+        apply_for_agent(onecli_agent)
+    except Exception as e:
+        # Agent not registered in OneCLI. Fall back to a known-working bundle
+        # (stella has Anthropic + ElevenLabs) so voice still works for
+        # unscaffolded / discontinued agents like Florence. They borrow keys;
+        # the agent character is still loaded from groups/<agent>/.
+        fallback = "stella"
+        print(f"\n[onecli warning: '{onecli_agent}' not in OneCLI; "
+              f"falling back to '{fallback}' credential bundle]", file=sys.stderr)
+        apply_for_agent(fallback)
     eleven_key = "onecli-placeholder"  # proxy substitutes the real key
 
     print("Loading character...", end=" ", flush=True)
