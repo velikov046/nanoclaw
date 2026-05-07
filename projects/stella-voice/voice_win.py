@@ -22,6 +22,10 @@ import soundfile as sf
 import requests
 from faster_whisper import WhisperModel
 import anthropic
+import sys as _sys
+if '/home/aurellian/nanoclaw/tools' not in _sys.path:
+    _sys.path.insert(0, '/home/aurellian/nanoclaw/tools')
+from claude_oauth import make_client
 
 # ── Config ─────────────────────────────────────────────────────────────────
 
@@ -292,7 +296,7 @@ def main():
     system_prompt = load_system_prompt()
     print("ready.")
 
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+    client = make_client(api_key=ANTHROPIC_API_KEY)
     history = []
 
     print("\n─────────────────────────────────────────")

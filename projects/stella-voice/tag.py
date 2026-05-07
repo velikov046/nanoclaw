@@ -11,6 +11,9 @@ Usage:
 import os
 import sys
 import anthropic
+if '/home/aurellian/nanoclaw/tools' not in sys.path:
+    sys.path.insert(0, '/home/aurellian/nanoclaw/tools')
+from claude_oauth import make_client
 
 def _env(key):
     val = os.environ.get(key)
@@ -59,7 +62,7 @@ Sensual/slow (for readings): [slowly] [softly] [breathy] [warmly]
 
 
 def tag(text: str) -> str:
-    client = anthropic.Anthropic(api_key=_env("ANTHROPIC_API_KEY"))
+    client = make_client(api_key=_env("ANTHROPIC_API_KEY"))
     msg = client.messages.create(
         model="claude-sonnet-4-6",
         max_tokens=1024,

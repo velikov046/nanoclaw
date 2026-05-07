@@ -30,6 +30,10 @@ def _env(key):
     return None
 
 import anthropic
+import sys as _sys
+if '/home/aurellian/nanoclaw/tools' not in _sys.path:
+    _sys.path.insert(0, '/home/aurellian/nanoclaw/tools')
+from claude_oauth import make_client
 
 TAGGER_SYSTEM_PROMPT = """You are a voice direction assistant for an AI character named Stella.
 
@@ -80,7 +84,7 @@ api_key = _env("ANTHROPIC_API_KEY")
 if not api_key:
     sys.exit("Missing ANTHROPIC_API_KEY")
 
-client = anthropic.Anthropic(api_key=api_key)
+client = make_client(api_key=api_key)
 
 SAMPLES = [
     # (text, context_hint)

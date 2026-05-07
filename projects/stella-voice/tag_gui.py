@@ -18,6 +18,10 @@ except ImportError:
     messagebox.showerror("Missing dependency", "anthropic package not found.\n\nRun: pip install anthropic")
     sys.exit(1)
 
+if '/home/aurellian/nanoclaw/tools' not in sys.path:
+    sys.path.insert(0, '/home/aurellian/nanoclaw/tools')
+from claude_oauth import make_client
+
 # ── Defaults ────────────────────────────────────────────────────────────────
 
 DEFAULT_CHARACTER = """Stella is sharp, cheeky, warm, and direct. Confident but not cold. Dry humour is her default. Never flat or monotone."""
@@ -80,7 +84,7 @@ def tag_text(text: str, character: str, context: str) -> str:
         user_parts.append(f"## Conversation context\n{context.strip()}\n")
     user_parts.append(f"## Text to tag\n{text.strip()}")
 
-    client = anthropic.Anthropic(api_key=_env("ANTHROPIC_API_KEY"))
+    client = make_client(api_key=_env("ANTHROPIC_API_KEY"))
     msg = client.messages.create(
         model="claude-sonnet-4-6",
         max_tokens=1024,

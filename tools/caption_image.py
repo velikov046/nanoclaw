@@ -20,6 +20,8 @@ try:
 except ImportError:
     sys.exit("anthropic package not found. Run: pip install anthropic")
 
+from claude_oauth import make_client
+
 SYSTEM_FULL = "Describe this image naturally and directly. Cover what's in it, the mood or tone, any notable details. 2–4 sentences. No preamble like 'This image shows' — just describe it."
 SYSTEM_BRIEF = "Describe this image in one sentence. Direct, no preamble."
 
@@ -67,7 +69,7 @@ def caption(image_path, brief=False, context=""):
     if context.strip():
         user_content.append({"type": "text", "text": context.strip()})
 
-    client = anthropic.Anthropic(api_key=_env("ANTHROPIC_API_KEY"))
+    client = make_client(api_key=_env("ANTHROPIC_API_KEY"))
     msg = client.messages.create(
         model="claude-sonnet-4-6",
         max_tokens=512,

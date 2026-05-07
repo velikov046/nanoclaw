@@ -254,11 +254,19 @@ def _run_claude(prompt: str, model: str = "claude-sonnet-4-6",
                 "messages": [{"role": "user", "content": prompt}],
             }
             if system:
-                kwargs["system"] = [{
-                    "type": "text",
-                    "text": system,
-                    "cache_control": {"type": "ephemeral"},
-                }]
+                kwargs["system"] = [
+                    {
+                        "type": "text",
+                        "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+                    },
+                    {
+                        "type": "text",
+                        "text": system,
+                        "cache_control": {"type": "ephemeral"},
+                    },
+                ]
+            else:
+                kwargs["system"] = "You are Claude Code, Anthropic's official CLI for Claude."
             resp = client.messages.create(**kwargs)
             # Extract text from the first content block
             for block in resp.content:

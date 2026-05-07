@@ -19,6 +19,8 @@ try:
 except ImportError:
     sys.exit("anthropic package not found. Run: pip install anthropic")
 
+from claude_oauth import make_client
+
 try:
     import httpx
 except ImportError:
@@ -76,7 +78,7 @@ def summarise(url, brief=False):
     if not text:
         sys.exit("Error: no content retrieved from URL.")
 
-    client = anthropic.Anthropic(api_key=_env("ANTHROPIC_API_KEY"))
+    client = make_client(api_key=_env("ANTHROPIC_API_KEY"))
     msg = client.messages.create(
         model="claude-haiku-4-5-20251001",
         max_tokens=256,

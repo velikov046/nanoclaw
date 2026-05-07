@@ -86,15 +86,14 @@ def _env(key):
 def _build_client(agent):
     """Set up OneCLI proxy for the given agent and return an Anthropic client.
     Falls back to direct api_key from .env if OneCLI is unreachable (legacy)."""
+    from claude_oauth import make_client
     try:
-        from onecli_proxy import apply_for_agent
         target = AGENT_DIRS.get(agent, agent) if agent else None
-        apply_for_agent(target)
-        return anthropic.Anthropic(auth_token="onecli-placeholder")
+        return make_client(agent=target)
     except Exception as e:
         legacy_key = _env("ANTHROPIC_API_KEY")
         if legacy_key:
-            return anthropic.Anthropic(api_key=legacy_key)
+            return make_client(api_key=legacy_key)
         sys.exit(f"OneCLI proxy unavailable ({e}) and no ANTHROPIC_API_KEY in env")
 
 
@@ -112,9 +111,13 @@ def tag_text(text, character, context, agent=None):
         system=[
             {
                 "type": "text",
+                "text": "You are Claude Code, Anthropic's official CLI for Claude.",
+            },
+            {
+                "type": "text",
                 "text": system_text,
                 "cache_control": {"type": "ephemeral"},
-            }
+            },
         ],
         messages=[{"role": "user", "content": "\n\n".join(user_parts)}],
     )

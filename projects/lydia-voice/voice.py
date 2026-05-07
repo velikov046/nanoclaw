@@ -29,6 +29,7 @@ import anthropic
 
 sys.path.insert(0, "/home/aurellian/nanoclaw/tools")
 from tag_cli import tag_text, load_agent_profile  # type: ignore[import]
+from claude_oauth import make_client  # type: ignore[import]
 
 # ── Config ─────────────────────────────────────────────────────────────────
 
@@ -256,7 +257,7 @@ def main():
     system_prompt = load_system_prompt()
     print("ready.")
 
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+    client = make_client(api_key=ANTHROPIC_API_KEY)
     history = []
 
     print("\n─────────────────────────────────────────")

@@ -57,7 +57,12 @@ LEGACY_VOICE_FALLBACK = {
 
 WHISPER_MODEL = "base"
 SAMPLE_RATE = 16000
-CLAUDE_MODEL = "claude-sonnet-4-6"
+DEFAULT_MODEL = "claude-sonnet-4-6"
+MODEL_ALIASES = {
+    "sonnet": "claude-sonnet-4-6",
+    "haiku": "claude-haiku-4-5",
+    "opus": "claude-opus-4-7",
+}
 MAX_TOKENS = 240
 ELEVENLABS_TTS = "https://api.elevenlabs.io/v1/text-to-speech/{voice_id}/stream"
 ELEVENLABS_MODEL = "eleven_v3"
@@ -141,8 +146,15 @@ def quick_character_from_profile(profile_text, agent):
     return body.strip()
 
 
+CLAUDE_CODE_PREFIX = "You are Claude Code, Anthropic's official CLI for Claude."
+
+
 def system_blocks(character_text):
     return [
+        {
+            "type": "text",
+            "text": CLAUDE_CODE_PREFIX,
+        },
         {
             "type": "text",
             "text": character_text,
@@ -203,7 +215,7 @@ def make_tag_for_agent(profile_text, agent):
     return tag
 
 
-def stream_and_speak(client, history, system, voice_id, eleven_key, tag_for_agent):
+def stream_and_speak(client, model, history, system, voice_id, eleven_key, tag_for_agent):
     """
     Stream Claude's response. As each sentence boundary fires, kick its
     tag+TTS synth in a background thread. At the next boundary, drain (wait
@@ -243,7 +255,7 @@ def stream_and_speak(client, history, system, voice_id, eleven_key, tag_for_agen
     print("\nAgent: ", end="", flush=True)
 
     with client.messages.stream(
-        model=CLAUDE_MODEL,
+        model=model,
         max_tokens=MAX_TOKENS,
         system=system,
         messages=history,
@@ -296,7 +308,10 @@ def main():
     ap.add_argument("--quick", action="store_true",
                     help="Quick boot: skip CLAUDE.md/SOUL.md, derive a minimal character from voice_profile.md. "
                          "Faster first turn, smaller context, but no prompt caching and lighter character grounding.")
+    ap.add_argument("--model", default=DEFAULT_MODEL,
+                    help="Claude model id or alias (sonnet|haiku|opus). Default: " + DEFAULT_MODEL)
     args = ap.parse_args()
+    model = MODEL_ALIASES.get(args.model, args.model)
 
     agent = args.agent.lower()
 
@@ -320,11 +335,13 @@ def main():
     tag_for_agent = make_tag_for_agent(profile_text, agent)
     print(f"ready ({len(character_text)} chars{', quick boot' if args.quick else ''}).")
 
-    client = anthropic.Anthropic(auth_token="onecli-placeholder")
+    from claude_oauth import make_client
+    client = make_client(auth_token="onecli-placeholder")
     history = []
 
     print("\n" + "-" * 41)
     print(f"  {agent.title()} — voice exchange")
+    print(f"  Model: {model}")
     print(f"  Voice: {env_name}")
     print("  ENTER to speak, ENTER to stop. Ctrl+C to exit.")
     print("-" * 41 + "\n")
@@ -351,7 +368,7 @@ def main():
         print(f"\nYou: {text}")
 
         history.append({"role": "user", "content": text})
-        response = stream_and_speak(client, history, system, voice_id, eleven_key, tag_for_agent)
+        response = stream_and_speak(client, model, history, system, voice_id, eleven_key, tag_for_agent)
         history.append({"role": "assistant", "content": response})
 
 
