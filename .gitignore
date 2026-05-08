@@ -84,3 +84,8 @@ groups/aurelio/*
 !groups/velikov/voice_profile.md
 !groups/melody/voice_profile.md
 !groups/aurelio/voice_profile.md
+
+# Music library: large + often licensed, kept local only
+projects/youtube/music/**/*.mp3
+projects/youtube/music/**/*.wav
+projects/youtube/music/**/.last_picked.json
