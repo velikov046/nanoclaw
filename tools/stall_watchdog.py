@@ -44,7 +44,7 @@ USAGE_PAUSE_PATH = ROOT / "data/usage-pause.json"
 
 # Thresholds (seconds)
 UNREPLIED_THRESHOLD = 4 * 60         # idle/absent container: alert at this age
-UNREPLIED_THRESHOLD_BUSY = 20 * 60   # actively-working container (e.g. ingest): wait longer
+UNREPLIED_THRESHOLD_BUSY = 60 * 60   # actively-working container (e.g. ingest, video pipeline): wait longer
 CONTAINER_STUCK_THRESHOLD = 6 * 60   # container older than this AND idle = stuck
 ALERT_DEDUPE_WINDOW = 30 * 60        # don't re-alert same condition within window
 
