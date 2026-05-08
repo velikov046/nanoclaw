@@ -18,6 +18,10 @@ Args:
   --reference-image <path>  attach an image as a build-from reference (Aurora img2img).
                             Pass the same reference across many calls for character consistency
                             across YouTube beat images.
+  --mode {image,video}      output type. 'image' = chat-root composer (fast, default).
+                            'video' = /imagine page Video toggle (Aurora video, ~6s mp4).
+  --resolution {480p,720p}  video mode only. Default 720p.
+  --duration {6s,10s}       video mode only. Default 6s.
 
 Run via the venv:
   /home/aurellian/nanoclaw/tools/.playwright-venv/bin/python3 \\
@@ -45,17 +49,26 @@ GROK_IMAGINE_URL = "https://grok.com/imagine"
 # Dismiss it once at startup so it doesn't intercept Video-radio / Submit clicks.
 ONETRUST_REJECT_BTN = "#onetrust-reject-all-handler"
 
-# /imagine page selectors (probed live 2026-05-08):
-#   Image/Video radios: <button role="radio" aria-checked="true|false">Image</button>
-#                       <button role="radio" aria-checked="true|false">Video</button>
-#   Speed/Quality radios: same shape; "Speed" default-checked, "Quality" higher-res slower.
-#   Prompt input: <div contenteditable="true" class="tiptap ProseMirror ..."> (TipTap editor;
-#                 fill() doesn't work — use click + keyboard.type).
-#   Submit: <button aria-label="Submit" type="submit"> (disabled until prompt non-empty).
+# /imagine page selectors (probed live 2026-05-08).
+# Mode radiogroup is always present:
+#   <button role="radio">Image</button> / <button role="radio">Video</button>
+#     (parent has aria-label="Generation mode")
+# IMPORTANT: the Speed/Quality radios that *also* appear in the DOM live in
+# `aria-label="Image generation speed"` and apply ONLY in Image mode. Don't
+# confuse them with the video controls — they vanish when Video is selected.
+# After Video is selected, two new radiogroups mount:
+#   - "Video resolution": <button role="radio">480p</button> / <button role="radio">720p</button>
+#   - "Video duration":   <button role="radio">6s</button>   / <button role="radio">10s</button>
+#
+# Prompt input: <div contenteditable="true" class="tiptap ProseMirror ..."> (TipTap;
+#               fill() doesn't work — use click + keyboard.type).
+# Submit: <button aria-label="Submit" type="submit"> (disabled until prompt non-empty).
 IMAGINE_VIDEO_RADIO = 'button[role="radio"]:has-text("Video")'
 IMAGINE_IMAGE_RADIO = 'button[role="radio"]:has-text("Image")'
-IMAGINE_QUALITY_RADIO = 'button[role="radio"]:has-text("Quality")'
-IMAGINE_SPEED_RADIO = 'button[role="radio"]:has-text("Speed")'
+IMAGINE_RESOLUTION_720 = '[aria-label="Video resolution"] button[role="radio"]:has-text("720p")'
+IMAGINE_RESOLUTION_480 = '[aria-label="Video resolution"] button[role="radio"]:has-text("480p")'
+IMAGINE_DURATION_6 = '[aria-label="Video duration"] button[role="radio"]:has-text("6s")'
+IMAGINE_DURATION_10 = '[aria-label="Video duration"] button[role="radio"]:has-text("10s")'
 IMAGINE_PROMPT_INPUT = 'div.tiptap[contenteditable="true"], div.ProseMirror[contenteditable="true"]'
 IMAGINE_SUBMIT_BTN = 'button[aria-label="Submit"][type="submit"]'
 
@@ -288,6 +301,38 @@ def dismiss_onetrust_banner(page: Page) -> bool:
     return False
 
 
+def _select_radio(page: Page, selector: str, label: str,
+                   profile_dir: Path, debug: bool, settle_s: float = 0.4) -> bool:
+    """Click a radio button and verify aria-checked flipped to true.
+
+    Returns True on success. Non-fatal on failure — Aurora will fall back to
+    whatever default was already selected. Used for video resolution + duration
+    toggles which mount only after Video is selected.
+    """
+    try:
+        radio = page.locator(selector).first
+        radio.wait_for(state="visible", timeout=15_000)
+        radio.click(timeout=5_000)
+        time.sleep(settle_s)
+        if radio.get_attribute("aria-checked") == "true":
+            print(f"  [video] {label} selected", file=sys.stderr)
+            return True
+        print(
+            f"  [video] {label} click didn't flip aria-checked; "
+            f"staying on whatever was default",
+            file=sys.stderr,
+        )
+        return False
+    except (PWTimeout, Exception) as e:
+        slug = label.lower().replace(" ", "-")
+        _shot(page, profile_dir, f"video-{slug}-click-failed", debug)
+        print(
+            f"  [video] couldn't select {label} ({e}); falling back to default",
+            file=sys.stderr,
+        )
+        return False
+
+
 def run_video_flow(
     context: BrowserContext,
     page: Page,
@@ -296,7 +341,8 @@ def run_video_flow(
     profile_dir: Path,
     debug: bool,
     timeout_s: int,
-    quality: bool = False,
+    resolution: str = "720p",
+    duration: str = "6s",
 ) -> None:
     """Drive grok.com/imagine to generate a video and download the mp4.
 
@@ -327,10 +373,16 @@ def run_video_flow(
         raise RuntimeError("Video radio click didn't flip aria-checked — UI may have shifted.")
     print("  [video] Video mode selected", file=sys.stderr)
 
-    if quality:
-        page.locator(IMAGINE_QUALITY_RADIO).first.click(timeout=10_000)
-        time.sleep(0.3)
-        print("  [video] Quality mode selected (slower, higher fidelity)", file=sys.stderr)
+    # The Video-mode resolution + duration radiogroups only mount AFTER the
+    # Video radio is selected. Toggle them only when the desired option isn't
+    # already the default. Failure is non-fatal — we still get a video, just
+    # at the default 480p / 6s.
+    if resolution == "720p":
+        _select_radio(page, IMAGINE_RESOLUTION_720, "720p resolution",
+                       profile_dir, debug)
+    if duration == "10s":
+        _select_radio(page, IMAGINE_DURATION_10, "10s duration",
+                       profile_dir, debug)
 
     _shot(page, profile_dir, "video-02-mode-set", debug)
 
@@ -551,10 +603,16 @@ def main():
              "'video' uses the /imagine page Video toggle (Aurora video gen, "
              "30-90s, mp4 output). Reference image not supported in video mode.",
     )
+    # Video mode toggles. /imagine exposes "Video resolution" (480p / 720p)
+    # and "Video duration" (6s / 10s) radiogroups after Video is selected.
+    # Defaults match the higher-quality / shorter / cheaper combo: 720p, 6s.
     ap.add_argument(
-        "--quality", action="store_true",
-        help="Video mode only: pick the Quality radio (higher fidelity, slower). "
-             "Default is Speed.",
+        "--resolution", choices=["480p", "720p"], default="720p",
+        help="Video mode: output resolution (default 720p).",
+    )
+    ap.add_argument(
+        "--duration", choices=["6s", "10s"], default="6s",
+        help="Video mode: clip duration (default 6s; 10s costs more quota).",
     )
     args = ap.parse_args()
 
@@ -622,7 +680,8 @@ def main():
                 # the cookie-injected SuperGrok session above, but uses a
                 # different page (/imagine) with different selectors.
                 run_video_flow(context, page, args.prompt, out_path, profile_dir,
-                               args.debug_shots, args.timeout, quality=args.quality)
+                               args.debug_shots, args.timeout,
+                               resolution=args.resolution, duration=args.duration)
                 print(f"OK wrote {out_path} ({out_path.stat().st_size} bytes)")
                 return
 

@@ -187,7 +187,8 @@ def generate(
     headless: bool = True,
     reference_image: str | Path | None = None,
     mode: str = "image",
-    quality: bool = False,
+    resolution: str = "720p",
+    duration: str = "6s",
 ) -> Path:
     """Generate one image or short video via grok.com browser-drive.
 
@@ -203,9 +204,9 @@ def generate(
             build-from reference (Aurora img2img). Image mode only — video
             mode does not support reference images.
         mode: 'image' (default, chat-root flow) or 'video' (uses /imagine page,
-            Aurora video gen, ~6s mp4 output).
-        quality: video mode only — pick the Quality radio (slower, higher
-            fidelity). Default Speed.
+            Aurora video gen, mp4 output).
+        resolution: video mode only — '720p' (default) or '480p'.
+        duration: video mode only — '6s' (default) or '10s' (costs more quota).
 
     Returns:
         Resolved path to the written file.
@@ -219,6 +220,10 @@ def generate(
         raise ValueError(f"mode must be 'image' or 'video', got {mode!r}")
     if mode == "video" and reference_image:
         raise ValueError("reference_image is not supported in video mode")
+    if resolution not in ("480p", "720p"):
+        raise ValueError(f"resolution must be '480p' or '720p', got {resolution!r}")
+    if duration not in ("6s", "10s"):
+        raise ValueError(f"duration must be '6s' or '10s', got {duration!r}")
 
     # Circuit-breaker: bail before the subprocess if a previous burst of
     # failures put Aurora in cooldown. This is what stops a confused agent
@@ -260,8 +265,8 @@ def generate(
     ]
     if ref_path is not None:
         cmd.extend(["--reference-image", str(ref_path)])
-    if quality:
-        cmd.append("--quality")
+    if mode == "video":
+        cmd.extend(["--resolution", resolution, "--duration", duration])
     if headless:
         cmd.append("--headless")
 
@@ -323,9 +328,10 @@ if __name__ == "__main__":
     ap.add_argument("--mode", default="image", choices=["image", "video"],
                     help="'image' (default) = JPG via chat-root composer. "
                          "'video' = ~6s mp4 via grok.com/imagine Video toggle.")
-    ap.add_argument("--quality", action="store_true",
-                    help="Video mode only: Quality radio (slower, higher fidelity). "
-                         "Default Speed.")
+    ap.add_argument("--resolution", choices=["480p", "720p"], default="720p",
+                    help="Video mode: output resolution (default 720p).")
+    ap.add_argument("--duration", choices=["6s", "10s"], default="6s",
+                    help="Video mode: clip duration (default 6s).")
     ap.add_argument("--timeout", type=int, default=240)
     ns = ap.parse_args()
 
@@ -333,7 +339,8 @@ if __name__ == "__main__":
         path = generate(ns.prompt, ns.out_path,
                         cookies_file=ns.cookies_file, timeout_s=ns.timeout,
                         reference_image=ns.reference_image,
-                        mode=ns.mode, quality=ns.quality)
+                        mode=ns.mode, resolution=ns.resolution,
+                        duration=ns.duration)
     except AuroraThrottled as e:
         print(f"AURORA_THROTTLED: {e}", file=sys.stderr)
         sys.exit(75)  # EX_TEMPFAIL — distinct exit code so callers can detect cooldown

@@ -97,7 +97,7 @@ python3 /workspace/extra/youtube/pipeline/_aurora_via_grok.py \
   /workspace/group/attachments/<name>.mp4
 ```
 
-~30-90s gen time. Output is portrait 464x688 mp4 by default; add `--quality` for higher fidelity (slower). Reference images aren't supported in video mode.
+~30-90s gen time. Defaults: **720p resolution**, **6s duration**. To override: `--resolution 480p` (faster, lower fidelity) or `--duration 10s` (longer clip, more quota). Reference images aren't supported in video mode.
 
 **Tips:**
 
