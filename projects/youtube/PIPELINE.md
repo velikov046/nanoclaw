@@ -12,6 +12,7 @@ Scripts live in `/workspace/extra/youtube/pipeline/`. Jobs live in `/workspace/e
 jobs/<job_id>/
   script.json       ← you write this in Step 1
   audio/            ← narrate.py fills this (Step 2)
+  anchor.jpg        ← character anchor (Step 2.5, optional but expected for character videos)
   images/           ← gen_images.py fills this (Step 3)
   thumbnail.jpg     ← gen_thumbnail.py creates this (Step 4)
   broll/            ← gen_broll.py fills this (Step 4b, optional)
@@ -58,6 +59,38 @@ Generates per-segment MP3s and `audio/final.mp3`. Each segment is passed through
 
 ---
 
+## Step 2.5 — Anchor image (for recurring characters)
+
+**Do this whenever the video features a recurring person, creature, or distinctive setting.** Without an anchor, Aurora drifts: ask for "the same detective" across 30 beats and you get 30 different detectives — different face, different coat, different age. Aurora has no memory between calls. The anchor is what gives it one.
+
+The anchor is a single image of the central subject, generated once, then attached as a build-from reference on every subsequent gen call (beats + thumbnail). Aurora preserves face, clothing, and palette strongly when a reference is attached.
+
+**1. Generate the anchor.** Pick the most distinctive, identifying frame possible — a clear portrait of the character in their canonical look. Write a prompt with concrete identifying details (build, age, hair, clothing, palette, lighting medium):
+
+```bash
+python3 /workspace/extra/youtube/pipeline/_aurora_via_grok.py \
+  "vintage 1970s film-noir detective: tall, weathered face, three-day stubble, charcoal trench coat, dark felt fedora, kodachrome film stock, photoreal" \
+  /workspace/extra/youtube/jobs/<job_id>/anchor.jpg
+```
+
+Inspect the result. If it isn't right, regenerate before continuing — every downstream image inherits from this one. Keep the anchor in the job dir (or in a longer-lived `/workspace/group/characters/` if reused across videos).
+
+**2. Wire it into the script.** Add `character_reference` at the top level of `script.json`:
+
+```json
+{
+  "title": "...",
+  "character_reference": "/workspace/extra/youtube/jobs/<job_id>/anchor.jpg",
+  "segments": [...]
+}
+```
+
+`gen_images.py` attaches the anchor on every beat. `gen_thumbnail.py` picks it up automatically. Per-beat override: set `beat.reference_image` for a specific beat that needs a different anchor (e.g. a secondary character entering for one segment). Per-thumbnail override: set `thumbnail_reference` if you want a different framing on the thumbnail.
+
+**Skip this step** only when the video is purely abstract / scenic / non-character (e.g. just landscapes or B-roll-style footage). For anything featuring a person, an animal, or a recurring setting that needs to feel coherent, the anchor is mandatory.
+
+---
+
 ## Step 3 — Generate images
 
 ```bash
@@ -65,7 +98,7 @@ python3 /workspace/extra/youtube/pipeline/gen_images.py \
   --job /workspace/extra/youtube/jobs/<job_id>
 ```
 
-Generates one image per segment via xAI Aurora. Updates `script.json` with image paths. Requires `XAI_API_KEY`.
+Generates one image per segment via Aurora — routed through `tools/grok_imagine.py` (browser-drive of grok.com using SuperGrok cookies at `/workspace/global/grok.com_cookies.json`). Updates `script.json` with image paths. If `character_reference` is set (Step 2.5), it's attached on every beat. No API key needed.
 
 ---
 
@@ -77,7 +110,7 @@ python3 /workspace/extra/youtube/pipeline/gen_thumbnail.py \
   --char-profile <velikov|lydia|stella>
 ```
 
-Generates `thumbnail.jpg` from `thumbnail_prompt` in script.json. Each char-profile applies a different aesthetic style. Requires `XAI_API_KEY`.
+Generates `thumbnail.jpg` from `thumbnail_prompt` in script.json. Each char-profile applies a different aesthetic style. Routed through `grok_imagine.py` like step 3 — no API key needed.
 
 ---
 

@@ -1,5 +1,5 @@
 """
-gen_images.py — Generate one image per beat using xAI Aurora.
+gen_images.py — Generate one image per beat using Aurora via grok.com.
 
 Usage:
   python3 gen_images.py --job <job_dir> [--max-beats 5]
@@ -8,22 +8,28 @@ Reads: <job_dir>/script.json
   - If a segment has segments[].beats[] already, those are used as-is.
   - Otherwise beats are auto-derived from sentence boundaries in segment.text
     and timed by character-weighted distribution across segment.duration.
+  - Optional `character_reference` (top-level): path to a local image used as
+    a build-from reference for EVERY beat. Aurora preserves character/style
+    strongly when a reference is attached, so this keeps the same
+    person/creature/scene-look consistent across the whole video.
+  - Optional `beat.reference_image`: per-beat override of `character_reference`.
 
 Writes: <job_dir>/images/seg_{i:02d}_beat_{j:02d}.jpg
         and updates script.json to put image_file on each beat.
+
+Aurora is now reached via tools/grok_imagine.py (browser-drive of grok.com,
+SuperGrok subscription) since the xAI dev API key is dead. See
+_aurora_via_grok.py for the shared helper.
 """
 
 import argparse
-import base64
 import json
 import os
 import re
 import sys
 import time
 
-import requests
-
-XAI_API_URL = "https://api.x.ai/v1/images/generations"
+from _aurora_via_grok import generate as aurora_generate
 
 DEFAULT_MAX_BEATS = 5
 
@@ -83,23 +89,6 @@ def ensure_beats(script: dict, max_beats: int) -> None:
             seg["beats"] = derive_beats(seg, max_beats)
 
 
-def generate_image(prompt: str, api_key: str) -> bytes:
-    headers = {
-        "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json",
-    }
-    payload = {
-        "model": "aurora",
-        "prompt": prompt,
-        "n": 1,
-        "response_format": "b64_json",
-    }
-    resp = requests.post(XAI_API_URL, headers=headers, json=payload, timeout=60)
-    resp.raise_for_status()
-    data = resp.json()
-    return base64.b64decode(data["data"][0]["b64_json"])
-
-
 def gen_images(job_dir: str, max_beats: int):
     script_path = os.path.join(job_dir, "script.json")
     if not os.path.exists(script_path):
@@ -109,12 +98,11 @@ def gen_images(job_dir: str, max_beats: int):
     with open(script_path) as f:
         script = json.load(f)
 
-    api_key = os.environ.get("XAI_API_KEY")
-    if not api_key:
-        print("ERROR: XAI_API_KEY not set")
-        sys.exit(1)
-
     ensure_beats(script, max_beats)
+
+    char_ref = script.get("character_reference")
+    if char_ref:
+        print(f"character reference: {char_ref}")
 
     images_dir = os.path.join(job_dir, "images")
     os.makedirs(images_dir, exist_ok=True)
@@ -125,12 +113,11 @@ def gen_images(job_dir: str, max_beats: int):
         for j, beat in enumerate(seg["beats"], 1):
             out_path = os.path.join(images_dir, f"seg_{i:02d}_beat_{j:02d}.jpg")
             prompt = beat.get("image_prompt") or seg.get("image_prompt") or seg["text"][:200]
+            ref = beat.get("reference_image") or char_ref
             done += 1
             print(f"[{done}/{total_beats}] seg {i} beat {j} @ {beat['at_sec']:.2f}s — {prompt[:80]}...")
 
-            img_bytes = generate_image(prompt, api_key)
-            with open(out_path, "wb") as f:
-                f.write(img_bytes)
+            aurora_generate(prompt, out_path, reference_image=ref)
 
             beat["image_file"] = out_path
             print(f"  → {out_path}")

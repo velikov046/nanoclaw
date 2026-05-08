@@ -9,12 +9,15 @@ test prompt. Captures screenshots at each step into the profile dir for
 debugging when selectors drift.
 
 Args:
-  --prompt <text>     the imagine prompt
-  --out <path>        output PNG path (defaults to /tmp/grok-<timestamp>.png)
-  --profile-dir <path>  override default profile (default: data/sessions/velikov/grok-browser-profile)
-  --headless          run without UI (only works after first manual login)
-  --debug-shots       save step-by-step screenshots into the profile dir
-  --timeout <sec>     overall timeout (default 240s)
+  --prompt <text>           the imagine prompt
+  --out <path>              output PNG path (defaults to /tmp/grok-<timestamp>.png)
+  --profile-dir <path>      override default profile (default: data/sessions/velikov/grok-browser-profile)
+  --headless                run without UI (only works after first manual login)
+  --debug-shots             save step-by-step screenshots into the profile dir
+  --timeout <sec>           overall timeout (default 240s)
+  --reference-image <path>  attach an image as a build-from reference (Aurora img2img).
+                            Pass the same reference across many calls for character consistency
+                            across YouTube beat images.
 
 Run via the venv:
   /home/aurellian/nanoclaw/tools/.playwright-venv/bin/python3 \\
@@ -22,6 +25,8 @@ Run via the venv:
     --prompt "dark cinematic conspiratorial..." --debug-shots
 """
 import argparse
+import json
+import os
 import sys
 import time
 from pathlib import Path
@@ -39,9 +44,16 @@ PROMPT_INPUT_SELECTORS = [
     'textarea[placeholder*="What" i]',
     'textarea[placeholder*="Ask" i]',
     'textarea[placeholder*="message" i]',
+    '[placeholder*="What" i]',          # any tag, e.g. contenteditable div
     'div[contenteditable="true"][role="textbox"]',
+    '[role="textbox"]',
     'textarea',
+    '[contenteditable="true"]',
 ]
+# Combined selector used to wait for input mount — avoids racing the SPA's hydration.
+PROMPT_INPUT_WAIT_SELECTOR = (
+    'textarea, [contenteditable="true"], [role="textbox"]'
+)
 
 # An "Imagine" toggle / mode switcher. May not exist if image gen is the default
 # behaviour for an explicit "imagine X" prompt.
@@ -52,13 +64,26 @@ IMAGINE_TOGGLE_SELECTORS = [
     '[role="tab"]:has-text("Imagine")',
 ]
 
-# Login state markers — if any of these appear, user isn't authenticated.
+# File-upload affordance. Probed live 2026-05-08 on grok.com:
+#   <input class="hidden" multiple type="file" name="files">
+# is in the DOM as a hidden input, with an `aria-label="Attach"` button next to it.
+# Playwright's `set_input_files` works on hidden inputs without needing a click,
+# so we target the input directly and ignore the button.
+FILE_INPUT_SELECTORS = [
+    'input[type="file"][name="files"]',
+    'input[type="file"][accept*="image" i]',
+    'input[type="file"]',
+]
+
+
+# Login state markers — if any of these are visible, user isn't authenticated.
+# Use tag-agnostic text matches because Grok renders these as styled <a> not <button>.
 LOGIN_GATE_SELECTORS = [
     'a[href*="/login"]',
     'a[href*="i/flow/login"]',
-    'button:has-text("Sign in")',
-    'button:has-text("Log in")',
-    ':text-matches("(?i)\\bsign in\\b")',
+    ':text-is("Sign in")',
+    ':text-is("Sign up")',
+    ':text-is("Log in")',
 ]
 
 
@@ -98,14 +123,97 @@ def detect_login_state(page: Page) -> bool:
     return True
 
 
-def wait_for_image(page: Page, profile_dir: Path, debug: bool, timeout_s: int = 180) -> Optional[str]:
-    """Poll the page for a generated image element. Return its src URL when stable.
+# Hostnames / path fragments that are never the generated image (cookie banners,
+# CDN logos, static UI). Block-listed so a slow-loading UI sprite can't win the
+# "first stable" race against the actual generation.
+DENY_URL_FRAGMENTS = (
+    "cookielaw.org",
+    "imagine-public.x.ai",   # public showcase gallery — never the user's own generation
+    "/_thumbnail.jpg",       # gallery-video thumbnails on the showcase grid
+    "_thumbnail.jpg",
+    "favicon",
+    ".svg",
+)
+
+
+def load_and_apply_cookies(context: BrowserContext, cookies_path: Path) -> int:
+    """Read a JSON cookie export (Cookie-Editor / EditThisCookie / similar) and
+    inject into the persistent context. Returns count loaded.
+
+    Browser extensions export cookies in slightly different shapes; this normalises
+    the common variants to Playwright's expected schema. Field details that matter:
+    - `expirationDate` (float seconds) → `expires` (int seconds).
+    - `sameSite` values like `no_restriction` / `lax` / `unspecified` →
+      `None` / `Lax` / dropped.
+    - Drop fields Playwright rejects (`hostOnly`, `session`, `storeId`, etc).
+    """
+    raw = json.loads(cookies_path.read_text())
+    if isinstance(raw, dict) and "cookies" in raw:
+        raw = raw["cookies"]
+    if not isinstance(raw, list):
+        raise ValueError(f"{cookies_path}: expected a JSON array or {{cookies: [...]}} envelope")
+
+    accepted_fields = {"name", "value", "domain", "path", "expires",
+                       "httpOnly", "secure", "sameSite", "url"}
+    normalized = []
+    for c in raw:
+        c = dict(c)
+        if "expirationDate" in c and "expires" not in c:
+            try:
+                c["expires"] = int(c["expirationDate"])
+            except (TypeError, ValueError):
+                pass
+        ss = c.get("sameSite")
+        if isinstance(ss, str):
+            sl = ss.lower()
+            if sl in ("no_restriction", "none"):
+                c["sameSite"] = "None"
+            elif sl == "lax":
+                c["sameSite"] = "Lax"
+            elif sl == "strict":
+                c["sameSite"] = "Strict"
+            else:
+                c.pop("sameSite", None)
+        clean = {k: v for k, v in c.items() if k in accepted_fields}
+        if "name" in clean and "value" in clean and ("domain" in clean or "url" in clean):
+            normalized.append(clean)
+    context.add_cookies(normalized)
+    return len(normalized)
+
+
+def snapshot_image_srcs(page: Page) -> set[str]:
+    """Capture every currently-loaded <img> src so we can diff against post-submit state."""
+    try:
+        return set(page.evaluate(
+            """() => Array.from(document.querySelectorAll('img'))
+                .map(i => i.currentSrc || i.src)
+                .filter(s => s && (s.startsWith('http') || s.startsWith('blob:')))
+            """
+        ))
+    except Exception:
+        return set()
+
+
+def wait_for_image(
+    page: Page,
+    profile_dir: Path,
+    debug: bool,
+    timeout_s: int = 180,
+    exclude_srcs: Optional[set] = None,
+    min_wait_s: float = 10.0,
+) -> Optional[str]:
+    """Poll for a NEW generated image (not present before submission). Return its src.
 
     Grok renders generated images as <img> with ai-generated content URLs. We
-    look for an <img> whose src is large (indicating actual image bytes), not a
-    UI sprite. Polling rather than waiting on a single selector because the DOM
-    structure isn't predictable.
+    diff against the pre-submit set of img srcs so the homepage showcase grid,
+    Imagine landing-page user-gallery, and cookie banner logos can't win the
+    "first stable" race against the real Aurora result.
+
+    `min_wait_s` enforces a floor on how soon a candidate can be returned —
+    Aurora generations take 15-30s, so anything that "appears" within seconds
+    of submission is almost certainly a stale render from the prior view.
     """
+    exclude_srcs = exclude_srcs or set()
     start = time.time()
     last_seen: dict[str, float] = {}
     while time.time() - start < timeout_s:
@@ -121,12 +229,18 @@ def wait_for_image(page: Page, profile_dir: Path, debug: bool, timeout_s: int = 
             urls = []
         for o in urls:
             src = o["src"]
+            if src in exclude_srcs:
+                continue
+            if any(frag in src for frag in DENY_URL_FRAGMENTS):
+                continue
             now = time.time()
+            elapsed_total = now - start
             if src not in last_seen:
                 last_seen[src] = now
                 print(f"  [img] candidate detected w={o['w']} h={o['h']} url={src[:120]}", file=sys.stderr)
-            elif now - last_seen[src] > 2.5:
-                # Stable for >2.5s — likely fully loaded.
+            elif now - last_seen[src] > 2.5 and elapsed_total > min_wait_s:
+                # Stable for >2.5s AND past the min-wait floor — likely a real
+                # generation, not a stale render carried over from prior view.
                 _shot(page, profile_dir, "image-found", debug)
                 return src
         time.sleep(1)
@@ -134,7 +248,49 @@ def wait_for_image(page: Page, profile_dir: Path, debug: bool, timeout_s: int = 
     return None
 
 
-def submit_prompt(page: Page, prompt: str, profile_dir: Path, debug: bool):
+def attach_reference_image(page: Page, image_path: Path, profile_dir: Path, debug: bool) -> None:
+    """Attach a local image to the composer for img2img / reference-conditioned gen.
+
+    Sets files directly on the hidden `<input type="file">` (probed 2026-05-08).
+    The composer renders a preview thumbnail asynchronously after this fires —
+    we don't need to wait for it explicitly because `submit_prompt` snapshots
+    pre-submit imgs so the thumbnail is already in `exclude_srcs`.
+
+    Raises:
+        RuntimeError if no file input is found in the DOM.
+    """
+    if not image_path.exists():
+        raise RuntimeError(f"Reference image not found: {image_path}")
+    sel = _try_selectors(page, FILE_INPUT_SELECTORS) or FILE_INPUT_SELECTORS[-1]
+    # Hidden inputs aren't "visible" so _try_selectors may return None — the
+    # fallback locator below works regardless of visibility.
+    try:
+        page.locator(sel).first.set_input_files(str(image_path))
+    except Exception as e:
+        _shot(page, profile_dir, "attach-failed", debug)
+        raise RuntimeError(f"set_input_files failed on {sel}: {e}") from e
+    print(f"  [attach] uploaded {image_path.name} via {sel}", file=sys.stderr)
+    # Brief settle so the preview thumbnail mounts before we snapshot pre-submit imgs.
+    time.sleep(2)
+    _shot(page, profile_dir, "reference-attached", debug)
+
+
+def submit_prompt(page: Page, prompt: str, profile_dir: Path, debug: bool) -> set[str]:
+    """Type the prompt, click Imagine toggle, snapshot the gallery, press Enter.
+
+    Returns the set of img srcs visible on the page IMMEDIATELY BEFORE Enter is
+    pressed — so the caller can diff against post-submit state. Snapshotting
+    here (not in main) catches images that loaded as a side-effect of the
+    Imagine-toggle navigation (the user's prior creations rendered on the
+    /imagine landing page).
+    """
+    # Wait for ANY editable input to mount before probing — the SPA can take a
+    # moment to hydrate, especially when post-login toasts (e.g. "Connectors
+    # are now available") are mutating the DOM.
+    try:
+        page.wait_for_selector(PROMPT_INPUT_WAIT_SELECTOR, timeout=10_000, state="visible")
+    except PWTimeout:
+        pass
     sel = _try_selectors(page, PROMPT_INPUT_SELECTORS)
     if not sel:
         _shot(page, profile_dir, "no-input", debug)
@@ -142,28 +298,37 @@ def submit_prompt(page: Page, prompt: str, profile_dir: Path, debug: bool):
             "Could not locate the prompt input. Layout may have changed. "
             "Inspect _debug-shots/no-input.png for the current DOM."
         )
+    # Auto-prefix "imagine " so Grok's natural-language router invokes Aurora,
+    # rather than us clicking a nav link (which navigates to /imagine and
+    # destroys our typed prompt). The trigger phrases Grok recognises include
+    # "imagine ", "draw ", "create an image of " — "imagine" is canonical here.
+    routed_prompt = prompt
+    if not any(prompt.lower().lstrip().startswith(t) for t in ("imagine ", "draw ", "create an image", "generate an image")):
+        routed_prompt = f"imagine {prompt}"
+        print(f"  [prefix] auto-prefixed prompt with 'imagine '", file=sys.stderr)
+
     print(f"  [input] using selector: {sel}", file=sys.stderr)
     el = page.locator(sel).first
     el.click()
-    el.fill(prompt)
+    el.fill(routed_prompt)
     _shot(page, profile_dir, "prompt-filled", debug)
 
-    # Optional: switch into Imagine mode if a toggle is visible.
-    toggle = _try_selectors(page, IMAGINE_TOGGLE_SELECTORS)
-    if toggle:
-        try:
-            page.locator(toggle).first.click(timeout=2000)
-            print(f"  [toggle] clicked Imagine: {toggle}", file=sys.stderr)
-            _shot(page, profile_dir, "imagine-toggled", debug)
-        except Exception as e:
-            print(f"  [toggle-skip] {e}", file=sys.stderr)
+    # Snapshot RIGHT before submission — captures whatever's currently on screen
+    # (homepage cards, sidebar history thumbnails, etc.) so wait_for_image only
+    # considers genuinely new images that appear after Enter.
+    pre_existing = snapshot_image_srcs(page)
+    print(f"  [pre-snapshot] {len(pre_existing)} image(s) before submit; will diff", file=sys.stderr)
 
-    # Submit. Try Enter first; some UIs need Ctrl+Enter or a Send button.
     try:
         el.press("Enter")
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"  [submit-fallback] {e}; trying keyboard.press", file=sys.stderr)
+        try:
+            page.keyboard.press("Enter")
+        except Exception:
+            pass
     _shot(page, profile_dir, "submitted", debug)
+    return pre_existing
 
 
 def download_image(context: BrowserContext, url: str, out_path: Path) -> bool:
@@ -191,6 +356,18 @@ def main():
         "--login-only", action="store_true",
         help="Open headed and pause for manual login; don't submit a prompt.",
     )
+    ap.add_argument(
+        "--cookies-file", default="",
+        help="Path to a JSON cookie export (e.g. from Cookie-Editor extension). "
+             "Loaded into the context before navigating — bypasses Cloudflare's "
+             "login-flow challenge by reusing an already-authenticated session.",
+    )
+    ap.add_argument(
+        "--reference-image", default="",
+        help="Path to a local image to attach as a build-from reference (Aurora "
+             "img2img). Same reference across many calls = character consistency "
+             "across e.g. YouTube beat images.",
+    )
     args = ap.parse_args()
 
     profile_dir = Path(args.profile_dir).expanduser().resolve()
@@ -203,7 +380,7 @@ def main():
     with sync_playwright() as pw:
         # launch_persistent_context bundles browser+context so cookies persist
         # naturally between runs without manual storage_state plumbing.
-        context = pw.chromium.launch_persistent_context(
+        launch_kwargs = dict(
             user_data_dir=str(profile_dir),
             headless=args.headless,
             viewport={"width": 1280, "height": 900},
@@ -215,21 +392,50 @@ def main():
                 # Cuts the most obvious headless-Chromium fingerprints. Won't beat
                 # serious anti-bot, but helps against basic checks.
                 "--disable-blink-features=AutomationControlled",
-                # WSL2: default sandbox/shm-tmpfs combo causes silent renderer
-                # crashes on heavyweight SPAs (grok.com qualifies).
+                # WSL2 + nanoclaw containers: default sandbox/shm-tmpfs combo
+                # causes silent renderer crashes on heavyweight SPAs.
                 "--no-sandbox",
                 "--disable-dev-shm-usage",
+                # Stella's long-running agent container hit
+                # `chrome_crashpad_handler: --database is required` +
+                # `recvmsg: Connection reset by peer (104)` on launch — the
+                # crashpad handler subprocess fails to initialise inside a
+                # nanoclaw container. We don't need crash reports anyway.
+                "--disable-crash-reporter",
+                "--disable-breakpad",
             ],
         )
+        # Honor an explicit chromium binary path — required inside nanoclaw
+        # containers, where Playwright's bundled chromium isn't present but
+        # /usr/bin/chromium is installed via apt. The Dockerfile sets this env
+        # var; on host it's unset and Playwright finds its own bundled binary.
+        exec_path = os.environ.get("PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH")
+        if exec_path:
+            launch_kwargs["executable_path"] = exec_path
+        context = pw.chromium.launch_persistent_context(**launch_kwargs)
         page = context.pages[0] if context.pages else context.new_page()
 
         try:
+            if args.cookies_file:
+                cookies_path = Path(args.cookies_file).expanduser().resolve()
+                if not cookies_path.exists():
+                    print(f"ERROR: --cookies-file not found: {cookies_path}", file=sys.stderr)
+                    sys.exit(2)
+                count = load_and_apply_cookies(context, cookies_path)
+                print(f"  [cookies] loaded {count} cookie(s) from {cookies_path}", file=sys.stderr)
+
             print(f"[1/4] navigating to {GROK_URL}", file=sys.stderr)
             page.goto(GROK_URL, wait_until="domcontentloaded", timeout=60_000)
             _shot(page, profile_dir, "01-loaded", args.debug_shots)
 
-            # Login gate detection.
-            time.sleep(2)  # let the SPA render
+            # Login gate detection. Wait for the SPA to settle — the Sign in/up
+            # buttons render after a JS hydration step, missing them is a known
+            # foot-gun.
+            try:
+                page.wait_for_load_state("networkidle", timeout=15_000)
+            except PWTimeout:
+                pass
+            time.sleep(1)
             logged_in = detect_login_state(page)
             print(f"[2/4] login state: {'OK' if logged_in else 'NEEDS MANUAL LOGIN'}", file=sys.stderr)
             if not logged_in or args.login_only:
@@ -241,22 +447,38 @@ def main():
                     )
                     sys.exit(2)
                 print(
-                    "\n  → A browser window is open. Please complete the X login "
-                    "and arrive at the Grok chat interface, then press Enter here:",
+                    "\n  → A browser window is open on your desktop. Please sign in via "
+                    "X in that window. The script is polling for sign-in (10 min timeout).",
                     file=sys.stderr,
                 )
-                input()
+                # Poll instead of blocking on stdin — works whether or not we have a
+                # tty. Re-checks login state every 2s for up to 10 minutes.
+                login_deadline = time.time() + 600
+                while time.time() < login_deadline:
+                    time.sleep(2)
+                    if detect_login_state(page):
+                        print("  → sign-in detected.", file=sys.stderr)
+                        break
+                else:
+                    print("ERROR: sign-in not completed within 10 min — exiting.", file=sys.stderr)
+                    sys.exit(2)
                 _shot(page, profile_dir, "02-after-manual-login", args.debug_shots)
                 if args.login_only:
                     print("login-only mode — exiting after login.", file=sys.stderr)
                     return
 
+            if args.reference_image:
+                ref_path = Path(args.reference_image).expanduser().resolve()
+                print(f"[3a/4] attaching reference image: {ref_path}", file=sys.stderr)
+                attach_reference_image(page, ref_path, profile_dir, args.debug_shots)
+
             print(f"[3/4] submitting prompt: {args.prompt[:80]}{'...' if len(args.prompt)>80 else ''}",
                   file=sys.stderr)
-            submit_prompt(page, args.prompt, profile_dir, args.debug_shots)
+            pre_existing = submit_prompt(page, args.prompt, profile_dir, args.debug_shots)
 
             print(f"[4/4] waiting up to {args.timeout}s for the generated image...", file=sys.stderr)
-            url = wait_for_image(page, profile_dir, args.debug_shots, timeout_s=args.timeout)
+            url = wait_for_image(page, profile_dir, args.debug_shots,
+                                 timeout_s=args.timeout, exclude_srcs=pre_existing)
             if not url:
                 print("ERROR: timed out waiting for generated image.", file=sys.stderr)
                 sys.exit(3)
