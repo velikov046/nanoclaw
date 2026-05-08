@@ -15,6 +15,8 @@ jobs/<job_id>/
   anchor.jpg        ← character anchor (Step 2.5, optional but expected for character videos)
   images/           ← gen_images.py fills this (Step 3)
   thumbnail.jpg     ← gen_thumbnail.py creates this (Step 4)
+  opener.mp4        ← gen_opener.py creates this (Step 4a, hook + visual + music)
+  closer.mp4        ← gen_closer.py creates this (Step 4c, closing line + swell + fade)
   broll/            ← gen_broll.py fills this (Step 4b, optional)
   output.mp4        ← compose.py creates this (Step 5)
 ```
@@ -30,6 +32,16 @@ jobs/<job_id>/
   "thumbnail_prompt": "Visual concept — specific, no text",
   "tags": ["tag1", "tag2"],
   "music": false,
+
+  "hook_script": "Why did they stop testing for it after 2020?",
+  "hook_mode": "question",
+  "opener_visual_prompt": "Modern expedition cruise ship adrift in dense fog, somber, photoreal",
+  "title_overlay": "THE CRUISE THEY DIDN'T WANT YOU TO SEE",
+
+  "closer_script": "And that's the question the testing data quietly stopped asking.",
+  "closer_visual_prompt": "Empty cruise corridor at night, single overhead light, slow zoom",
+  "end_card": "Subscribe — the next one's about the testing protocol they buried.",
+
   "segments": [
     {
       "id": 1,
@@ -42,6 +54,8 @@ jobs/<job_id>/
 
 - 6–10 segments, ~25–35 seconds each, ~300 words total
 - `music: true` → pick a track from `/workspace/extra/youtube/music/` and pass it to compose
+- **Hook fields** (`hook_script`, `hook_mode`, `opener_visual_prompt`, `title_overlay`) drive `gen_opener.py`. The hook MUST be either an audience question or a shocking-truth statement — declarative narration alone won't hold viewers past the 5-second cliff. Aim for ≤4s of speech so the opener lands under 5s total.
+- **Closer fields** (`closer_script`, `closer_visual_prompt`, `end_card`) drive `gen_closer.py`. One sentence, callback to the thesis or hook for the next video.
 - Image prompts: specific and visual — match your character's aesthetic
 
 ---
@@ -116,6 +130,23 @@ Generates `thumbnail.jpg` from `thumbnail_prompt` in script.json. Each char-prof
 
 ---
 
+## Step 4a — Opener (mandatory if you care about retention)
+
+```bash
+python3 /workspace/extra/youtube/pipeline/gen_opener.py \
+  --job /workspace/extra/youtube/jobs/<job_id> \
+  --voice <Malakai|James Oak|...> \
+  --char-profile <velikov|lydia|stella>
+```
+
+Builds a ≤5s `opener.mp4` with: hook line voiced (ElevenLabs + tag_cli emote injection) + Aurora video visual + music sting (sidechain-ducked under the voice) + optional bold title overlay.
+
+The hook MUST come from `hook_script` in script.json — phrased as an **audience question** or a **shocking-truth statement**. Declarative narration alone gets scrolled past in the first 5 seconds. Falls back to a generic question derived from `title` if `hook_script` is missing, but that fallback is for legacy scripts only — write the hook deliberately for real production.
+
+Compose picks up the result via `opener_file` in script.json (auto-set by gen_opener). The legacy `kling_file` from gen_broll still works as a silent fallback.
+
+---
+
 ## Step 4b — B-roll and Kling opener (optional)
 
 ```bash
@@ -130,6 +161,23 @@ python3 /workspace/extra/youtube/pipeline/gen_broll.py \
 - `--broll`: fetches up to `--broll-count` Pixabay clips matched to `tags`. Requires `PIXABAY_API_KEY`.
 
 Both skip silently if their key is absent. Paths written to `script.json`; compose picks them up automatically and prepends them as a muted visual opener before the narrated segments. **Use `--music` in compose when running this** — the opener is silent without it.
+
+Prefer Step 4a over Step 4b's `--kling` for the opener — gen_opener gives a real voiced hook with music, not a silent visual.
+
+---
+
+## Step 4c — Closer (lands the message, earns the next click)
+
+```bash
+python3 /workspace/extra/youtube/pipeline/gen_closer.py \
+  --job /workspace/extra/youtube/jobs/<job_id> \
+  --voice <Malakai|James Oak|...> \
+  --char-profile <velikov|lydia|stella>
+```
+
+Builds a `closer.mp4` (~5-7s) with: closing line voiced + Aurora video visual + music swell-then-fade + optional `end_card` text overlay (channel handle, subscribe prompt, hook for next video). Last 1.5s fades to black + silence.
+
+The closing line should be a callback to the thesis or a hook for the next video — not a "thanks for watching." Compose picks it up via `closer_file` in script.json.
 
 ---
 

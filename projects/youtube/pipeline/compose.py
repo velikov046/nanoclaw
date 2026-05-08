@@ -404,27 +404,46 @@ def compose(job_dir: str, music_path: str | None, music_volume: float,
 
     segment_videos = []
 
-    # Prepend kling opener (muted) if generated. Audio is stripped by
-    # normalize_video_clip; we add a silent stereo AAC track so the concat
-    # demuxer keeps audio on the rest of the segments. Without this, the
-    # audio-bearing seg_*.mp4 inputs get their audio dropped because the
-    # opener input has no audio stream and `-c copy` concat refuses
-    # mismatched stream layouts.
-    kling_file = script.get("kling_file")
-    if kling_file and os.path.exists(kling_file):
-        kling_norm = os.path.join(tmp_dir, "opener_norm.mp4")
-        print(f"Normalizing opener ({os.path.basename(kling_file)})...")
-        normalize_video_clip(kling_file, kling_norm, dims)
-        opener_padded = os.path.join(tmp_dir, "opener_with_silence.mp4")
+    # Prepend opener if any. Two flavours:
+    #   - opener_file (NEW): produced by gen_opener.py, already has voice +
+    #     music + correct landscape framing. Use as-is, just normalise to
+    #     ensure same encode params as the rest of the timeline.
+    #   - kling_file (LEGACY): silent visual clip from kling/aurora video.
+    #     normalize_video_clip strips its audio, so we add a silent stereo
+    #     AAC track before concat — the concat demuxer drops audio from the
+    #     entire timeline if any input has a different stream layout.
+    opener_file = script.get("opener_file")
+    if opener_file and os.path.exists(opener_file):
+        opener_norm = os.path.join(tmp_dir, "opener_reencoded.mp4")
+        print(f"Re-encoding opener ({os.path.basename(opener_file)})...")
+        # Pass through audio + video at the timeline's encode params so
+        # concat doesn't have to mux mismatched codec configs.
         subprocess.run([
-            "ffmpeg", "-y",
-            "-i", kling_norm,
-            "-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo",
-            "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
-            "-shortest",
-            opener_padded,
+            "ffmpeg", "-y", "-i", opener_file,
+            "-vf", f"scale={dims[0]}:{dims[1]}:force_original_aspect_ratio=increase,"
+                   f"crop={dims[0]}:{dims[1]},setsar=1",
+            "-c:v", "libx264", "-preset", "fast", "-crf", "23",
+            "-c:a", "aac", "-b:a", "192k",
+            "-r", "25", "-pix_fmt", "yuv420p",
+            opener_norm,
         ], check=True, capture_output=True)
-        segment_videos.append(opener_padded)
+        segment_videos.append(opener_norm)
+    else:
+        kling_file = script.get("kling_file")
+        if kling_file and os.path.exists(kling_file):
+            kling_norm = os.path.join(tmp_dir, "opener_norm.mp4")
+            print(f"Normalizing legacy opener ({os.path.basename(kling_file)})...")
+            normalize_video_clip(kling_file, kling_norm, dims)
+            opener_padded = os.path.join(tmp_dir, "opener_with_silence.mp4")
+            subprocess.run([
+                "ffmpeg", "-y",
+                "-i", kling_norm,
+                "-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo",
+                "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
+                "-shortest",
+                opener_padded,
+            ], check=True, capture_output=True)
+            segment_videos.append(opener_padded)
 
     # Prepend B-roll clips (muted, trimmed) if generated. Same silent-audio
     # padding as the opener — concat demuxer needs every input to carry the
@@ -468,6 +487,24 @@ def compose(job_dir: str, music_path: str | None, music_volume: float,
         print(f"Composing segment {i}/{len(segments)} ({duration:.1f}s, {beat_summary}{cap_summary})...")
         build_segment_video(seg, audio_file, duration, i - 1, seg_video, char_profile, tmp_dir, aspect)
         segment_videos.append(seg_video)
+
+    # Append closer if any. gen_closer.py produces a clip with voice + music
+    # swell + fade-to-black already baked in, so we just re-encode to
+    # timeline params and tack it on the end.
+    closer_file = script.get("closer_file")
+    if closer_file and os.path.exists(closer_file):
+        closer_norm = os.path.join(tmp_dir, "closer_reencoded.mp4")
+        print(f"Re-encoding closer ({os.path.basename(closer_file)})...")
+        subprocess.run([
+            "ffmpeg", "-y", "-i", closer_file,
+            "-vf", f"scale={dims[0]}:{dims[1]}:force_original_aspect_ratio=increase,"
+                   f"crop={dims[0]}:{dims[1]},setsar=1",
+            "-c:v", "libx264", "-preset", "fast", "-crf", "23",
+            "-c:a", "aac", "-b:a", "192k",
+            "-r", "25", "-pix_fmt", "yuv420p",
+            closer_norm,
+        ], check=True, capture_output=True)
+        segment_videos.append(closer_norm)
 
     # Concat all segments
     concat_list = os.path.join(tmp_dir, "concat.txt")
