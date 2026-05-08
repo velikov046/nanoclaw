@@ -404,15 +404,31 @@ def compose(job_dir: str, music_path: str | None, music_volume: float,
 
     segment_videos = []
 
-    # Prepend kling opener (muted) if generated
+    # Prepend kling opener (muted) if generated. Audio is stripped by
+    # normalize_video_clip; we add a silent stereo AAC track so the concat
+    # demuxer keeps audio on the rest of the segments. Without this, the
+    # audio-bearing seg_*.mp4 inputs get their audio dropped because the
+    # opener input has no audio stream and `-c copy` concat refuses
+    # mismatched stream layouts.
     kling_file = script.get("kling_file")
     if kling_file and os.path.exists(kling_file):
         kling_norm = os.path.join(tmp_dir, "opener_norm.mp4")
-        print(f"Normalizing Kling opener ({os.path.basename(kling_file)})...")
+        print(f"Normalizing opener ({os.path.basename(kling_file)})...")
         normalize_video_clip(kling_file, kling_norm, dims)
-        segment_videos.append(kling_norm)
+        opener_padded = os.path.join(tmp_dir, "opener_with_silence.mp4")
+        subprocess.run([
+            "ffmpeg", "-y",
+            "-i", kling_norm,
+            "-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo",
+            "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
+            "-shortest",
+            opener_padded,
+        ], check=True, capture_output=True)
+        segment_videos.append(opener_padded)
 
-    # Prepend B-roll clips (muted, trimmed) if generated
+    # Prepend B-roll clips (muted, trimmed) if generated. Same silent-audio
+    # padding as the opener — concat demuxer needs every input to carry the
+    # same stream layout or it drops audio from the whole timeline.
     broll_files = script.get("broll_files", [])
     for bi, broll_path in enumerate(broll_files):
         if not os.path.exists(broll_path):
@@ -421,7 +437,16 @@ def compose(job_dir: str, music_path: str | None, music_volume: float,
         broll_norm = os.path.join(tmp_dir, f"broll_{bi:02d}_norm.mp4")
         print(f"Normalizing B-roll {bi+1}/{len(broll_files)}: {os.path.basename(broll_path)}...")
         normalize_video_clip(broll_path, broll_norm, dims, max_duration=BROLL_MAX_DURATION)
-        segment_videos.append(broll_norm)
+        broll_padded = os.path.join(tmp_dir, f"broll_{bi:02d}_with_silence.mp4")
+        subprocess.run([
+            "ffmpeg", "-y",
+            "-i", broll_norm,
+            "-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo",
+            "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
+            "-shortest",
+            broll_padded,
+        ], check=True, capture_output=True)
+        segment_videos.append(broll_padded)
 
     for i, seg in enumerate(segments, 1):
         audio_file = seg.get("audio_file")
