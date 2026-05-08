@@ -369,31 +369,68 @@ def build_segment_video(seg: dict, audio_path: str, duration: float,
         subprocess.run(cmd, check=True, capture_output=True)
         return
 
-    # Multi-beat path — one ffmpeg run, filter_complex with per-beat zoompan + concat
+    # Multi-beat path — one ffmpeg run, filter_complex with per-beat zoompan
+    # then xfade chain between beats. Plain concat between beats was a hard
+    # cut: even with motion variety, the camera teleported between adjacent
+    # images at every boundary and the brain read it as a "loop reset."
+    # xfade overlap softens those transitions to a brief blend.
+    #
+    # Each beat's image is looped for d + XFADE_DUR seconds so its zoompan
+    # has content to keep showing during the overlap. The xfade itself
+    # consumes XFADE_DUR seconds of overlap between consecutive beats, so
+    # the final output duration = sum(beat_durations) + XFADE_DUR — which
+    # matches our SEGMENT_TAIL_S breath when we set the two equal.
+    XFADE_DUR = SEGMENT_TAIL_S  # 0.3s by default; aliased so the breath
+    # at end-of-segment is the SAME content as the trailing tail of the
+    # last beat's zoompan, not a separate held freeze. Cleaner.
+
+    extended_durations = [d + XFADE_DUR for d in beat_durations]
+
     cmd: list[str] = ["ffmpeg", "-y"]
-    for b, d in zip(beats, beat_durations):
-        cmd += ["-loop", "1", "-t", f"{d:.3f}", "-i", b["image_file"]]
+    for b, ext_d in zip(beats, extended_durations):
+        cmd += ["-loop", "1", "-t", f"{ext_d:.3f}", "-i", b["image_file"]]
     cmd += ["-i", audio_path]
 
     # The audio input index sits after all image inputs
     audio_idx = len(beats)
 
     filter_parts = []
-    for k, d in enumerate(beat_durations):
-        # ken_burns_filter index varies per beat to alternate pan direction
-        # when no per-beat motion hint is supplied; with motion, it's deterministic.
-        kb = ken_burns_filter(d, segment_index * 7 + k, dims, beats[k].get("motion"))
+    for k, ext_d in enumerate(extended_durations):
+        kb = ken_burns_filter(ext_d, segment_index * 7 + k, dims,
+                              beats[k].get("motion"))
         filter_parts.append(f"[{k}:v]{kb},setsar=1[v{k}]")
-    concat_inputs = "".join(f"[v{k}]" for k in range(len(beats)))
-    concat_out = "[vcat]" if subtitle_filter else "[vout]"
-    filter_parts.append(f"{concat_inputs}concat=n={len(beats)}:v=1:a=0{concat_out}")
-    if subtitle_filter:
-        filter_parts.append(f"[vcat]{subtitle_filter}[vout]")
+
+    # Chain xfade transitions across all beats. xfade(a, b, offset, dur)
+    # produces output of length `offset + b_dur`. Stacking them: each
+    # subsequent xfade's offset is the cumulative sum of beat_durations
+    # up to but not including the current beat (NOT extended_durations,
+    # because the X overlap is consumed inside the xfade itself).
+    if len(beats) >= 2:
+        prev_label = "v0"
+        cum_offset = beat_durations[0]
+        for k in range(1, len(beats)):
+            is_last = (k == len(beats) - 1)
+            next_label = (
+                ("vcat" if subtitle_filter else "vout") if is_last
+                else f"vc{k:02d}"
+            )
+            filter_parts.append(
+                f"[{prev_label}][v{k}]xfade=transition=fade:"
+                f"duration={XFADE_DUR}:offset={cum_offset:.3f}[{next_label}]"
+            )
+            prev_label = next_label
+            cum_offset += beat_durations[k]
+        if subtitle_filter:
+            filter_parts.append(f"[vcat]{subtitle_filter}[vout]")
+    else:
+        # Single beat (shouldn't reach here — single-beat fast path above)
+        filter_parts.append(f"[v0]copy[vout]")
     filter_complex = ";".join(filter_parts)
 
-    # Pad audio with silence so the segment ends with a breath (held last
-    # zoompan frame + silent tail). filter_complex needs the apad in the
-    # graph since we map a labelled audio stream rather than the raw input.
+    # Pad audio with silence so the segment ends with a breath. The video
+    # side already extends past audio_dur by XFADE_DUR via the last beat's
+    # held zoompan tail, so the final segment's video and padded audio
+    # match in length.
     filter_complex += (
         f";[{audio_idx}:a]apad=pad_dur={SEGMENT_TAIL_S}[aout]"
     )
