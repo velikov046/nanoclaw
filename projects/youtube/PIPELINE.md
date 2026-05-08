@@ -132,13 +132,32 @@ Generates one image per segment via Aurora — routed through `tools/grok_imagin
 
 ## Step 4 — Generate thumbnail
 
+Two paths — pick based on what the video needs.
+
+### 4-design (preferred for shipped videos): `produce_thumbnail.py`
+
+```bash
+python3 /workspace/extra/youtube/pipeline/produce_thumbnail.py \
+  --job /workspace/extra/youtube/jobs/<job_id> \
+  --char-profile <velikov|lydia|stella> \
+  --count 4
+```
+
+Two-stage design pipeline:
+1. **Concept design** — Sonnet reads script.json (title, hook, first segments) + the channel's art-direction tree (loaded from `groups/<agent>/thumbnail_brand.md` if present, else embedded fallback) and outputs N distinct thumbnail concept briefs taking different angles on the video.
+2. **Image gen** — runs each concept through Aurora and saves to `<job>/thumbnail-variants/v{n}_<name>.jpg` plus a `briefs.json` for traceability. **Does not auto-pick** — review the candidates and copy the chosen one to `<job>/thumbnail.jpg` before compose runs.
+
+The Velikov tree (embedded) enforces: PERSONAL register (no crowds, lonely investigator figures), the ghost-ship rule for institutional-suppression videos (empty of crew), iconography vocabulary (hazmat figure / redacted document / single warning light / viral capsid / empty institutional setting), cold blue palette with single warm accent, banned list (stock-photo cleanliness, smiling subjects, multiple people).
+
+### 4-quick: `gen_thumbnail.py` (legacy one-shot)
+
 ```bash
 python3 /workspace/extra/youtube/pipeline/gen_thumbnail.py \
   --job /workspace/extra/youtube/jobs/<job_id> \
   --char-profile <velikov|lydia|stella>
 ```
 
-Generates `thumbnail.jpg` from `thumbnail_prompt` in script.json. Each char-profile applies a different aesthetic style. Routed through `grok_imagine.py` like step 3 — no API key needed.
+Single Aurora call from `thumbnail_prompt` + a per-character style preamble. No design step, no candidates. Use for prototypes / drafts where you don't need the design tree.
 
 ---
 
