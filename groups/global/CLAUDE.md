@@ -88,6 +88,17 @@ python3 /workspace/extra/youtube/pipeline/_aurora_via_grok.py \
 
 Aurora preserves face, clothing, and palette strongly. Use when generating a series that should feel like the same person/creature/scene.
 
+**Generate a short video** (~6s mp4, Aurora video via grok.com/imagine). Add `--mode video`:
+
+```bash
+python3 /workspace/extra/youtube/pipeline/_aurora_via_grok.py \
+  --mode video \
+  "<prompt — describe motion + subject + lighting>" \
+  /workspace/group/attachments/<name>.mp4
+```
+
+~30-90s gen time. Output is portrait 464x688 mp4 by default; add `--quality` for higher fidelity (slower). Reference images aren't supported in video mode.
+
 **Tips:**
 
 - Aurora responds well to specific, sensory prompts (lighting, mood, era, medium). "imagine " prefix is auto-added if missing.

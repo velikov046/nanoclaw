@@ -38,6 +38,26 @@ ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_PROFILE = ROOT / "data" / "sessions" / "velikov" / "grok-browser-profile"
 
 GROK_URL = "https://grok.com/"
+GROK_IMAGINE_URL = "https://grok.com/imagine"
+
+# OneTrust cookie consent banner — fresh profile dirs hit this even with our
+# imported cookies (the banner state lives in localStorage, not the cookie jar).
+# Dismiss it once at startup so it doesn't intercept Video-radio / Submit clicks.
+ONETRUST_REJECT_BTN = "#onetrust-reject-all-handler"
+
+# /imagine page selectors (probed live 2026-05-08):
+#   Image/Video radios: <button role="radio" aria-checked="true|false">Image</button>
+#                       <button role="radio" aria-checked="true|false">Video</button>
+#   Speed/Quality radios: same shape; "Speed" default-checked, "Quality" higher-res slower.
+#   Prompt input: <div contenteditable="true" class="tiptap ProseMirror ..."> (TipTap editor;
+#                 fill() doesn't work — use click + keyboard.type).
+#   Submit: <button aria-label="Submit" type="submit"> (disabled until prompt non-empty).
+IMAGINE_VIDEO_RADIO = 'button[role="radio"]:has-text("Video")'
+IMAGINE_IMAGE_RADIO = 'button[role="radio"]:has-text("Image")'
+IMAGINE_QUALITY_RADIO = 'button[role="radio"]:has-text("Quality")'
+IMAGINE_SPEED_RADIO = 'button[role="radio"]:has-text("Speed")'
+IMAGINE_PROMPT_INPUT = 'div.tiptap[contenteditable="true"], div.ProseMirror[contenteditable="true"]'
+IMAGINE_SUBMIT_BTN = 'button[aria-label="Submit"][type="submit"]'
 
 # Heuristic selectors. UI changes regularly so order from most-specific to most-general.
 PROMPT_INPUT_SELECTORS = [
@@ -248,6 +268,163 @@ def wait_for_image(
     return None
 
 
+def dismiss_onetrust_banner(page: Page) -> bool:
+    """Dismiss the OneTrust cookie consent banner if it's visible.
+
+    The banner intercepts pointer events on /imagine, which blocks the Video
+    radio and Submit clicks. Banner state lives in localStorage, so a fresh
+    profile dir always sees it even with our imported cookies. Reject-all is
+    sufficient — no consent is required for image/video gen.
+    """
+    try:
+        btn = page.locator(ONETRUST_REJECT_BTN).first
+        if btn.is_visible(timeout=2_000):
+            btn.click()
+            print("  [banner] dismissed OneTrust consent", file=sys.stderr)
+            time.sleep(0.5)
+            return True
+    except (PWTimeout, Exception):
+        pass
+    return False
+
+
+def run_video_flow(
+    context: BrowserContext,
+    page: Page,
+    prompt: str,
+    out_path: Path,
+    profile_dir: Path,
+    debug: bool,
+    timeout_s: int,
+    quality: bool = False,
+) -> None:
+    """Drive grok.com/imagine to generate a video and download the mp4.
+
+    Different surface from the chat-root image flow:
+    - Lives at /imagine (not /).
+    - Image/Video radio toggle (default Image; we click Video).
+    - Speed/Quality radio toggle (default Speed; pass quality=True to switch).
+    - Prompt input is TipTap ProseMirror — needs keyboard.type, not fill().
+    - Submit button stays disabled until the prompt is non-empty.
+    - Output is a <video> element with mp4 src; download via context.request.
+    """
+    print(f"[video] navigating to {GROK_IMAGINE_URL}", file=sys.stderr)
+    page.goto(GROK_IMAGINE_URL, wait_until="domcontentloaded", timeout=60_000)
+    try:
+        page.wait_for_load_state("networkidle", timeout=15_000)
+    except PWTimeout:
+        pass
+    _shot(page, profile_dir, "video-01-loaded", debug)
+
+    dismiss_onetrust_banner(page)
+
+    # Toggle Video mode. Verify aria-checked flipped to confirm the click landed.
+    video_radio = page.locator(IMAGINE_VIDEO_RADIO).first
+    video_radio.click(timeout=10_000)
+    time.sleep(0.5)
+    if video_radio.get_attribute("aria-checked") != "true":
+        _shot(page, profile_dir, "video-toggle-failed", debug)
+        raise RuntimeError("Video radio click didn't flip aria-checked — UI may have shifted.")
+    print("  [video] Video mode selected", file=sys.stderr)
+
+    if quality:
+        page.locator(IMAGINE_QUALITY_RADIO).first.click(timeout=10_000)
+        time.sleep(0.3)
+        print("  [video] Quality mode selected (slower, higher fidelity)", file=sys.stderr)
+
+    _shot(page, profile_dir, "video-02-mode-set", debug)
+
+    # ProseMirror needs typed input, not fill(). Click to focus, then type.
+    prompt_el = page.locator(IMAGINE_PROMPT_INPUT).first
+    prompt_el.click()
+    time.sleep(0.2)
+    page.keyboard.type(prompt, delay=10)
+    _shot(page, profile_dir, "video-03-prompt-typed", debug)
+
+    # Snapshot pre-submit <video> srcs so the diff excludes the gallery thumbnails.
+    pre_existing = snapshot_video_srcs(page)
+    print(f"  [video] {len(pre_existing)} existing video src(s) before submit", file=sys.stderr)
+
+    # Submit becomes enabled once the prompt is non-empty. Wait for it, then click.
+    submit = page.locator(IMAGINE_SUBMIT_BTN).first
+    for _ in range(30):
+        if not submit.is_disabled():
+            break
+        time.sleep(0.2)
+    else:
+        _shot(page, profile_dir, "video-submit-stuck-disabled", debug)
+        raise RuntimeError("Submit button never became enabled after typing prompt.")
+    submit.click()
+    _shot(page, profile_dir, "video-04-submitted", debug)
+    print(f"[video] submitted; waiting up to {timeout_s}s for generation...", file=sys.stderr)
+
+    src = wait_for_video(page, profile_dir, debug, timeout_s, exclude_srcs=pre_existing)
+    if not src:
+        raise RuntimeError("Timed out waiting for generated video.")
+
+    print(f"  [video] src: {src[:120]}", file=sys.stderr)
+    if not download_image(context, src, out_path):
+        raise RuntimeError(f"Failed to download generated video from {src}")
+
+
+def snapshot_video_srcs(page: Page) -> set[str]:
+    """Capture every currently-loaded <video> src for pre/post-submit diffing."""
+    try:
+        return set(page.evaluate(
+            """() => Array.from(document.querySelectorAll('video'))
+                .map(v => v.currentSrc || v.src || v.querySelector('source')?.src)
+                .filter(s => s && (s.startsWith('http') || s.startsWith('blob:')))
+            """
+        ))
+    except Exception:
+        return set()
+
+
+def wait_for_video(
+    page: Page,
+    profile_dir: Path,
+    debug: bool,
+    timeout_s: int,
+    exclude_srcs: Optional[set] = None,
+    min_wait_s: float = 15.0,
+) -> Optional[str]:
+    """Poll for a NEW <video> src not present before submission. Returns the src.
+
+    Aurora video gen typically 30-90s; min_wait_s floor avoids returning a
+    just-mounted gallery thumbnail. Stable-for-2.5s window is sufficient since
+    once the mp4 src lands it doesn't churn.
+    """
+    exclude_srcs = exclude_srcs or set()
+    start = time.time()
+    last_seen: dict[str, float] = {}
+    while time.time() - start < timeout_s:
+        try:
+            srcs = page.evaluate(
+                """() => Array.from(document.querySelectorAll('video'))
+                    .map(v => v.currentSrc || v.src || v.querySelector('source')?.src)
+                    .filter(s => s && (s.startsWith('http') || s.startsWith('blob:')))
+                """
+            )
+        except Exception:
+            srcs = []
+        for src in srcs:
+            if src in exclude_srcs:
+                continue
+            if any(frag in src for frag in DENY_URL_FRAGMENTS):
+                continue
+            now = time.time()
+            elapsed_total = now - start
+            if src not in last_seen:
+                last_seen[src] = now
+                print(f"  [vid] candidate detected url={src[:120]}", file=sys.stderr)
+            elif now - last_seen[src] > 2.5 and elapsed_total > min_wait_s:
+                _shot(page, profile_dir, "video-found", debug)
+                return src
+        time.sleep(1)
+    _shot(page, profile_dir, "video-timeout", debug)
+    return None
+
+
 def attach_reference_image(page: Page, image_path: Path, profile_dir: Path, debug: bool) -> None:
     """Attach a local image to the composer for img2img / reference-conditioned gen.
 
@@ -368,11 +545,27 @@ def main():
              "img2img). Same reference across many calls = character consistency "
              "across e.g. YouTube beat images.",
     )
+    ap.add_argument(
+        "--mode", default="image", choices=["image", "video"],
+        help="Output type. 'image' uses the chat-root composer (default, fast). "
+             "'video' uses the /imagine page Video toggle (Aurora video gen, "
+             "30-90s, mp4 output). Reference image not supported in video mode.",
+    )
+    ap.add_argument(
+        "--quality", action="store_true",
+        help="Video mode only: pick the Quality radio (higher fidelity, slower). "
+             "Default is Speed.",
+    )
     args = ap.parse_args()
 
     profile_dir = Path(args.profile_dir).expanduser().resolve()
     profile_dir.mkdir(parents=True, exist_ok=True)
-    out_path = Path(args.out) if args.out else Path(f"/tmp/grok-{int(time.time())}.png")
+    default_ext = "mp4" if args.mode == "video" else "png"
+    out_path = Path(args.out) if args.out else Path(f"/tmp/grok-{int(time.time())}.{default_ext}")
+
+    if args.mode == "video" and args.reference_image:
+        print("ERROR: --reference-image is not supported in --mode video.", file=sys.stderr)
+        sys.exit(2)
 
     print(f"profile: {profile_dir}", file=sys.stderr)
     print(f"output:  {out_path}", file=sys.stderr)
@@ -423,6 +616,15 @@ def main():
                     sys.exit(2)
                 count = load_and_apply_cookies(context, cookies_path)
                 print(f"  [cookies] loaded {count} cookie(s) from {cookies_path}", file=sys.stderr)
+
+            if args.mode == "video":
+                # Video mode has its own self-contained flow. It still relies on
+                # the cookie-injected SuperGrok session above, but uses a
+                # different page (/imagine) with different selectors.
+                run_video_flow(context, page, args.prompt, out_path, profile_dir,
+                               args.debug_shots, args.timeout, quality=args.quality)
+                print(f"OK wrote {out_path} ({out_path.stat().st_size} bytes)")
+                return
 
             print(f"[1/4] navigating to {GROK_URL}", file=sys.stderr)
             page.goto(GROK_URL, wait_until="domcontentloaded", timeout=60_000)

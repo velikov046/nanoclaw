@@ -86,29 +86,39 @@ def generate(
     timeout_s: int = 240,
     headless: bool = True,
     reference_image: str | Path | None = None,
+    mode: str = "image",
+    quality: bool = False,
 ) -> Path:
-    """Generate one image via grok.com browser-drive.
+    """Generate one image or short video via grok.com browser-drive.
 
     Args:
-        prompt: Aurora prompt text. The driver auto-prefixes "imagine " if not
-            already starting with imagine/draw/create/generate.
-        out_path: where to write the resulting JPG.
+        prompt: Aurora prompt text. In image mode the driver auto-prefixes
+            "imagine " if missing; in video mode the prompt is sent as-is.
+        out_path: where to write the result. Image mode = JPG/PNG, video mode = mp4.
         cookies_file: override path to grok.com cookie JSON.
-        timeout_s: per-call ceiling. Aurora typical gen ~15-30s; default 240s
-            leaves headroom for browser launch + retries.
+        timeout_s: per-call ceiling. Image gen ~15-30s, video gen ~30-90s; the
+            default 240s covers both with headroom.
         headless: pass --headless to the driver (True for batch).
         reference_image: optional path to a local image to attach as a
-            build-from reference (Aurora img2img). Pass the same reference
-            across every call in a video to keep character/scene consistent
-            across beats.
+            build-from reference (Aurora img2img). Image mode only — video
+            mode does not support reference images.
+        mode: 'image' (default, chat-root flow) or 'video' (uses /imagine page,
+            Aurora video gen, ~6s mp4 output).
+        quality: video mode only — pick the Quality radio (slower, higher
+            fidelity). Default Speed.
 
     Returns:
         Resolved path to the written file.
 
     Raises:
         FileNotFoundError: cookies file or reference image missing.
+        ValueError: invalid mode, or reference_image passed in video mode.
         RuntimeError: driver failed or wrote no output.
     """
+    if mode not in ("image", "video"):
+        raise ValueError(f"mode must be 'image' or 'video', got {mode!r}")
+    if mode == "video" and reference_image:
+        raise ValueError("reference_image is not supported in video mode")
     cookies = _resolve_cookies(cookies_file)
     if not cookies.exists():
         raise FileNotFoundError(
@@ -140,9 +150,12 @@ def generate(
         "--out", str(out),
         "--timeout", str(timeout_s),
         "--profile-dir", str(profile_dir),
+        "--mode", mode,
     ]
     if ref_path is not None:
         cmd.extend(["--reference-image", str(ref_path)])
+    if quality:
+        cmd.append("--quality")
     if headless:
         cmd.append("--headless")
 
@@ -190,15 +203,23 @@ if __name__ == "__main__":
     ap.add_argument("--reference-image", default=None,
                     help="Optional local image to attach as a build-from "
                          "reference (Aurora img2img). Same ref across many "
-                         "calls = character consistency across beats.")
+                         "calls = character consistency across beats. "
+                         "Image mode only.")
+    ap.add_argument("--mode", default="image", choices=["image", "video"],
+                    help="'image' (default) = JPG via chat-root composer. "
+                         "'video' = ~6s mp4 via grok.com/imagine Video toggle.")
+    ap.add_argument("--quality", action="store_true",
+                    help="Video mode only: Quality radio (slower, higher fidelity). "
+                         "Default Speed.")
     ap.add_argument("--timeout", type=int, default=240)
     ns = ap.parse_args()
 
     try:
         path = generate(ns.prompt, ns.out_path,
                         cookies_file=ns.cookies_file, timeout_s=ns.timeout,
-                        reference_image=ns.reference_image)
-    except (FileNotFoundError, RuntimeError) as e:
+                        reference_image=ns.reference_image,
+                        mode=ns.mode, quality=ns.quality)
+    except (FileNotFoundError, RuntimeError, ValueError) as e:
         print(f"ERROR: {e}", file=sys.stderr)
         sys.exit(1)
     print(f"OK wrote {path} ({path.stat().st_size} bytes)")
