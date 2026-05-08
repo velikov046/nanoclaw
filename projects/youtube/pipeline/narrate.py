@@ -42,6 +42,12 @@ DEFAULT_VOICE = "Malakai"
 
 
 def resolve_voice_id(api_key: str, voice_name: str) -> str:
+    """Map a voice alias / short name to an ElevenLabs voice_id.
+
+    Tries exact match first, then prefix match (the library decorates names
+    like "Malakai - Shadowed and Gruff" / "James Oak - Vibrant and
+    Captivating", so passing just "Malakai" or "James Oak" must still resolve).
+    """
     name = VOICE_ALIASES.get(voice_name.lower(), voice_name)
     resp = requests.get(
         f"{ELEVEN_API_BASE}/v1/voices",
@@ -49,8 +55,16 @@ def resolve_voice_id(api_key: str, voice_name: str) -> str:
         timeout=20,
     )
     resp.raise_for_status()
-    for v in resp.json().get("voices", []):
-        if v.get("name", "").lower() == name.lower():
+    voices = resp.json().get("voices", [])
+    needle = name.lower()
+    # Exact match first
+    for v in voices:
+        if v.get("name", "").lower() == needle:
+            return v["voice_id"]
+    # Prefix match — handles "Malakai - Shadowed and Gruff" given "Malakai"
+    for v in voices:
+        n = v.get("name", "").lower()
+        if n == needle or n.startswith(f"{needle} ") or n.startswith(f"{needle} -"):
             return v["voice_id"]
     raise ValueError(f"Voice not found: {name}")
 

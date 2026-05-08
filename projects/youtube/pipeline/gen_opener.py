@@ -159,17 +159,22 @@ def compose_opener(visual_mp4: Path, hook_audio: Path, music: Path | None,
     # feeds the final mix and the sidechain key (ffmpeg refuses to consume
     # a stream twice). normalize=0 keeps voice at full level.
     if music_idx is not None:
+        # duration=longest so the music carries past the voice end. The
+        # outer -t flag trims the whole opener to target_dur.
+        # apad on the voice with whole_dur ensures it doesn't drop out
+        # early during the asplit if voice ends before music.
         af = (
-            "[1:a]asplit=2[v_main][v_key];"
+            f"[1:a]apad=whole_dur={target_dur}[voice_padded];"
+            "[voice_padded]asplit=2[v_main][v_key];"
             "[2:a]volume=0.2[m_pre];"
             "[m_pre][v_key]sidechaincompress=threshold=0.05:ratio=6:"
             "attack=10:release=250[m_ducked];"
-            "[v_main][m_ducked]amix=inputs=2:duration=first:"
+            "[v_main][m_ducked]amix=inputs=2:duration=longest:"
             "dropout_transition=0:normalize=0[aout]"
         )
         amap = "[aout]"
     else:
-        af = "[1:a]anull[aout]"
+        af = f"[1:a]apad=whole_dur={target_dur}[aout]"
         amap = "[aout]"
 
     filter_complex = vf + ";" + af
@@ -196,6 +201,10 @@ def main():
                     choices=["velikov", "lydia", "stella"])
     ap.add_argument("--aspect", default="landscape",
                     choices=["landscape", "vertical"])
+    ap.add_argument("--visual",
+                    help="Path to an existing visual mp4 (skips Aurora gen). "
+                         "Use when you already have an opener visual you "
+                         "want to keep — only voice + music get layered on.")
     args = ap.parse_args()
 
     job = Path(args.job)
@@ -234,13 +243,20 @@ def main():
     hook_dur = synthesise_hook(api_key, args.voice, hook, args.char_profile, audio_path)
     print(f"  [hook] audio: {hook_dur:.2f}s", file=sys.stderr)
 
-    # 2) Aurora video for the visual. Quality 720p, 6s — gives us enough room
-    # to trim cleanly under hook duration. We don't gate generation on the
-    # circuit breaker explicitly; aurora_generate handles that.
-    visual_path = job / "opener_visual.mp4"
-    print(f"[2/3] generating Aurora video visual...", file=sys.stderr)
-    aurora_generate(visual_prompt, visual_path, mode="video",
-                    resolution="720p", duration="6s", timeout_s=300)
+    # 2) Visual: explicit override (--visual) wins; otherwise Aurora generates
+    # one at 720p / 6s. The override path lets us keep a hand-tuned visual
+    # (e.g. a kaiju metaphor) and just layer voice + music on top.
+    if args.visual:
+        visual_path = Path(args.visual)
+        if not visual_path.exists():
+            print(f"ERROR: --visual path not found: {visual_path}", file=sys.stderr)
+            sys.exit(1)
+        print(f"[2/3] using existing visual: {visual_path}", file=sys.stderr)
+    else:
+        visual_path = job / "opener_visual.mp4"
+        print(f"[2/3] generating Aurora video visual...", file=sys.stderr)
+        aurora_generate(visual_prompt, visual_path, mode="video",
+                        resolution="720p", duration="6s", timeout_s=300)
 
     # 3) Compose. Target = max(hook_dur + 0.5, OPENER_TARGET_S) so the hook
     # always lands fully and the opener doesn't end mid-word.
