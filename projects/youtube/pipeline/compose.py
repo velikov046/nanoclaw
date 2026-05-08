@@ -258,6 +258,12 @@ def beats_for_segment(seg: dict) -> list[dict]:
 
 BROLL_MAX_DURATION = 6.0  # trim each B-roll clip to this length
 
+# Pacing breath at the end of every segment. Adjacent segments without any
+# gap feel jammed; ~300ms of held last-frame + silent audio lets each
+# section land before the next starts. Tuned by ear; bump to 0.5 if Leo
+# wants more breathing room, drop to 0.15 for tighter cuts.
+SEGMENT_TAIL_S = 0.3
+
 
 def normalize_video_clip(input_path: str, out_path: str,
                          dims: tuple[int, int],
@@ -327,6 +333,11 @@ def build_segment_video(seg: dict, audio_path: str, duration: float,
                 f"segment {segment_index + 1} beat {k + 1}: image not found ({img})"
             )
 
+    # Total clip length includes a SEGMENT_TAIL_S breath after the narration.
+    # The looped image keeps the last beat's frame on screen; audio is
+    # padded with silence via apad so the total duration matches.
+    total_dur = duration + SEGMENT_TAIL_S
+
     # Single-beat fast path — keep behaviour identical to legacy compose
     if len(beats) == 1:
         vf_parts = [ken_burns_filter(duration, segment_index, dims, beats[0].get("motion"))]
@@ -338,12 +349,12 @@ def build_segment_video(seg: dict, audio_path: str, duration: float,
             "-loop", "1", "-i", beats[0]["image_file"],
             "-i", audio_path,
             "-vf", vf,
+            "-af", f"apad=pad_dur={SEGMENT_TAIL_S}",
             "-c:v", "libx264", "-preset", "fast", "-crf", "23",
             "-c:a", "aac", "-b:a", "192k",
             "-r", str(fps),
-            "-t", str(duration),
+            "-t", f"{total_dur:.3f}",
             "-pix_fmt", "yuv420p",
-            "-shortest",
             out_path,
         ]
         subprocess.run(cmd, check=True, capture_output=True)
@@ -371,15 +382,20 @@ def build_segment_video(seg: dict, audio_path: str, duration: float,
         filter_parts.append(f"[vcat]{subtitle_filter}[vout]")
     filter_complex = ";".join(filter_parts)
 
+    # Pad audio with silence so the segment ends with a breath (held last
+    # zoompan frame + silent tail). filter_complex needs the apad in the
+    # graph since we map a labelled audio stream rather than the raw input.
+    filter_complex += (
+        f";[{audio_idx}:a]apad=pad_dur={SEGMENT_TAIL_S}[aout]"
+    )
     cmd += [
         "-filter_complex", filter_complex,
-        "-map", "[vout]", "-map", f"{audio_idx}:a",
+        "-map", "[vout]", "-map", "[aout]",
         "-c:v", "libx264", "-preset", "fast", "-crf", "23",
         "-c:a", "aac", "-b:a", "192k",
         "-r", str(fps),
-        "-t", f"{duration:.3f}",
+        "-t", f"{total_dur:.3f}",
         "-pix_fmt", "yuv420p",
-        "-shortest",
         out_path,
     ]
     subprocess.run(cmd, check=True, capture_output=True)
