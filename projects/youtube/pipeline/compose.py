@@ -268,10 +268,16 @@ def beats_for_segment(seg: dict) -> list[dict]:
 BROLL_MAX_DURATION = 6.0  # trim each B-roll clip to this length
 
 # Pacing breath at the end of every segment. Adjacent segments without any
-# gap feel jammed; ~300ms of held last-frame + silent audio lets each
-# section land before the next starts. Tuned by ear; bump to 0.5 if Leo
-# wants more breathing room, drop to 0.15 for tighter cuts.
-SEGMENT_TAIL_S = 0.3
+# gap feel jammed; this is the held last-frame + silent audio that lets each
+# section land before the next starts. 0.8s reads as a clear chapter beat;
+# 0.3s is too tight for essay-style videos.
+SEGMENT_TAIL_S = 0.8
+
+# Crossfade duration between adjacent beats WITHIN a segment. Decoupled
+# from SEGMENT_TAIL_S because they serve different purposes — beats want a
+# tight blend (long blends look like motion blur), segments want a clear
+# breath. 0.3s is a noticeable but unobtrusive blend.
+BEAT_XFADE_S = 0.3
 
 
 def normalize_video_clip(input_path: str, out_path: str,
@@ -375,16 +381,16 @@ def build_segment_video(seg: dict, audio_path: str, duration: float,
     # images at every boundary and the brain read it as a "loop reset."
     # xfade overlap softens those transitions to a brief blend.
     #
-    # Each beat's image is looped for d + XFADE_DUR seconds so its zoompan
-    # has content to keep showing during the overlap. The xfade itself
-    # consumes XFADE_DUR seconds of overlap between consecutive beats, so
-    # the final output duration = sum(beat_durations) + XFADE_DUR — which
-    # matches our SEGMENT_TAIL_S breath when we set the two equal.
-    XFADE_DUR = SEGMENT_TAIL_S  # 0.3s by default; aliased so the breath
-    # at end-of-segment is the SAME content as the trailing tail of the
-    # last beat's zoompan, not a separate held freeze. Cleaner.
-
-    extended_durations = [d + XFADE_DUR for d in beat_durations]
+    # Per-beat image is looped longer than its narration duration so the
+    # xfade overlap has content. Inner beats extend by BEAT_XFADE_S (the
+    # blend overlap). The final beat extends by SEGMENT_TAIL_S so the
+    # held last frame fills the segment-end breath. Total video duration
+    # = sum(beat_durations) + SEGMENT_TAIL_S, matching audio after apad.
+    extended_durations = []
+    for k, d in enumerate(beat_durations):
+        is_last = (k == len(beats) - 1)
+        extension = SEGMENT_TAIL_S if is_last else BEAT_XFADE_S
+        extended_durations.append(d + extension)
 
     cmd: list[str] = ["ffmpeg", "-y"]
     for b, ext_d in zip(beats, extended_durations):
@@ -416,7 +422,7 @@ def build_segment_video(seg: dict, audio_path: str, duration: float,
             )
             filter_parts.append(
                 f"[{prev_label}][v{k}]xfade=transition=fade:"
-                f"duration={XFADE_DUR}:offset={cum_offset:.3f}[{next_label}]"
+                f"duration={BEAT_XFADE_S}:offset={cum_offset:.3f}[{next_label}]"
             )
             prev_label = next_label
             cum_offset += beat_durations[k]

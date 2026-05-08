@@ -134,13 +134,22 @@ def get_audio_duration(path: str) -> float:
     return float(result.stdout.strip())
 
 
-def apply_emotion_tags(text: str, agent: str = "velikov") -> str:
+def apply_emotion_tags(text: str, agent: str = "velikov",
+                       punchlines: list[str] | None = None) -> str:
+    """Run text through tag_cli.py, optionally flagging punchlines for
+    dramatic delivery. punchlines is a list of substrings; tag_cli wraps
+    each with <break time="1.0s"/> + [dramatic]/[emphatic] tags."""
     if not os.path.exists(TAG_CLI):
         return text
+    cmd = [sys.executable, TAG_CLI, text, "--agent", agent]
+    for p in (punchlines or []):
+        # Only mark punchlines that actually appear in this segment, so we
+        # don't waste tagger attention on irrelevant strings.
+        if p and p.lower() in text.lower():
+            cmd.extend(["--punchlines", p])
     try:
         result = subprocess.run(
-            [sys.executable, TAG_CLI, text, "--agent", agent],
-            capture_output=True, text=True, timeout=30
+            cmd, capture_output=True, text=True, timeout=30
         )
         if result.returncode == 0 and result.stdout.strip():
             return result.stdout.strip()
@@ -157,6 +166,13 @@ def narrate(job_dir: str, voice_name: str, agent: str = "velikov"):
 
     with open(script_path) as f:
         script = json.load(f)
+
+    # Top-level `punchlines: ["…", "…"]` lets the script author flag
+    # specific lines that MUST hit dramatically. apply_emotion_tags only
+    # passes the punchlines that actually appear in each segment.
+    punchlines = script.get("punchlines") or []
+    if punchlines:
+        print(f"Punchlines flagged for dramatic delivery: {len(punchlines)}")
 
     api_key = os.environ.get("ELEVENLABS_API_KEY")
     if not api_key:
@@ -176,7 +192,7 @@ def narrate(job_dir: str, voice_name: str, agent: str = "velikov"):
         out_path = os.path.join(audio_dir, f"segment_{i:02d}.mp3")
         print(f"Generating segment {i}/{len(script['segments'])}: {seg['text'][:60]}...")
 
-        tagged_text = apply_emotion_tags(seg["text"], agent)
+        tagged_text = apply_emotion_tags(seg["text"], agent, punchlines=punchlines)
 
         result = convert_with_timestamps(api_key, voice_id, tagged_text)
 

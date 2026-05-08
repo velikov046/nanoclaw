@@ -55,6 +55,20 @@ For shaping rhythm, prefer measured SSML breaks over loose pacing tags:
 - `<break time="1.5s" />`  weighty pause before a load-bearing claim or punchline
 Use [pause] / [hesitates] for character-coloured stalling; use `<break>` for clean rhythmic timing where you want a specific dwell. Don't stack a [pause] tag and a `<break>` in the same gap.
 
+## Punchline emphasis
+Load-bearing punchlines — the rhetorical payoff of a contrast, a reveal, a shocking pivot — must hit harder than setup lines or the structural argument loses its weight. Common patterns to recognise:
+- Negation + reveal: "It doesn't just open an inquiry — it opens a market."
+- Rhetorical pivot: "Same outbreak, same protocol — different ending."
+- Fragment punch: "Not coincidence. Pattern."
+- Ellipsis + contrast: "They tested every passenger… and quietly discarded the results that didn't fit."
+
+When you spot a punchline, apply ALL THREE:
+1. Insert `<break time="1.0s" />` (or 1.5s if the setup is long) IMMEDIATELY BEFORE the punchline — give the line a moment to land into.
+2. Tag the punchline itself with one of [dramatic], [emphatic], or [slowly] — pick the one that suits the character. NEVER stack two emphasis tags.
+3. Insert `<break time="1.5s" />` (or 2.0s for a heavy reveal) IMMEDIATELY AFTER the punchline — let the line breathe before the next sentence steamrolls it. The post-pause is non-negotiable; without it the punchline is just another sentence in the run.
+
+If the user content includes a `## Punchlines to emphasise` block, treat those exact substrings as definite punchlines and apply the full break-tag-break treatment without second-guessing.
+
 ## Rules
 - One or two tags per sentence maximum. Less is more.
 - Rhythm breaks are not subject to the one-or-two cap, but use them sparingly (1 to 3 across a paragraph).
@@ -97,11 +111,18 @@ def _build_client(agent):
         sys.exit(f"OneCLI proxy unavailable ({e}) and no ANTHROPIC_API_KEY in env")
 
 
-def tag_text(text, character, context, agent=None):
+def tag_text(text, character, context, agent=None, punchlines=None):
     system_text = TAGGER_SYSTEM.format(character=character.strip())
     user_parts = []
     if context.strip():
         user_parts.append(f"## Conversation context\n{context.strip()}\n")
+    if punchlines:
+        # Declarative punchlines override / supplement the heuristic detection
+        # in the system prompt. Each line is a substring that MUST get the
+        # dramatic break + emphasis tag treatment.
+        lines = "\n".join(f"- {p}" for p in punchlines if p.strip())
+        if lines:
+            user_parts.append(f"## Punchlines to emphasise\n{lines}\n")
     user_parts.append(f"## Text to tag\n{text.strip()}")
 
     client = _build_client(agent)
@@ -146,6 +167,12 @@ def main():
     parser.add_argument("--char",  default="", help="Character profile string or file (overridden by --agent if set)")
     parser.add_argument("--context", "--ctx", default="", help="Conversation context string or file (optional)")
     parser.add_argument("--out",   default="", help="Output file (default: print to stdout)")
+    parser.add_argument(
+        "--punchlines", action="append", default=[],
+        help="Substring to mark as a punchline (gets <break time=\"1.0s\" /> "
+             "+ [dramatic]/[emphatic]/[slowly] tag). Pass multiple times for "
+             "multiple punchlines.",
+    )
     args = parser.parse_args()
 
     # Input text
@@ -167,7 +194,9 @@ def main():
     context   = read_file_or_str(args.context)
 
     print("Tagging…", file=sys.stderr)
-    result = tag_text(text.strip(), character, context, agent=args.agent or None)
+    result = tag_text(text.strip(), character, context,
+                      agent=args.agent or None,
+                      punchlines=args.punchlines or None)
 
     if args.out:
         with open(args.out, "w", encoding="utf-8") as f:

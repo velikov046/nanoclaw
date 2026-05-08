@@ -42,6 +42,11 @@ jobs/<job_id>/
   "closer_visual_prompt": "Empty cruise corridor at night, single overhead light, slow zoom",
   "end_card": "Subscribe — the next one's about the testing protocol they buried.",
 
+  "punchlines": [
+    "It doesn't just open an inquiry — it opens a market.",
+    "Same outbreak, same protocol — different ending."
+  ],
+
   "segments": [
     {
       "id": 1,
@@ -56,6 +61,13 @@ jobs/<job_id>/
 - `music: true` → pick a track from `/workspace/extra/youtube/music/` and pass it to compose
 - **Hook fields** (`hook_script`, `hook_mode`, `opener_visual_prompt`, `title_overlay`) drive `gen_opener.py`. The hook MUST be either an audience question or a shocking-truth statement — declarative narration alone won't hold viewers past the 5-second cliff. Aim for ≤4s of speech so the opener lands under 5s total.
 - **Closer fields** (`closer_script`, `closer_visual_prompt`, `end_card`) drive `gen_closer.py`. One sentence, callback to the thesis or hook for the next video.
+- **Punchlines** (`punchlines`): top-level array of substrings that MUST land dramatically. `narrate.py` passes each that appears in the current segment to `tag_cli.py`, which wraps it with `<break time="1.0s"/>` + a `[dramatic]` / `[emphatic]` tag for ElevenLabs v3. Use for the load-bearing rhetorical payoffs — contrast reveals, fragment punches, "not just X — Y" structures. Don't over-flag: 2-4 per video is right; tagging everything as a punchline destroys the pattern.
+- **Segment text must SEGUE** — adjacent segments shouldn't read like cold openings to chapters. If segment 1 ends "...protocol they buried." then segment 2 starts "The time was January 2020." — that's whiplash. Open each non-first segment with a transitional clause that picks up the thread:
+  - Pivot question: "Now what about the timing?", "And the dates? That's where it gets stranger."
+  - Causal carry: "Which brings us to —", "And then —", "Because of that —"
+  - Counter-point: "But here's the thing.", "Except the records say otherwise."
+  - Pronoun callback: "That protocol — the one they buried — has a sibling."
+  The 300ms compose breath gives audio space; only good prose makes the listener want to stay through it.
 - Image prompts: specific and visual — match your character's aesthetic
 
 ---
