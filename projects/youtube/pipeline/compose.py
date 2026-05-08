@@ -135,6 +135,28 @@ FOCUS_XY: dict[str, tuple[str, str]] = {
 }
 
 
+# Supersample factor: zoompan defaults to integer-pixel positioning, so a
+# slow zoom on a final-resolution source rounds to visible 1-pixel jumps
+# every few frames. Pre-scaling the source 4x and letting zoompan output at
+# the target dim gives sub-pixel precision and visibly smoother motion.
+ZOOMPAN_SUPERSAMPLE = 4
+
+
+def _zoompan_pre(w: int, h: int) -> str:
+    """Pre-filter chain that supersamples the source for smooth zoompan output.
+
+    Input is upscaled with lanczos to ZOOMPAN_SUPERSAMPLE * (w, h) and cropped
+    to the target aspect. zoompan then operates on this high-res source and
+    emits at WxH, which gives the appearance of sub-pixel motion without
+    needing a custom interpolation filter.
+    """
+    sw, sh = w * ZOOMPAN_SUPERSAMPLE, h * ZOOMPAN_SUPERSAMPLE
+    return (
+        f"scale={sw}:{sh}:force_original_aspect_ratio=increase:flags=lanczos,"
+        f"crop={sw}:{sh},"
+    )
+
+
 def _directed_zoom_filter(frames: int, dims: tuple[int, int],
                            zoom: str, focus: str) -> str:
     """Build a zoompan expression from author-supplied zoom + focus directives."""
@@ -144,8 +166,10 @@ def _directed_zoom_filter(frames: int, dims: tuple[int, int],
         z_expr = f"if(lte(zoom,1.0),1.3,max(1.001,zoom-{ZOOM_SPEED}))"
     else:
         z_expr = f"min(zoom+{ZOOM_SPEED},1.3)"
-    pre = f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},"
-    return f"{pre}zoompan=z='{z_expr}':d={frames}:s={w}x{h}:x='{fx}':y='{fy}'"
+    return (
+        f"{_zoompan_pre(w, h)}"
+        f"zoompan=z='{z_expr}':d={frames}:s={w}x{h}:x='{fx}':y='{fy}'"
+    )
 
 
 def ken_burns_filter(duration: float, index: int, dims: tuple[int, int],
@@ -154,7 +178,10 @@ def ken_burns_filter(duration: float, index: int, dims: tuple[int, int],
 
     If `motion` is supplied with `zoom` and/or `focus` keys, the filter is
     deterministic. Otherwise the index picks one of four alternating patterns
-    so adjacent beats don't all pan the same way.
+    so adjacent beats don't all pan the same way. The variants must NOT share
+    a center coordinate that differs by a pixel-quantised offset (the prior
+    `+/- {index%2*2}` trick) — that produces visible 2-4px jumps at every
+    beat boundary. Use distinct continuous motions instead.
     """
     fps = 25
     frames = max(1, int(duration * fps))
@@ -167,18 +194,12 @@ def ken_burns_filter(duration: float, index: int, dims: tuple[int, int],
             focus=motion.get("focus", "center"),
         )
 
-    # Pre-scale step crops the source image to the target aspect before zoompan,
-    # otherwise vertical renders show pillarboxes from landscape source images.
-    pre = (
-        f"scale={w}:{h}:force_original_aspect_ratio=increase,"
-        f"crop={w}:{h},"
-    )
-
+    pre = _zoompan_pre(w, h)
     patterns = [
-        # zoom in, pan slight right
-        f"{pre}zoompan=z='min(zoom+{ZOOM_SPEED},1.3)':d={frames}:s={w}x{h}:x='iw/2-(iw/zoom/2)+{index%2*2}':y='ih/2-(ih/zoom/2)'",
-        # zoom in, pan slight left
-        f"{pre}zoompan=z='min(zoom+{ZOOM_SPEED},1.3)':d={frames}:s={w}x{h}:x='iw/2-(iw/zoom/2)-{index%2*2}':y='ih/2-(ih/zoom/2)'",
+        # zoom in, centered
+        f"{pre}zoompan=z='min(zoom+{ZOOM_SPEED},1.3)':d={frames}:s={w}x{h}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'",
+        # zoom in, drifting toward upper-right (continuous, scales with iw)
+        f"{pre}zoompan=z='min(zoom+{ZOOM_SPEED},1.3)':d={frames}:s={w}x{h}:x='iw*0.55-(iw/zoom/2)':y='ih*0.45-(ih/zoom/2)'",
         # zoom out from top-left
         f"{pre}zoompan=z='if(lte(zoom,1.0),1.3,max(1.001,zoom-{ZOOM_SPEED}))':d={frames}:s={w}x{h}:x='0':y='0'",
         # zoom out from bottom-right
