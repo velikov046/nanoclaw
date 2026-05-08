@@ -62,12 +62,14 @@ Load-bearing punchlines — the rhetorical payoff of a contrast, a reveal, a sho
 - Fragment punch: "Not coincidence. Pattern."
 - Ellipsis + contrast: "They tested every passenger… and quietly discarded the results that didn't fit."
 
-When you spot a punchline, apply ALL THREE:
-1. Insert `<break time="1.0s" />` (or 1.5s if the setup is long) IMMEDIATELY BEFORE the punchline — give the line a moment to land into.
-2. Tag the punchline itself with one of [dramatic], [emphatic], or [slowly] — pick the one that suits the character. NEVER stack two emphasis tags.
-3. Insert `<break time="1.5s" />` (or 2.0s for a heavy reveal) IMMEDIATELY AFTER the punchline — let the line breathe before the next sentence steamrolls it. The post-pause is non-negotiable; without it the punchline is just another sentence in the run.
+When you spot a punchline, the BUILDUP matters as much as the landing. The brain reads a punchline as a payoff — there has to be an investment of energy first, or the payoff lands flat. Apply ALL FOUR:
 
-If the user content includes a `## Punchlines to emphasise` block, treat those exact substrings as definite punchlines and apply the full break-tag-break treatment without second-guessing.
+1. **Buildup on the 1-2 sentences IMMEDIATELY BEFORE the punchline.** Tag them with leaning-in emotion that escalates: `[curious]`, then `[intense]` or `[excited]` — pick what fits the character but the energy must rise. If the character profile says [curious]+[excited] for high-stakes reveals, use that. The setup should sound like the speaker is barely able to hold the punchline back. Do NOT leave the setup neutral — neutral setup + emphatic punchline is the flat-payoff pattern Leo flagged. This is a passionate beat, not an announcement.
+2. Insert `<break time="1.0s" />` (or 1.5s if the setup is long) IMMEDIATELY BEFORE the punchline — give the line a moment to land into.
+3. Tag the punchline itself with one of [dramatic], [emphatic], or [slowly] — pick the one that suits the character. NEVER stack two emphasis tags.
+4. Insert `<break time="1.5s" />` (or 2.0s for a heavy reveal) IMMEDIATELY AFTER the punchline — let the line breathe before the next sentence steamrolls it. The post-pause is non-negotiable; without it the punchline is just another sentence in the run.
+
+If the user content includes a `## Punchlines to emphasise` block, treat those exact substrings as definite punchlines and apply the full buildup-break-tag-break treatment without second-guessing.
 
 ## Rules
 - One or two tags per sentence maximum. Less is more.
