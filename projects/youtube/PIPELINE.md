@@ -59,9 +59,11 @@ Generates per-segment MP3s and `audio/final.mp3`. Each segment is passed through
 
 ---
 
-## Step 2.5 — Anchor image (for recurring characters)
+## Step 2.5 — Anchor image (optional, for single-subject videos)
 
-**Do this whenever the video features a recurring person, creature, or distinctive setting.** Without an anchor, Aurora drifts: ask for "the same detective" across 30 beats and you get 30 different detectives — different face, different coat, different age. Aurora has no memory between calls. The anchor is what gives it one.
+**Skip this step for essay-style videos** that cut between varied imagery, different figures, archival shots, locations — Aurora's natural variety is the right look there.
+
+**Use an anchor when the video centres on one recurring subject** — a single character followed across the video, a creature, a specific location revisited. Without an anchor, Aurora drifts: ask for "the same detective" across 30 beats and you get 30 different detectives — different face, different coat, different age. Aurora has no memory between calls. The anchor is what gives it one.
 
 The anchor is a single image of the central subject, generated once, then attached as a build-from reference on every subsequent gen call (beats + thumbnail). Aurora preserves face, clothing, and palette strongly when a reference is attached.
 
@@ -87,7 +89,7 @@ Inspect the result. If it isn't right, regenerate before continuing — every do
 
 `gen_images.py` attaches the anchor on every beat. `gen_thumbnail.py` picks it up automatically. Per-beat override: set `beat.reference_image` for a specific beat that needs a different anchor (e.g. a secondary character entering for one segment). Per-thumbnail override: set `thumbnail_reference` if you want a different framing on the thumbnail.
 
-**Skip this step** only when the video is purely abstract / scenic / non-character (e.g. just landscapes or B-roll-style footage). For anything featuring a person, an animal, or a recurring setting that needs to feel coherent, the anchor is mandatory.
+**Decide upfront** whether your video has a single recurring subject worth anchoring to — most essay-style videos don't, and varied imagery between cuts is the right look. The anchor is the deliberate choice for character-driven pieces, not a default.
 
 ---
 
