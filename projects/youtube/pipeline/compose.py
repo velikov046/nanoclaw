@@ -34,7 +34,9 @@ ASPECT_DIMS = {
     "landscape": (1920, 1080),  # 16:9 — YouTube long-form, default
     "vertical": (1080, 1920),   # 9:16 — TikTok, YouTube Shorts, Instagram Reels
 }
-ZOOM_SPEED = 0.0008   # subtle — too fast looks cheap
+ZOOM_SPEED = 0.0005   # subtle — too fast looks cheap, and a slower zoom makes
+                       # the per-beat reset between adjacent stills less visible
+                       # (the camera doesn't have far to "snap back" from)
 
 
 def dimensions_for(aspect: str) -> tuple[int, int]:
@@ -195,14 +197,21 @@ def ken_burns_filter(duration: float, index: int, dims: tuple[int, int],
         )
 
     pre = _zoompan_pre(w, h)
+    # Patterns are ordered so index parity controls zoom direction:
+    # even indices (0, 2) zoom IN, odd indices (1, 3) zoom OUT. With
+    # `segment_index * 7 + k` as the lookup index, the zoom direction
+    # alternates beat-to-beat — the camera is always either pulling in
+    # or pulling back, never "snap-resetting" from zoomed-in to wide on
+    # two consecutive zoom-in beats. That snap-back is the main source
+    # of the looped/repetitive feel Leo flagged.
     patterns = [
-        # zoom in, centered
+        # 0: zoom in, centered
         f"{pre}zoompan=z='min(zoom+{ZOOM_SPEED},1.3)':d={frames}:s={w}x{h}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'",
-        # zoom in, drifting toward upper-right (continuous, scales with iw)
-        f"{pre}zoompan=z='min(zoom+{ZOOM_SPEED},1.3)':d={frames}:s={w}x{h}:x='iw*0.55-(iw/zoom/2)':y='ih*0.45-(ih/zoom/2)'",
-        # zoom out from top-left
+        # 1: zoom out from top-left
         f"{pre}zoompan=z='if(lte(zoom,1.0),1.3,max(1.001,zoom-{ZOOM_SPEED}))':d={frames}:s={w}x{h}:x='0':y='0'",
-        # zoom out from bottom-right
+        # 2: zoom in, drifting toward upper-right
+        f"{pre}zoompan=z='min(zoom+{ZOOM_SPEED},1.3)':d={frames}:s={w}x{h}:x='iw*0.55-(iw/zoom/2)':y='ih*0.45-(ih/zoom/2)'",
+        # 3: zoom out from bottom-right
         f"{pre}zoompan=z='if(lte(zoom,1.0),1.3,max(1.001,zoom-{ZOOM_SPEED}))':d={frames}:s={w}x{h}:x='iw-iw/zoom':y='ih-ih/zoom'",
     ]
     return patterns[index % len(patterns)]
