@@ -17,11 +17,13 @@ Underscore prefix marks this as pipeline-internal — not for direct CLI use.
 
 from __future__ import annotations
 
+import json
 import os
 import shutil
 import subprocess
 import sys
 import tempfile
+import time
 from pathlib import Path
 
 # Resolve nanoclaw root from this file's location.
@@ -37,6 +39,104 @@ _IN_CONTAINER = Path("/.dockerenv").exists() or Path("/run/.containerenv").exist
 
 DRIVER = _NANOCLAW_ROOT / "tools" / "grok_imagine.py"
 _HOST_VENV_PY = _NANOCLAW_ROOT / "tools" / ".playwright-venv" / "bin" / "python3"
+
+# Failure circuit-breaker. If three consecutive Aurora calls fail within
+# FAILURE_WINDOW_S, lock further calls for COOLDOWN_S so we don't keep
+# hammering grok.com — that's how a confused agent burns 18 retries in a
+# tight loop (2026-05-08 thumbnail incident: chromium launch issue retried
+# until Cloudflare / SuperGrok defenses kicked in). State lives next to the
+# caller's working tree (writable inside agent containers via /workspace/group;
+# on host falls back to a /tmp file so smoke tests don't pollute group dirs).
+_STATE_NAME = ".aurora-state.json"
+MAX_CONSECUTIVE_FAILURES = 3
+FAILURE_WINDOW_S = 5 * 60
+COOLDOWN_S = 15 * 60
+
+
+class AuroraThrottled(RuntimeError):
+    """Aurora is in cooldown after repeated failures. Callers MUST NOT retry —
+    the cooldown's whole purpose is to prevent the retry loop that triggered it."""
+
+
+def _state_path() -> Path:
+    """Pick a writable state path. /workspace/group inside containers, /tmp on host."""
+    if _IN_CONTAINER:
+        return Path("/workspace/group") / _STATE_NAME
+    # Host: per-user /tmp keeps state out of the repo and out of group dirs.
+    return Path(tempfile.gettempdir()) / f"aurora-state-{os.getuid()}.json"
+
+
+def _load_state() -> dict:
+    p = _state_path()
+    if not p.exists():
+        return {}
+    try:
+        return json.loads(p.read_text())
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+
+def _save_state(state: dict) -> None:
+    p = _state_path()
+    try:
+        p.parent.mkdir(parents=True, exist_ok=True)
+        tmp = p.with_suffix(p.suffix + f".tmp.{os.getpid()}")
+        tmp.write_text(json.dumps(state))
+        tmp.replace(p)
+    except OSError as e:
+        # State file is best-effort; don't fail the actual gen call over it.
+        print(f"  [aurora-state] couldn't persist: {e}", file=sys.stderr)
+
+
+def _check_cooldown() -> None:
+    """Raise AuroraThrottled if a previous failure burst put Aurora in cooldown."""
+    state = _load_state()
+    cooldown_until = state.get("cooldown_until", 0)
+    if cooldown_until and time.time() < cooldown_until:
+        secs_left = int(cooldown_until - time.time())
+        reason = state.get("cooldown_reason", "repeated failures")
+        raise AuroraThrottled(
+            f"Aurora is in cooldown for {secs_left}s ({reason}). DO NOT RETRY — "
+            f"the cooldown exists to keep grok.com defenses from locking us out. "
+            f"Investigate the root cause (cookies expired, Chromium launch, "
+            f"prompt rejected) before the next attempt."
+        )
+
+
+def _record_failure(reason: str) -> None:
+    """Bump the consecutive-failure counter; on threshold, set a cooldown."""
+    state = _load_state()
+    now = time.time()
+    last = state.get("last_failure_at", 0)
+    # Reset the counter if the previous failure was outside the burst window —
+    # otherwise we'd bank failures across an entire day and false-trigger.
+    if now - last > FAILURE_WINDOW_S:
+        state["consecutive_failures"] = 0
+    state["consecutive_failures"] = state.get("consecutive_failures", 0) + 1
+    state["last_failure_at"] = now
+    state["last_failure_reason"] = reason[:200]
+    if state["consecutive_failures"] >= MAX_CONSECUTIVE_FAILURES:
+        state["cooldown_until"] = now + COOLDOWN_S
+        state["cooldown_reason"] = (
+            f"{state['consecutive_failures']} consecutive failures within "
+            f"{FAILURE_WINDOW_S}s; latest: {reason[:120]}"
+        )
+        print(
+            f"  [aurora-circuit-breaker] {state['consecutive_failures']} fails "
+            f"-> cooldown for {COOLDOWN_S}s",
+            file=sys.stderr,
+        )
+    _save_state(state)
+
+
+def _record_success() -> None:
+    """Clear the failure counter on a successful gen."""
+    state = _load_state()
+    if state.get("consecutive_failures") or state.get("cooldown_until"):
+        state["consecutive_failures"] = 0
+        state.pop("cooldown_until", None)
+        state.pop("cooldown_reason", None)
+        _save_state(state)
 
 
 def _resolve_python() -> str:
@@ -119,6 +219,12 @@ def generate(
         raise ValueError(f"mode must be 'image' or 'video', got {mode!r}")
     if mode == "video" and reference_image:
         raise ValueError("reference_image is not supported in video mode")
+
+    # Circuit-breaker: bail before the subprocess if a previous burst of
+    # failures put Aurora in cooldown. This is what stops a confused agent
+    # from retry-hammering 18 times after a transient chromium / cookie /
+    # Cloudflare issue and triggering deeper defenses.
+    _check_cooldown()
     cookies = _resolve_cookies(cookies_file)
     if not cookies.exists():
         raise FileNotFoundError(
@@ -168,6 +274,7 @@ def generate(
                 timeout=timeout_s + 60,
             )
         except subprocess.TimeoutExpired as e:
+            _record_failure(f"wall-clock timeout after {timeout_s + 60}s")
             raise RuntimeError(
                 f"grok_imagine.py wall-clock timeout after {timeout_s + 60}s"
             ) from e
@@ -175,13 +282,21 @@ def generate(
         if result.returncode != 0:
             # Driver writes diagnostics to stderr — surface so callers can see why.
             sys.stderr.write(result.stderr)
+            tail = (result.stderr or "").strip().splitlines()[-3:]
+            _record_failure(
+                f"exit {result.returncode}: " + " | ".join(tail)
+            )
             raise RuntimeError(
-                f"grok_imagine.py exited {result.returncode}; see stderr above."
+                f"grok_imagine.py exited {result.returncode}; see stderr above. "
+                f"DO NOT retry blindly — after {MAX_CONSECUTIVE_FAILURES} consecutive "
+                f"fails the circuit-breaker locks Aurora for {COOLDOWN_S//60}min."
             )
         if not out.exists():
+            _record_failure("driver claimed success but output missing")
             raise RuntimeError(
                 f"grok_imagine.py reported success but {out} is missing."
             )
+        _record_success()
         return out
     finally:
         shutil.rmtree(profile_dir, ignore_errors=True)
@@ -219,6 +334,9 @@ if __name__ == "__main__":
                         cookies_file=ns.cookies_file, timeout_s=ns.timeout,
                         reference_image=ns.reference_image,
                         mode=ns.mode, quality=ns.quality)
+    except AuroraThrottled as e:
+        print(f"AURORA_THROTTLED: {e}", file=sys.stderr)
+        sys.exit(75)  # EX_TEMPFAIL — distinct exit code so callers can detect cooldown
     except (FileNotFoundError, RuntimeError, ValueError) as e:
         print(f"ERROR: {e}", file=sys.stderr)
         sys.exit(1)
