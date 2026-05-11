@@ -21,8 +21,80 @@ import subprocess
 import sys
 
 import requests
+import xml.etree.ElementTree as ET
+from pathlib import Path
 
 ELEVEN_API_BASE = "https://api.elevenlabs.io"
+PRONUNCIATION_DIR = Path(__file__).resolve().parent.parent / "pronunciation"
+PLS_MANIFEST = PRONUNCIATION_DIR / "manifest.json"
+PLS_FILE = PRONUNCIATION_DIR / "narration.pls"
+PLS_NS = "{http://www.w3.org/2005/01/pronunciation-lexicon}"
+
+
+def load_pls_locators() -> list[dict] | None:
+    """Return [{pronunciation_dictionary_id, version_id}] if a manifest exists,
+    else None. Manifest is written by tools/upload_pls.py."""
+    if not PLS_MANIFEST.is_file():
+        return None
+    try:
+        m = json.loads(PLS_MANIFEST.read_text())
+        return [{
+            "pronunciation_dictionary_id": m["dictionary_id"],
+            "version_id": m["version_id"],
+        }]
+    except (KeyError, json.JSONDecodeError):
+        return None
+
+
+_pls_subs_cache: list[tuple[re.Pattern, str]] | None = None
+
+
+def _load_pls_substitutions() -> list[tuple[re.Pattern, str]]:
+    """Parse narration.pls into [(compiled regex, alias), ...].
+
+    Used by the client-side fallback path when v3 ignores the server-side
+    pronunciation_dictionary_locators. Whole-word, case-sensitive match —
+    mirrors ElevenLabs server-side PLS semantics so toggling NARRATE_CLIENT_PRONUNCIATION
+    on/off doesn't change which graphemes hit.
+
+    Caveat: client-side rewrite changes the spoken-text alignment too —
+    captions will show 'H five N one' as four word-boxes instead of one
+    'H5N1' box. See feedback_youtube_acronym_spelling.md on the readability
+    trade-off; prefer the server-side locator when it works.
+    """
+    global _pls_subs_cache
+    if _pls_subs_cache is not None:
+        return _pls_subs_cache
+    if not PLS_FILE.is_file():
+        _pls_subs_cache = []
+        return _pls_subs_cache
+    try:
+        root = ET.parse(PLS_FILE).getroot()
+    except ET.ParseError as e:
+        print(f"[narrate] PLS parse error in {PLS_FILE}: {e}", file=sys.stderr)
+        _pls_subs_cache = []
+        return _pls_subs_cache
+    subs: list[tuple[re.Pattern, str]] = []
+    for lexeme in root.findall(f"{PLS_NS}lexeme"):
+        g = lexeme.findtext(f"{PLS_NS}grapheme")
+        a = lexeme.findtext(f"{PLS_NS}alias")
+        if not g or not a:
+            continue
+        pattern = re.compile(rf"\b{re.escape(g)}\b")
+        subs.append((pattern, a))
+    _pls_subs_cache = subs
+    return subs
+
+
+def apply_pronunciation_aliases(text: str) -> str:
+    """Apply PLS alias substitutions client-side. No-op if PLS file is empty
+    or NARRATE_CLIENT_PRONUNCIATION is not set."""
+    if not os.environ.get("NARRATE_CLIENT_PRONUNCIATION"):
+        return text
+    for pattern, alias in _load_pls_substitutions():
+        text = pattern.sub(alias, text)
+    return text
+
 
 # A "word" that is entirely one-or-more bracket tags (e.g. "[whispers]" or
 # "[whispers][nervous]"). ElevenLabs' normalized_alignment leaks these through
@@ -78,7 +150,13 @@ def convert_with_timestamps(api_key: str, voice_id: str, text: str, model_id: st
     """
     url = f"{ELEVEN_API_BASE}/v1/text-to-speech/{voice_id}/with-timestamps"
     headers = {"xi-api-key": api_key, "Content-Type": "application/json"}
-    body = {"text": text, "model_id": model_id, "output_format": "mp3_44100_128"}
+    text = apply_pronunciation_aliases(text)
+    body: dict[str, object] = {
+        "text": text, "model_id": model_id, "output_format": "mp3_44100_128",
+    }
+    locators = load_pls_locators()
+    if locators:
+        body["pronunciation_dictionary_locators"] = locators
     resp = requests.post(url, headers=headers, json=body, timeout=120)
     resp.raise_for_status()
     return resp.json()
