@@ -179,7 +179,11 @@ _FIELD_HINTS: dict[str, str] = {
     "philosophy":          "abstract geometric patterns, scientific instruments, symbolic imagery",
     "genetics":            "DNA helix, gene sequencing, molecular biology visualization",
     "medicine":            "clinical laboratory, medical imaging, microscopy",
+    "microbiology":        "microscopic bacteria, cellular structures, petri dish cultures",
     "chemistry":           "molecular structures, chemical reactions, laboratory glassware",
+    "toxicology":          "chemical compound structures, laboratory analysis, hazard imagery",
+    "water":               "flowing water, municipal pipes, filtration systems, liquid close-up",
+    "environmental":       "pollution, industrial landscapes, aerial environmental photography",
     "physics":             "particle physics visualization, quantum field patterns, wave interference",
     "neuroscience":        "neural network, brain scan imagery, synapse visualization",
     "epidemiology":        "disease spread mapping, statistical heatmaps, population data",
@@ -187,16 +191,20 @@ _FIELD_HINTS: dict[str, str] = {
     "history":             "archival photography, aged documents, period-specific imagery",
     "economics":           "financial data visualization, market charts, institutional buildings",
     "psychology":          "cognitive pattern visualization, abstract mind imagery",
+    "nutrition":           "food science, molecular gastronomy, cellular nutrition imagery",
+    "astronomy":           "deep space photography, telescope imagery, celestial bodies",
+    "geology":             "rock strata, mineral crystals, geological survey imagery",
 }
 
 
 def _field_hint(concept: dict) -> str:
     field = (concept.get("field") or "").lower()
     domain = (concept.get("domain") or "").lower()
-    combined = f"{field} {domain}"
-    for key, hint in _FIELD_HINTS.items():
-        if key in combined:
-            return hint
+    # Check field first (more specific), then domain as fallback
+    for text in [field, domain]:
+        for key, hint in _FIELD_HINTS.items():
+            if key in text:
+                return hint
     return "abstract dark editorial photography, scientific visualization, cinematic depth"
 
 
