@@ -34,6 +34,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
@@ -226,6 +227,18 @@ def fetch_4chan(catalog_url):
 
 
 FETCH_WORKERS = 10
+RETRY_ATTEMPTS = 2
+RETRY_BACKOFF = 3  # seconds between retries
+
+
+def _is_retryable(exc: Exception) -> bool:
+    if isinstance(exc, (httpx.TimeoutException, httpx.ConnectError)):
+        return True
+    if isinstance(exc, httpx.HTTPStatusError) and exc.response.status_code >= 500:
+        return True
+    # feedparser timeout surfaces as RuntimeError wrapping a socket/url error
+    msg = str(exc).lower()
+    return 'timed out' in msg or 'timeout' in msg or 'connection' in msg
 
 
 def _fetch_one(feed):
@@ -237,16 +250,23 @@ def _fetch_one(feed):
         'url': feed['url'],
         'items': [],
     }
-    try:
-        if typ == 'youtube':
-            entry['items'] = fetch_youtube(feed['url'])
-        elif typ == '4chan':
-            entry['items'] = fetch_4chan(feed['url'])
-        else:
-            entry['items'] = fetch_rss(feed['url'])
-        return feed['name'], entry, None
-    except Exception as e:
-        return feed['name'], entry, str(e)[:200]
+    last_err = None
+    for attempt in range(1 + RETRY_ATTEMPTS):
+        try:
+            if typ == 'youtube':
+                entry['items'] = fetch_youtube(feed['url'])
+            elif typ == '4chan':
+                entry['items'] = fetch_4chan(feed['url'])
+            else:
+                entry['items'] = fetch_rss(feed['url'])
+            return feed['name'], entry, None
+        except Exception as e:
+            last_err = e
+            if attempt < RETRY_ATTEMPTS and _is_retryable(e):
+                time.sleep(RETRY_BACKOFF * (attempt + 1))
+            else:
+                break
+    return feed['name'], entry, str(last_err)[:200]
 
 
 def main():
